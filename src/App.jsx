@@ -1,8 +1,6 @@
 import "./App.css";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import Uploadfile from "./components/Uploadfile";
-import Pdf from "./components/Pdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import jsPDF from "jspdf";

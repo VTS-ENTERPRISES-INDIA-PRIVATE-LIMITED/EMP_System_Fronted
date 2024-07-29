@@ -5,7 +5,7 @@ const Pdf = () => {
     <div className="payslip-container">
         <div className="header">
             <div className="company-info">
-                <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Company Logo" className="logo"/>
+                <img src={process.env.PUBLIC_URL + 'assets/images/logo.png'} alt="Company Logo" className="logo"/>
                 <div>
                     <h1 style={{paddingTop: "5px"}}>VTS</h1>
                 </div>
@@ -61,8 +61,8 @@ const Pdf = () => {
                     </div>
                 </div>
                 <hr style={{margin: "0px 10px"}}/>
-                <p>Paid Days: <b>23</b></p>
-                <p>LOP Days: <b>0</b></p>
+                <p>Paid Days: 23</p>
+                <p>LOP Days: 0</p>
             </div>
         </div>
         <table className="earnings-deductions">
@@ -127,9 +127,8 @@ const Pdf = () => {
                 </tr>
             </tfoot>
         </table>
-        <center><p><strong>Amount In Words:Fifty-Nine Thousand Only/-</strong></p>  <hr/>
-        <p><i class="fa fa-map-marker" style={{fontSize:"16px"}}></i> First Floor, SRP Stratford, Rajiv Gandhi Salai, PTK Nagar, OMR 600100 India</p>
-    </center>
+        <center><p><strong>Amount In Words: Indian Rupee Fifty-Nine Thousand Only</strong></p></center><hr/>
+        <center><p>First Floor, SRP Stratford, Rajiv Gandhi Salai, PTK Nagar, OMR 600100 India</p></center>
         <p className="footer-note">-- This is a system-generated document. --</p>
     </div>
   )
