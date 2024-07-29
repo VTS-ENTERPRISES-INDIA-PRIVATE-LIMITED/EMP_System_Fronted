@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Uploadfile from "./components/Uploadfile";
 import Pdf from "./components/Pdf";
 import html2canvas from "html2canvas";
-import axios from "axios"
+import axios from "axios";
 import jsPDF from "jspdf";
 import logo from "./assets/images/vts-logo-payroll.jpeg";
 import { useState } from "react";
@@ -27,9 +27,9 @@ function App() {
     const imgWidth = pdf.internal.pageSize.getWidth();
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, undefined, "FAST");
-  
+
     const pdfBlob = pdf.output("blob");
-  
+ 
     const formData = new FormData();
     formData.append("file", pdfBlob, "document.pdf");
     formData.append("upload_preset", "payslips");
