@@ -229,9 +229,12 @@ const Uploadfile = () => {
                 <div className="left-panel">
                     <div className="dropdown-filter">
                         <select onChange={handleDropdownChange} value={selectedDropdownColumn}>
-                            {headers.filter(header => header.toLowerCase() !== "id").map((header, index) => (
-                                <option key={index} value={header}>{header}</option>
-                            ))}
+                        {headers
+                                .filter(header => String(header).toLowerCase() !== "id")
+                                 .map((header, index) => (
+                                 <option key={index} value={header}>{header}</option>
+                                        ))
+                                                    }
                         </select>
                     </div>
                     <div className="search-filter">
@@ -278,7 +281,6 @@ const Uploadfile = () => {
                         </div>
                     )}
                 </div>
-                <div className="vertical-line"></div> 
                 <div className="right-panel">
                     <div className="selected-data">
                         <table>
@@ -301,7 +303,7 @@ const Uploadfile = () => {
                         </table>
                     </div>
                     <div className="generate-payroll-container">
-                        <button className="download-button" onClick={downloadAndSave}>Download & Save</button>
+                        <button className="download-button" onClick={downloadAndSave}>Save</button>
                     </div>
                     <div>  
                         <center><button className="generate-payroll-button" onClick={generatePayroll}>Generate Payroll</button></center> 

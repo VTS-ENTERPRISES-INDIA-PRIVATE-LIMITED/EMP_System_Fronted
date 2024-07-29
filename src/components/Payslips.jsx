@@ -75,7 +75,7 @@ const Payslips = () => {
     const filteredPdfs = filterPdfs();
 
     return (
-        <>
+        <div className='paySlipCont'>
             <div className="payRollDetails">
                 <div className='dateFilter'>
                     
@@ -120,8 +120,8 @@ const Payslips = () => {
                                         <td>{pdf.title}</td>
                                         <td>{pdf.date}</td>
                                         <td className="tableBtns">
-                                            <img src={process.env.PUBLIC_URL + '/images/eye.png'} alt='view' onClick={() => setSelectedPdf(pdf.url)}/>
-                                            <img src={process.env.PUBLIC_URL + '/images/download.png'} alt='download' onClick={() => handleDownload(pdf.url)}/>
+                                            <img src={process.env.PUBLIC_URL + 'assets/images/eye.png'} alt='view' onClick={() => setSelectedPdf(pdf.url)}/>
+                                            <img src={process.env.PUBLIC_URL + 'assets/images/download.png'} alt='download' onClick={() => handleDownload(pdf.url)}/>
                                         </td>
                                     </tr>
                                 ))
@@ -148,12 +148,12 @@ const Payslips = () => {
                     </div>
                 ) : (
                     <div className="noData">
-                        <img src={process.env.PUBLIC_URL + '/images/box.png'} alt="No Data" />
+                        <img src={process.env.PUBLIC_URL + 'assets/images/box.png'} alt="No Data" />
                         <p>No Data</p>
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

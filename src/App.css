@@ -16,20 +16,22 @@ body {
   height: 40px;
   margin-right: 10px;
 }
+
+/* Hero-section */
+
 .heroSection {
   display: flex;
-  align-items: center;
 }
 .dashboard {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   height: calc(100vh - 60px);
-  width: fit-content;
+  width: 300px;
   border: solid #ddd;
   border-width: 0 2px 0 0;
 }
 .userDetails {
+  font-size: 14px;
   padding: 0 40px;
   display: flex;
   flex-direction: column;
@@ -67,6 +69,12 @@ body {
   padding: 15px 40px;
   margin: 0;
 }
+.dashLink:hover {
+  cursor: pointer;
+}
+.dashLink:hover .dashDropDownList {
+  display: block;
+}
 .dashDropDownList {
   transition: display 0.6s ease-in-out;
   display: none;
@@ -74,10 +82,6 @@ body {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-.dashLink:hover .dashDropDownList {
-  display: block;
-  cursor: pointer;
 }
 .dashDropDownList li {
   display: flex;
@@ -104,6 +108,61 @@ body {
   opacity: 1;
   transform: rotate(0deg);
   cursor: pointer;
+}
+
+/* Dashboard-Page */
+
+.dashBoardPage {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 30px 100px;
+}
+.loginCard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 5px #bbb;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.loginCard p {
+  margin: 8px 0;
+}
+.loginCont {
+  display: flex;
+  align-items: center;
+}
+.loginCont img {
+  height: 30px;
+  margin-right: 20px;
+}
+.anouncements {
+  background-color: #fff;
+  margin: 20px 30px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.anouncements th {
+  background-color: #bbb;
+  padding: 10px 0;
+}
+.anouncements img {
+  width: 80px;
+  margin: 10px 0;
+}
+.anouncements img:hover {
+  cursor: pointer;
+}
+
+/* Pay-Roll */
+
+.paySlipCont {
+  display: flex;
+  width: calc(100vw - 300px);
 }
 .payRollDetails {
   display: flex;
@@ -153,7 +212,6 @@ body {
 }
 .payRollPreview {
   flex-grow: 1;
-  margin-top: 10px;
   justify-self: flex-end;
   height: calc(100vh - 70px);
   overflow-y: scroll;
@@ -181,134 +239,15 @@ body {
   cursor: pointer;
 }
 
+/* Generate payroll */
 
-.net-pay-main{
-  display: flex;
-  position: relative;
-  /* flex-direction: ; */
+.upload-container {
+  width: calc(100vw - 300px);
+  height: calc(100vh - 60px);
+  overflow: scroll;
 }
-.small{
-  position: absolute;
-  left: 7px;
-  top: 12px;
-  border-radius: 5px;
-  background-color: rgb(75, 112, 53);
-  height: 40px;
-  width: 3px;
-}
-.small-in{
-  /* position:absolute; */
-  /* background-color: rgb(182, 219, 155); */
-  border-radius: 9px;
-}
-.payslip-container {
-  background-color: #ffffff;
-  border: 1px solid #dcdcdc;
-  width: 800px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #dcdcdc;
-  padding-bottom: 10px;
-}
-
-.company-info {
-  display: flex;
-  align-items: center;
-}
-
-.company-info h1 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.company-info p {
-  margin: 5px 0 0 0;
-  font-size: 12px;
-}
-
-.payslip-title {
-  text-align: right;
-}
-
-.payslip-title h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.payslip-title h3 {
-  margin: 5px 0 0 0;
-  font-size: 16px;
-}
-
-.employee-summary {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-
-  border-bottom: 2px solid #dcdcdc;
-}
-
-.employee-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.employee-info p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.net-pay {
-  text-align: left;
-  border-radius: 10px;
-  border: 1px solid rgb(162, 159, 159);
-  
-  /* margin-right: 100px; */
-}
-
-.net-pay .net-amount {
-  padding: 0px 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #448d46;
-}
-
-.net-pay p {
-  padding: 3px 0px;
-  padding-left: 15px;
-  margin: 5px 0px 0px 0px;
-  font-size: 14px;
-}
-
-.earnings-deductions {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-}
-
-.earnings-deductions th,
-.earnings-deductions td {
-  /* justify-content: space-evenly; */
-  padding: 10px;
-  text-align: left;
-}
-
-.earnings-deductions th {
-  background-color: #f1f1f1;
-}
-tfoot td {
-  font-weight: bold;
-}
-.footer-note {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: #777;
+.upload-container::-webkit-scrollbar {
+  display: none;
 }
 .uploadHeader {
   border: solid rgb(213, 203, 203);
@@ -342,62 +281,43 @@ tfoot td {
 }
 .checkbox-item {
   cursor: pointer;
-  margin: 5px 10px;
+  margin: 10px;
   display: flex;
-  width: 13%;
   align-items: center;
 }
-
 .checkbox-item label {
   margin-left: 5px;
 }
-
-input[type="file"] {
+.formInput input[type="file"] {
   padding: 10px;
   border: 1px solid #288ca7;
   border-radius: 4px;
   cursor: pointer;
   width: 70%;
 }
-
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
-
 .selected-file {
   margin-top: 20px;
   font-weight: bold;
 }
-
 .main-content {
   display: flex;
   justify-content: space-around;
 }
-
 .left-panel {
   display: flex;
   flex-direction: column;
+  width: 300px;
   padding: 20px;
-  /* box-shadow:0 0 3px rgb(30, 27, 27); */
   border: 2px solid rgb(165, 165, 165);
   border-radius: 10px;
-  /* margin-top: px; */
-  /* border: 1px solid black;
-  border-radius: 5px; */
   margin: 20px 5px 20px 5px;
 }
-
-/* .vertical-line {
-  width: 1px;
-  background-color: #918f8f; 
-  height: auto;
-} */
 .right-panel {
-  width: 1000px;
   margin: 20px 30px 20px 5px;
-  /* box-shadow:0 0 3px rgb(30, 27, 27); */
-  /* margin: 10px 10px; */
   padding: 10px 10px;
   border-radius: 10px;
   border: 2px solid rgb(165, 165, 165);
@@ -406,7 +326,6 @@ input[type="file"] {
   margin-top: 20px;
   width: 100%;
 }
-
 .dropdown-filter select {
   padding: 10px;
   width: 100%;
@@ -415,11 +334,9 @@ input[type="file"] {
   outline: none;
   border-radius: 4px;
 }
-
 .search-filter {
   margin-top: 20px;
 }
-
 .search-filter input {
   padding: 10px;
   width: 100%;
@@ -428,7 +345,6 @@ input[type="file"] {
   border: 1px solid #288ca7;
   border-radius: 4px;
 }
-
 .suggestions-box {
   border: 1px solid #ccc;
   border-top: none;
@@ -441,17 +357,14 @@ input[type="file"] {
   z-index: 1;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 .suggestion-item {
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
-
 .form-container {
   margin-top: 20px;
   width: 100%;
@@ -459,31 +372,27 @@ input[type="file"] {
   flex-direction: column;
   align-items: center;
 }
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: 100%;
 }
-
 .form-field {
+  width: 140px;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-
 .form-field label {
   margin-bottom: 5px;
 }
-
 .form-field input {
   padding: 8px;
   border: 1px solid #288ca7;
   border-radius: 4px;
   outline: none;
 }
-
 .save-button {
   background-color: #288ca7; 
   color: white;
@@ -494,31 +403,25 @@ input[type="file"] {
   margin-top: 20px;
   transition:  background-color 0.5s;
 }
-
 .save-button:hover {
   background-color:  #1f6d85; 
 }
 .selected-data {
   margin-top: 40px;
-  width: 100%;
+  width: 650px;
   height: 50vh;
   overflow-x:scroll;
 }
-
 .selected-data table {
   width: 100%;
   border-collapse: collapse;
   position: relative;
 }
-/* .selected-data thead {
-  position: fixed;
-} */
 .selected-data th,
 .selected-data td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
-  
+  text-align: left; 
 }
 .selected-data td {
   width: fit-content;
@@ -526,11 +429,9 @@ input[type="file"] {
 .selected-data th {
   background-color: #f2f2f2;
 }
-
 .selected-data tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
 .selected-data tr:hover {
   background-color: #e2e2e2;
   cursor: pointer;
@@ -546,18 +447,14 @@ input[type="file"] {
   transition:  background-color 0.5s;
 
 }
-
 .download-button:hover:hover {
   background-color: #1f6d85;
 }
-
 .generate-payroll-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
-  /* gap: 10px;  */
 }
-
 .generate-payroll-button {
   background-color: #44c33d;
   color: white;
@@ -568,203 +465,107 @@ input[type="file"] {
   transition:  background-color 0.5s;
   margin: 40px 0px 10px 0px;
 }
-
 .generate-payroll-button:hover{
   background-color: #2f772b;
 }
 
 
-.net-pay-main{
-  display: flex;
-  position: relative;
-  /* flex-direction: ; */
-}
-.small{
-  position: absolute;
-  left: 7px;
-  top: 12px;
-  border-radius: 5px;
-  background-color: rgb(75, 112, 53);
-  height: 40px;
-  width: 3px;
-}
-.small-in{
-  /* position:absolute; */
-  /* background-color: rgb(182, 219, 155); */
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  background-color: #00ff081e;
+/* Leave-Page */
 
-}
-.payslip-container {
-  background-color: #ffffff;
-  border: 1px solid #dcdcdc;
-  width: 800px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid #dcdcdc;
-  padding-bottom: 10px;
-}
-
-.company-info {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.company-info h1 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.company-info p {
-  margin: 5px 0 0 0;
-  font-size: 12px;
-}
-
-.payslip-title {
-  text-align: right;
-}
-
-.payslip-title h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.payslip-title h3 {
-  margin: 5px 0 0 0;
-  font-size: 16px;
-}
-
-.employee-summary {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 15px;
-  border-bottom: 2px solid #dcdcdc;
-}
-
-.employee-info {
+.leaveCont {
+  background-color: #ddd;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-.employee-info p {
-  margin: 5px 0;
-  font-size: 14px;
+.leaveFilters {
+  margin-bottom: 30px;
 }
-
-.net-pay {
-  text-align: left;
+.leaveFilters select, .leaveFilters input {
+  padding: 8px;
+  margin-right: 15px;
   border-radius: 10px;
-  border: 1px solid rgb(162, 159, 159);
-
-
-  /* margin-right: 100px; */
+  border: solid 1px #000;
 }
-
-.net-pay .net-amount {
-  padding: 0px 15px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #448d46;
-}
-
-.net-pay p {
-  padding: 3px 0px;
-  padding-left: 15px;
-  margin: 5px 0px 0px 0px;
-  font-size: 14px;
-}
-
-.earnings-deductions {
-  width: 100%;
-  margin-top: 20px;
+.leaveTable {
+  background-color: #fff;
+  text-align: center;
   border-collapse: collapse;
 }
-
-.earnings-deductions th,
-.earnings-deductions td {
-  /* justify-content: space-evenly; */
-  padding: 10px;
-  text-align: left;
+.leaveTable th {
+  background-color: #bbb;
+  padding: 10px 20px;
+}
+.leaveTable td {
+  padding: 10px 0;
+}
+.leaveTable img {
+  width: 20px;
 }
 
-.earnings-deductions th {
-  background-color: #f1f1f1;
+/* Leave-From */
+
+.leaveForm {
+  position: relative;
+  background-color: #fff;
+  padding: 60px 20px 40px;
+  overflow: hidden;
+  border-radius: 10px;
 }
-tfoot td {
+.formHeader {
+  position: absolute;
+  padding: 10px 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #bbb;
+}
+.flex {
+  display: flex;
+}
+.formInp, .formDesp {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.formInp input {
+  margin: 0 20px;
+  height: 30px;
+  border-radius: 5px;
+  border: solid 1px #000;
+}
+.formDesp input {
+  height: 30px;
+  border-radius: 5px;
+  width: 100%;
+  border: solid 1px #000;
+  margin: 0 20px;
+}
+.formBtn {
+  border-radius: 20px;
+  border: 2px solid;
+  padding: 8px 20px;
+  margin-left: 20px;
   font-weight: bold;
+  transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
-
-.footer-note {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
-  color: #777;
+.formSubBtn {
+  background-color: #44c33d;
+  color: white;
 }
-
-
-
-@media (max-width: 768px) {
-  .upload-button {
-    margin-right: 0;
-    font-size: 10px;
-  }
-
-  .checkbox-container {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .checkbox-item {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .save-button {
-    width: 100%;
-  }
-  
-  .selected-data {
-    height: auto;
-  }
-  
-  .search-filter input, .dropdown-filter select {
-    font-size: 14px;
-  }
+.formSubBtn:hover {
+  color: #2f772b;
+  background-color: #fff;
+  border-color: #2f772b;
 }
-
-@media (max-width: 480px) {
-  .formInput {
-    padding: 20px 0;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-field input {
-    font-size: 14px;
-  }
-  
-  .save-button, .generate-payroll-button {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 14px;
-  }
+.formCancelBtn {
+  background-color: #f00d;
+  color: white;
+}
+.formCancelBtn:hover {
+  color: #f00e;
+  background-color: #fff;
+  border-color: #f00e;
 }
