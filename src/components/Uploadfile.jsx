@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as XLSX from 'xlsx';
+import GeneratePayslips from './GeneratePayslips';
 
 const Uploadfile = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -177,9 +178,12 @@ const Uploadfile = () => {
         XLSX.writeFile(workbook, 'Payroll.xlsx');
     };
 
-    const generatePayroll = () => {
-        console.log("Generate Payroll clicked");
-        alert("not my work   ");
+    const generatePayroll =async () => {
+        for(var i =0;i<data.length;i++)
+        {
+            const empdata = {name:data[i][0],empId:data[i][1],salary:data[i][2]}
+            await  GeneratePayslips(empdata)
+        }
     };
 
     const filteredData = data
