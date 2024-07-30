@@ -16,6 +16,7 @@ const Uploadfile = () => {
     const [formdataArr, setFormDataArr] = useState([]);
     const [suggestionsVisible, setSuggestionsVisible] = useState(false); 
     const suggestionsBoxRef = useRef(null);
+    const [uplaodText,setUploadText] = useState("Generate Payroll")
 
     const addIndexToFormData = (index) => {
         setFormDataArr(prevArray => {
@@ -179,12 +180,13 @@ const Uploadfile = () => {
     };
 
     const generatePayroll =async () => {
+        setUploadText("Generating ......")
         for(var i =0;i<data.length;i++)
         {
             const empdata = {name:data[i][0],empId:data[i][1],salary:data[i][2]}
             await  GeneratePayslips(empdata)
         }
-        alert("Done Guru")
+        setUploadText("Done")
     };
 
     const filteredData = data
@@ -311,7 +313,7 @@ const Uploadfile = () => {
                         <button className="download-button" onClick={downloadAndSave}>Save</button>
                     </div>
                     <div>  
-                        <center><button className="generate-payroll-button" onClick={generatePayroll}>Generate Payroll</button></center> 
+                        <center><button className="generate-payroll-button" onClick={generatePayroll}>{uplaodText}</button></center> 
                     </div>
                 </div>
             </div>

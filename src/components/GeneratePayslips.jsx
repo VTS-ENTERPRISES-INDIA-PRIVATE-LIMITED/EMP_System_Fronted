@@ -170,7 +170,7 @@ const GeneratePayslips = async (Employee) => {
     const pdfBlob = pdf.output("blob");
  
     const formData = new FormData();
-    formData.append("file", pdfBlob, "document.pdf");
+    formData.append("file", pdfBlob, `${Employee.empId}-${new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}.pdf`);
     formData.append("upload_preset", "payslips");
   
     try {

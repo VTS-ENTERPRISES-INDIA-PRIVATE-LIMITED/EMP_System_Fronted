@@ -1,16 +1,27 @@
+import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 
-const pdfs = [
-    { id: 1, title: 'Sample PDF 1', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721889524/Ravi_Kiran_Varma_VTS_Assessment_Report_blan0f.pdf', date: '2024-02-15' },
-    { id: 2, title: 'Sample PDF 2', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721985427/Payslip_hipdwy.pdf', date: '2024-08-05' }
-];
+// const pdfs = [
+//     { id: 1, title: 'Sample PDF 1', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721889524/Ravi_Kiran_Varma_VTS_Assessment_Report_blan0f.pdf', date: '2024-02-15' },
+//     { id: 2, title: 'Sample PDF 2', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721985427/Payslip_hipdwy.pdf', date: '2024-08-05' }
+// ];
 
 const Payslips = () => {
+
+    const [pdfs,setPayslipData] = useState([])
     const [selectedPdf, setSelectedPdf] = useState(null);
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const pdfRef = useRef();
 
+
+    useEffect(()=>{
+        const url = `http://localhost:5000/admin/getpayslips/VTS2025048`
+        axios.get(url).then(res=>{setPayslipData(res.data)
+            console.log(res.data)
+        })
+        .catch(err=>console.log(err))
+    },[])
     const handleDownload = (pdfUrl) => {   
         if (pdfUrl === "") {
             alert('No Data..!');
@@ -115,10 +126,10 @@ const Payslips = () => {
                         <tbody>
                         {filteredPdfs.length > 0 ? (
                                 filteredPdfs.map((pdf) => (
-                                    <tr key={pdf.id}>
-                                        <td>{pdf.id}</td>
-                                        <td>{pdf.title}</td>
-                                        <td>{pdf.date}</td>
+                                    <tr key={pdf.empId}>
+                                        <td>{pdf.empId}</td>
+                                        <td>{pdf.month} Month Payslip</td>
+                                        <td>{pdf.month} {pdf.year}</td>
                                         <td className="tableBtns">
                                             <img src={process.env.PUBLIC_URL + 'assets/images/eye.png'} alt='view' onClick={() => setSelectedPdf(pdf.url)}/>
                                             <img src={process.env.PUBLIC_URL + 'assets/images/download.png'} alt='download' onClick={() => handleDownload(pdf.url)}/>
