@@ -184,7 +184,7 @@ const GeneratePayslips = async (Employee) => {
         }
       );
       console.log(response.data.secure_url);
-      const url = `http://localhost:5000/admin/savepayslips`
+      const url = `${process.env.REACT_APP_BACKEND_URL}/admin/savepayslips`
       await axios.post(url,{empId:Employee.empId,payslipUrl:response.data.secure_url})
     } catch (error) {
       if (error.response) {
