@@ -184,6 +184,8 @@ const GeneratePayslips = async (Employee) => {
         }
       );
       console.log(response.data.secure_url);
+      const url = `http://localhost:5000/admin/savepayslips`
+      await axios.post(url,{empId:Employee.empId,payslipUrl:response.data.secure_url})
     } catch (error) {
       if (error.response) {
         console.error("Error uploading image:", error.response.data);

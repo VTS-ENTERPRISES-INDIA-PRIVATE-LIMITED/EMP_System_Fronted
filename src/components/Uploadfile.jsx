@@ -184,6 +184,7 @@ const Uploadfile = () => {
             const empdata = {name:data[i][0],empId:data[i][1],salary:data[i][2]}
             await  GeneratePayslips(empdata)
         }
+        alert("Done Guru")
     };
 
     const filteredData = data
