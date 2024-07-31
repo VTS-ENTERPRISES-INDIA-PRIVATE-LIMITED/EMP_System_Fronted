@@ -570,4 +570,30 @@ body {
   background-color: #fff;
   border-color: #f00e;
 }
+<<<<<<< HEAD
 
+=======
+.btnGrp {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.genBtn {
+  position: absolute;
+  opacity: 1;
+  height: 40px;
+  width: 100px;
+  transition: height 1s ease, opacity 1s ease, width 1s ease;
+}
+.hideButton {
+  opacity: 0;
+  height: 15px;
+  width: 200px;
+}
+.progressBar {
+  width: 200px;
+  box-shadow: 0 0 5px #ddd !important;
+}
+>>>>>>> 80b2a5c36a913707df4b1a02d1893698490901a6
