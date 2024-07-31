@@ -14,9 +14,8 @@ const Payslips = () => {
     const [selectedYear, setSelectedYear] = useState('');
     const pdfRef = useRef();
 
-
     useEffect(()=>{
-        const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/VTS2025048`
+        const url = `http://localhost:5000/admin/getpayslips/VTS2025048`
         axios.get(url).then(res=>{setPayslipData(res.data)
             console.log(res.data)
         })
@@ -94,9 +93,9 @@ const Payslips = () => {
                         Month:
                         <select value={selectedMonth} onChange={handleMonthChange}>
                             <option value="">Select Month</option>
-                            {[...Array(12)].map((_, index) => (
-                                <option key={index + 1} value={index + 1}>
-                                    {new Date(0, index).toLocaleString('en-US', { month: 'long' })}
+                            {Array.from(new Set(pdfs.map(pdf => pdf.month))).map(year => (
+                                <option key={year} value={year}>
+                                    {year}
                                 </option>
                             ))}
                         </select>
@@ -105,7 +104,7 @@ const Payslips = () => {
                         Year:
                         <select value={selectedYear} onChange={handleYearChange}>
                             <option value="">Select Year</option>
-                            {Array.from(new Set(pdfs.map(pdf => new Date(pdf.date).getFullYear()))).map(year => (
+                            {Array.from(new Set(pdfs.map(pdf => pdf.year))).map(year => (
                                 <option key={year} value={year}>
                                     {year}
                                 </option>

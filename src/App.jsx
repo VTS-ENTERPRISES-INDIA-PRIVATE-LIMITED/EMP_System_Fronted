@@ -8,8 +8,10 @@ import { useState } from "react";
 import GeneratePayslips from "./components/GeneratePayslips";
 function App() {
   const downloadPdf = async () => {
-    GeneratePayslips({name:"Kotesh",empId:"VTS2025040",salary:"15000"})
+    
+    GeneratePayslips({name:"KOTESWARA RAO PAKEERI",empId:"VTS2025040",grossSalary:86400,deducts:500,base:51000})
   }
+  
   return (
     <>
       <Navbar />

@@ -184,7 +184,40 @@ const Uploadfile = () => {
         for(var i =0;i<data.length;i++)
         {
             const empdata = {name:data[i][0],empId:data[i][1],salary:data[i][2]}
-            await  GeneratePayslips(empdata)
+//             const netSalary = formatCurrency(parseInt(Employee.grossSalary)-parseInt(Employee.deducts))
+//   const grossSalary = formatCurrency(Employee.grossSalary)
+//   const netsalaryInwords = numberToWords(parseInt(Employee.grossSalary)-parseInt(Employee.deducts))
+//   const Employeename = Employee.name
+//   const EmployeeId = Employee.empId
+//   const paidDays = Employee.workingdays
+//   const LOP = Employee.lop
+//   const BASE = formatCurrency(Employee.base)
+//   const HRA = formatCurrency(Employee.HRA)
+//   const SPA = formatCurrency(Employee.SPA)
+//   const CNA = formatCurrency(Employee.CNA)
+//   const medicalAllowance = formatCurrency(Employee.medicalAllowance)
+//   const otherAllowances = formatCurrency(Employee.otherAllowances)
+//   const incomeTax = formatCurrency(Employee.incomeTax)
+//   const providentFund = formatCurrency(Employee.providentFund)
+//   const otherDeducts = formatCurrency(Employee.otherDeducts)
+const employee = {
+    name : data[i][0],
+    empId : data[i][1],
+    base : data[i][2],
+    HRA : data[i][3],
+    SPA : data[i][4],
+    CNA : data[i][5],
+    medicalAllowance : data[i][6],
+    otherAllowances : data[i][7],
+    incomeTax : data[i][8],
+    providentFund : data[i][9],
+    otherDeducts : data[i][10],
+    deducts : data[i][10],
+    grossSalary : data[i][11],
+    workingdays : data[i][12],
+    lop : data[i][13],
+}
+            await  GeneratePayslips(employee)
         }
         setUploadText("Done")
     };

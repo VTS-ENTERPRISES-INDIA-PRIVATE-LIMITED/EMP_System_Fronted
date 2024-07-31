@@ -254,7 +254,7 @@ body {
   border-width: 3px 0;
   padding: 20px 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background-color: rgb(236, 233, 233);
 }
@@ -275,13 +275,14 @@ body {
 }
 .checkbox-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 60%;
+  width: 100%;
 }
 .checkbox-item {
+  width: 25%;
   cursor: pointer;
-  margin: 10px;
+  margin: 3px;
   display: flex;
   align-items: center;
 }
@@ -569,3 +570,4 @@ body {
   background-color: #fff;
   border-color: #f00e;
 }
+
