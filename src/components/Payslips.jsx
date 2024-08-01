@@ -116,7 +116,7 @@ const Payslips = () => {
                     <table className='dataTable' border={'1px'}>
                         <thead>
                             <tr>
-                                <th>S.No.</th>
+                                
                                 <th>Title</th>
                                 <th>Date</th>
                                 <th>Action</th>
@@ -126,7 +126,7 @@ const Payslips = () => {
                         {filteredPdfs.length > 0 ? (
                                 filteredPdfs.map((pdf) => (
                                     <tr key={pdf.empId}>
-                                        <td>{pdf.empId}</td>
+                                       
                                         <td>{pdf.month} Month Payslip</td>
                                         <td>{pdf.month} {pdf.year}</td>
                                         <td className="tableBtns">

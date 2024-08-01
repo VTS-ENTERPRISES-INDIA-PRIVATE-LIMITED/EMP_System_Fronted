@@ -6,6 +6,9 @@ import axios from "axios";
 import jsPDF from "jspdf";
 import { useState } from "react";
 import GeneratePayslips from "./components/GeneratePayslips";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Login from "./components/Login";
+import SignUp from "./components/Signup";
 function App() {
   const downloadPdf = async () => {
     
@@ -14,9 +17,17 @@ function App() {
   
   return (
     <>
-      <Navbar />
-      <Hero />
-      <button onClick={downloadPdf}>Download payslip</button>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/dashboard" element={<><Navbar />
+        <Hero /></>} />
+        <Route path="/" element={<Login />} />
+        <Route path="/reset-password" element={<SignUp />} />
+    </Routes>
+    </BrowserRouter>
+      
+      
+      {/* <button onClick={downloadPdf}>Download payslip</button> */}
     </>
   );
 }

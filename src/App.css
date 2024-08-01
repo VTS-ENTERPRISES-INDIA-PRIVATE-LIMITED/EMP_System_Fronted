@@ -259,8 +259,9 @@ body {
   background-color: rgb(236, 233, 233);
 }
 .upload-button {
+  width: 110px;
   display:inline-block;
-  padding: 10px 20px;
+  padding: 10px 10px;
   background-color: #288ca7;
   color: white;
   border: none;
@@ -570,9 +571,7 @@ body {
   background-color: #fff;
   border-color: #f00e;
 }
-<<<<<<< HEAD
 
-=======
 .btnGrp {
   position: relative;
   display: flex;
@@ -596,4 +595,75 @@ body {
   width: 200px;
   box-shadow: 0 0 5px #ddd !important;
 }
->>>>>>> 80b2a5c36a913707df4b1a02d1893698490901a6
+
+
+
+
+
+.Payslip-SignUp{
+  /* margin-top: 5%; */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  /* border: 2px solid black; */
+  height:80%;
+  width: 100%;
+}
+.credentials{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 20%; */
+}
+.credentials input{
+  /* width:100px; */
+  margin: 10px;
+  height: 40px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0px 20px;
+  outline: none;
+  border: none;
+
+  transition: border-radius 0.4s;
+  box-shadow: 0 0 5px rgb(124, 123, 123);
+
+}
+.credentials input:focus,input:active{
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(124, 123, 123);
+}
+.credentials button{
+  margin: 10px;
+  height: 40px;
+  width: 250px;
+  background-color: rgb(100, 102, 170);
+  border: none;
+  color: aliceblue;
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+}
+.credentials button:hover{
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(100, 102, 170);
+}
+p{
+  font-size: small;
+}
+p:hover{
+  cursor: pointer;
+}
+.otpverify input{
+  width: 125px;
+}
+.otpverify input:focus,input:active{
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(124, 123, 123);
+}
+.otpverify button{
+  width: 100px;
+}
