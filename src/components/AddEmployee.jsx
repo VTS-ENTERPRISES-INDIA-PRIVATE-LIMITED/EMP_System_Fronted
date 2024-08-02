@@ -90,8 +90,8 @@ const AddEmployee = () => {
           {uplaodText}
         </button>
 
-        <form onSubmit={handleSubmit} className="form-container">
-          <div className="form-group">
+        <form onSubmit={handleSubmit} className="excel-form-container">
+          <div className="excel-form-group">
             <label htmlFor="name">Name:</label>
             <input
               type="text"
@@ -102,7 +102,7 @@ const AddEmployee = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="excel-form-group">
             <label htmlFor="employeeId">Employee ID:</label>
             <input
               type="text"
@@ -113,7 +113,7 @@ const AddEmployee = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="excel-form-group">
             <label htmlFor="role">Role:</label>
             <select
               id="role"
@@ -127,7 +127,7 @@ const AddEmployee = () => {
               <option value="Admin">Admin</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="excel-form-group">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -138,7 +138,7 @@ const AddEmployee = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="excel-form-group">
             <label htmlFor="phoneNumber">Phone Number:</label>
             <input
               type="tel"
@@ -154,7 +154,6 @@ const AddEmployee = () => {
           </button>
         </form>
       </div>
-      );
     </div>
   );
 };
