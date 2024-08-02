@@ -38,10 +38,10 @@ const Login = () => {
       axios
         .post(url, creds)
         .then((res) => {
+          console.log(res.data[0]) 
           navigate("/dashboard", { state: res.data });
         })
         .catch(err=>alert("Invalid Credentials"));
-
     }
   };
 
