@@ -667,3 +667,50 @@ p:hover{
 .otpverify button{
   width: 100px;
 }
+.excel-reader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.excel-reader-file-input {
+  display: none;
+}
+.excel-upload-btn {
+  border: none;
+  background-color: #44c33d;
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin: 20px 0;
+}
+.excel-form-container {
+  box-shadow: 0 0 10px #bbb;
+  border-radius: 20px;
+  padding: 30px;
+  width: 400px;
+  text-align: center;
+}
+.excel-form-group {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.excel-form-group input, .excel-form-group select {
+  border: solid 1px #000;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.submit-button {
+  margin-top: 20px;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-color: #288ca7;
+  transition: background-color 0.3s;
+  color: #fff;
+}
+.submit-button:hover {
+  background-color: #1f6d85;
+  cursor: pointer;
+}
