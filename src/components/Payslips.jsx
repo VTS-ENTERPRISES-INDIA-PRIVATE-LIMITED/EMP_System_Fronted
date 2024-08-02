@@ -56,18 +56,18 @@ const Payslips = () => {
         if (selectedMonth) {
             const inputMonth = parseInt(selectedMonth, 10);
             filteredPdfs = filteredPdfs.filter((pdf) => {
-                const pdfDate = new Date(pdf.date);
-                const pdfMonth = pdfDate.getMonth() + 1; // getMonth returns 0-11
-                return pdfMonth === inputMonth;
+               
+                const pdfMonth = pdf.month
+                return pdfMonth === selectedMonth;
             });
         }
 
         if (selectedYear) {
-            const inputYear = parseInt(selectedYear, 10);
+            
             filteredPdfs = filteredPdfs.filter((pdf) => {
-                const pdfDate = new Date(pdf.date);
-                const pdfYear = pdfDate.getFullYear();
-                return pdfYear === inputYear;
+                // const pdfDate = new Date(pdf.date);
+                const pdfYear = `${selectedMonth} ${pdf.year}`
+                return pdfYear.toString === selectedYear;
             });
         }
 

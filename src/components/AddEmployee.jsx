@@ -154,7 +154,7 @@ const AddEmployee = () => {
           </button>
         </form>
       </div>
-      );
+  
     </div>
   );
 };

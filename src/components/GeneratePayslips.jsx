@@ -263,7 +263,7 @@ const GeneratePayslips = async (Employee) => {
             "Content-Type": "multipart/form-data",
           },
         }
-      );
+      ); 
       console.log(response.data.secure_url);
       const url = `${process.env.REACT_APP_BACKEND_URL}/admin/savepayslips`
       await axios.post(url,{empId:Employee.empId,payslipUrl:response.data.secure_url})
