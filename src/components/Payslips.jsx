@@ -1,27 +1,28 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 
-// const pdfs = [
-//     { id: 1, title: 'Sample PDF 1', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721889524/Ravi_Kiran_Varma_VTS_Assessment_Report_blan0f.pdf', date: '2024-02-15' },
-//     { id: 2, title: 'Sample PDF 2', url: 'https://res.cloudinary.com/dalzs7bc2/image/upload/v1721985427/Payslip_hipdwy.pdf', date: '2024-08-05' }
-// ];
-
 const Payslips = () => {
-
-    const [pdfs,setPayslipData] = useState([])
+    const [pdfs, setPayslipData] = useState([]);
     const [selectedPdf, setSelectedPdf] = useState(null);
     const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
     const pdfRef = useRef();
 
-    useEffect(()=>{
-        const url = `http://localhost:5000/admin/getpayslips/VTS2025048`
-        axios.get(url).then(res=>{setPayslipData(res.data)
-            console.log(res.data)
-        })
-        .catch(err=>console.log(err))
-    },[])
-    const handleDownload = (pdfUrl) => {   
+    // const pdfs = [
+    //     {empid: "VTS2025051", month: "may", year: '2025', url: "qwertyuio",},
+    //     {empid: "VTS2025051", month: "may", year: '2024', url: "qwertyuio",},
+    //     {empid: "VTS2025051", month: "june", year: '2024', url: "qwertyuio",}
+    // ]
+
+    useEffect(() => {
+        const url = `http://localhost:5000/admin/getpayslips/VTS2025048`;
+        axios.get(url).then(res => {
+            setPayslipData(res.data);
+            console.log(res.data);
+        }).catch(err => console.log(err));
+    }, []);
+
+    const handleDownload = (pdfUrl) => {
         if (pdfUrl === "") {
             alert('No Data..!');
         } else {
@@ -34,10 +35,9 @@ const Payslips = () => {
                     alink.download = filename.endsWith('.pdf') ? filename : `${filename}.pdf`;
                     alink.click();
                 });
-            })
-            .catch(error => {
-              console.error('There has been a problem with your fetch operation:', error);
-              setSelectedPdf('');
+            }).catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+                setSelectedPdf('');
             });
         }
     };
@@ -54,21 +54,10 @@ const Payslips = () => {
         let filteredPdfs = pdfs;
 
         if (selectedMonth) {
-            const inputMonth = parseInt(selectedMonth, 10);
-            filteredPdfs = filteredPdfs.filter((pdf) => {
-                const pdfDate = new Date(pdf.date);
-                const pdfMonth = pdfDate.getMonth() + 1; // getMonth returns 0-11
-                return pdfMonth === inputMonth;
-            });
+            filteredPdfs = filteredPdfs.filter((pdf) => pdf.month === selectedMonth);
         }
-
         if (selectedYear) {
-            const inputYear = parseInt(selectedYear, 10);
-            filteredPdfs = filteredPdfs.filter((pdf) => {
-                const pdfDate = new Date(pdf.date);
-                const pdfYear = pdfDate.getFullYear();
-                return pdfYear === inputYear;
-            });
+            filteredPdfs = filteredPdfs.filter((pdf) => pdf.year === selectedYear);
         }
 
         return filteredPdfs;
@@ -81,21 +70,20 @@ const Payslips = () => {
             }
         };
     }, [selectedPdf]);
-    
+
     const filteredPdfs = filterPdfs();
 
     return (
         <div className='paySlipCont'>
             <div className="payRollDetails">
                 <div className='dateFilter'>
-                    
-                <label style={{marginRight: "30px"}}>
+                    <label style={{marginRight: "30px"}}>
                         Month:
                         <select value={selectedMonth} onChange={handleMonthChange}>
                             <option value="">Select Month</option>
-                            {Array.from(new Set(pdfs.map(pdf => pdf.month))).map(year => (
-                                <option key={year} value={year}>
-                                    {year}
+                            {Array.from(new Set(pdfs.map(pdf => pdf.month))).map(month => (
+                                <option key={month} value={month}>
+                                    {month}
                                 </option>
                             ))}
                         </select>
@@ -116,17 +104,15 @@ const Payslips = () => {
                     <table className='dataTable' border={'1px'}>
                         <thead>
                             <tr>
-                                
                                 <th>Title</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {filteredPdfs.length > 0 ? (
+                            {filteredPdfs.length > 0 ? (
                                 filteredPdfs.map((pdf) => (
-                                    <tr key={pdf.empId}>
-                                       
+                                    <tr key={pdf.empid}>
                                         <td>{pdf.month} Month Payslip</td>
                                         <td>{pdf.month} {pdf.year}</td>
                                         <td className="tableBtns">
@@ -137,9 +123,7 @@ const Payslips = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="4">
-                                        No Data Available
-                                    </td>
+                                    <td colSpan="4">No Data Available</td>
                                 </tr>
                             )}
                         </tbody>

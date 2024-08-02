@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import * as XLSX from "xlsx";
+
 const AddEmployee = () => {
   const [file, setFile] = useState();
   const [uplaodText, setUploadText] = useState("Upload");

@@ -9,6 +9,8 @@ import GeneratePayslips from "./components/GeneratePayslips";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
+import Payslips from "./components/Payslips";
+import AddEmployee from "./components/AddEmployee";
 function App() {
   const downloadPdf = async () => {
     
@@ -21,7 +23,8 @@ function App() {
     <Routes>
       <Route path="/dashboard" element={<><Navbar />
         <Hero /></>} />
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<AddEmployee />} />
         <Route path="/reset-password" element={<SignUp />} />
     </Routes>
     </BrowserRouter>
