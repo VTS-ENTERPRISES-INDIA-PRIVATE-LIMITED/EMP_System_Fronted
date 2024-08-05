@@ -52,7 +52,7 @@ const Login = () => {
       <div className="login-main">
       <div className="Payslip-SignUp">
         <ToastContainer/>
-        <div style={{display:"flex",alignItems:"center"}}>
+        <div style={{padding:"13px",height:"fit-content",display:"flex",alignContent:"center"}}>
         <img style={{height:"40px",width:"40px"}} src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg" alt="Logo" />
         <h2 className="login-name">Login</h2>
         </div>

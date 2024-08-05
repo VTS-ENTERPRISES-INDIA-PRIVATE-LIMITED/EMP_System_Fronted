@@ -761,16 +761,19 @@ input:active {
   cursor: pointer;
 }
 
+
+
+
 .Payslip-SignUp {
   display: flex;
-  height: 45vh;
-  width: 45vh;
+  height: fit-content;
+  width: fit-content;
   justify-content: center;
   align-items: center;
   display: flex;
   position: absolute;
   flex-direction: column;
-  padding: 20px 20px 40px 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   background-color: white;
@@ -819,7 +822,7 @@ input:active {
 .credentials button {
   margin: 10px;
   height: 40px;
-  width: 310px;
+  width: 280px;
   background-color: rgb(100, 102, 170);
   border: none;
   color: aliceblue;
