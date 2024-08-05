@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify";
+
+
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -30,7 +32,7 @@ const Login = () => {
     if (validate()) {
       // Submit form or perform login logic here
       console.log("Form submitted with:", { id, password });
-      const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
+      const url = "${process.env.REACT_APP_BACKEND_URL}/emp/login;"
       const creds = {
         empId: id,
         password: password,
@@ -47,10 +49,13 @@ const Login = () => {
 
   return (
     <>
-      
+      <div className="login-main">
       <div className="Payslip-SignUp">
         <ToastContainer/>
-        <h2>Login</h2>
+        <div style={{display:"flex",alignItems:"center"}}>
+        <img style={{height:"40px",width:"40px"}} src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg" alt="Logo" />
+        <h2 className="login-name">Login</h2>
+        </div>
         <form onSubmit={handleSubmit} className="credentials">
           <div>
             <input
@@ -78,11 +83,12 @@ const Login = () => {
               </p>
             )}
             <a href="reset-password">
-              <p style={{ marginLeft: "10px " }}>Forgot Password?</p>
+              <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
             </a>
           </div>
           <button type="submit">Login</button>
         </form>
+      </div>
       </div>
     </>
   );
