@@ -7,7 +7,7 @@ import LeaveForm from './LeaveForm';
 import Attendance from './Attendance';
 import AddEmployee from './AddEmployee';
 import { useLocation } from 'react-router-dom';
-
+import { AiOutlineHome } from "react-icons/ai";
 const Hero = () => {
     
     const userdata = useLocation().state
@@ -37,7 +37,7 @@ const Hero = () => {
             </div>
             <div className="dashLinks">
                 {(userdata.role==='admin' || userdata.role==='hr') && <div className="dashLink"><p onClick={() => setPage('addemployee')}>Add Employee</p></div>}
-                <div className="dashLink"><p onClick={() => setPage('dashboard')}>Dashboard</p></div>
+                <div className="dashLink"><p onClick={() => setPage('dashboard')}><AiOutlineHome />  Dashboard</p></div>
                 <div className="dashLink"><p onClick={() => setPage('attendance')}>Attendance</p></div>
                 <div className="dashLink">
                     <p onClick={() => setPage('payslips')}>Pay Rolls</p>
