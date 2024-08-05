@@ -15,7 +15,7 @@ const Payslips = () => {
     // ]
 
     useEffect(() => {
-        const url = `http://localhost:5000/admin/getpayslips/VTS2025048`;
+        const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/VTS202504`;
         axios.get(url).then(res => {
             setPayslipData(res.data);
             console.log(res.data);
