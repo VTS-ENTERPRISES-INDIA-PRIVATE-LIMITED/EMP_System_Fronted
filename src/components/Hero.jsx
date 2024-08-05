@@ -58,7 +58,7 @@ const Hero = () => {
         </div>
         {page === 'dashboard' && <Dashboard/>}
         {page === 'attendance' && <Attendance/>}
-        {page === 'payslips' && <Payslips/>}
+        {page === 'payslips' && <Payslips empId = {userdata.empId}/>}
         {page === 'generate' && <Uploadfile/>}
         {page === 'leave' && <Leave/>}
         {page === 'applyleave' && <LeaveForm/>}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 
-const Payslips = () => {
+const Payslips = ({empId}) => {
     const [pdfs, setPayslipData] = useState([]);
     const [selectedPdf, setSelectedPdf] = useState(null);
     const [selectedMonth, setSelectedMonth] = useState('');
@@ -15,7 +15,7 @@ const Payslips = () => {
     // ]
 
     useEffect(() => {
-        const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/VTS202504`;
+        const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/${empId}`;
         axios.get(url).then(res => {
             setPayslipData(res.data);
             console.log(res.data);
