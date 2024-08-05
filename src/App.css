@@ -23,6 +23,7 @@ body {
   display: flex;
 }
 .dashboard {
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
@@ -97,7 +98,7 @@ body {
   background-color: #bbb;
 }
 .dashDropDownList li::before {
-  content: '➜';
+  content: "➜";
   position: absolute;
   opacity: 0;
   right: 20px;
@@ -113,7 +114,7 @@ body {
 /* Dashboard-Page */
 
 .dashBoardPage {
-  background-color: #ddd;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -125,81 +126,84 @@ body {
   align-items: center;
   box-shadow: 0 0 5px #bbb;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 7px 20px;
   margin: 20px 0;
 }
 .loginCard .wish {
   font-weight: 900;
-  margin-top:2px;
-  
-
+  margin-top: 10px;
 }
 
 .loginCard p {
   margin: 8px 0;
-
-}
-.login-user p{
-  margin-top:10px;
-}
-.login-user b{
-  margin-top:-2px;
-  font-size:15px;
-  font-weight: 500;
-
 }
 
+.login-user b {
+  /* padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500; */
+  margin-top: 3px;
+  font-size: 12px;
+}
+.login-user p {
+  margin-top: -1px;
+  font-size: 12px;
+}
 
 .loginCont {
   display: flex;
   align-items: center;
   /* gap:2px; */
-
-  
 }
 
-
-.loginTime b{
+.loginTime b {
   margin-top: 3px;
-  font-size:12px ;
-  }
-.loginTime p{
-  margin-top:-1px;
-font-size: 12px;
-
+  font-size: 12px;
 }
-
+.loginTime p {
+  margin-top: -1px;
+  font-size: 12px;
+}
 
 .loginCont img {
   height: 30px;
   margin-right: 10px;
   margin-bottom: 8px;
 }
-.logtimescard{
+.leavescard .leave-card {
   display: flex;
-  gap:8px;
+  width: 33%;
+  gap: 5px;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* align-items: center; */
 }
-.logtimescard .loginCont{
+.logtimescard {
+  display: flex;
+  gap: 8px;
+}
+.logtimescard .loginCont {
   margin: 0px 4px;
   font-size: 12px;
 }
 .anouncements {
   background-color: #fff;
-  margin: 20px 30px;
+  margin: 20px 5px;
   border-collapse: collapse;
   text-align: center;
+  border-radius: 10px;
+  height: 40vh;
+  padding-right: 20px;
 }
 .anouncements th {
   background-color: #bbb;
   padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
 }
-.anouncements img {
-  width: 80px;
-  margin: 10px 0;
-}
-.anouncements img:hover {
-  cursor: pointer;
+.anouncements tr {
+  padding-right: 20px;
 }
 
 /* Pay-Roll */
@@ -304,7 +308,7 @@ font-size: 12px;
 }
 .upload-button {
   width: 110px;
-  display:inline-block;
+  display: inline-block;
   padding: 10px 10px;
   background-color: #288ca7;
   color: white;
@@ -440,23 +444,23 @@ font-size: 12px;
   outline: none;
 }
 .save-button {
-  background-color: #288ca7; 
+  background-color: #288ca7;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
-  transition:  background-color 0.5s;
+  transition: background-color 0.5s;
 }
 .save-button:hover {
-  background-color:  #1f6d85; 
+  background-color: #1f6d85;
 }
 .selected-data {
   margin-top: 40px;
   width: 650px;
   height: 50vh;
-  overflow-x:scroll;
+  overflow-x: scroll;
 }
 .selected-data table {
   width: 100%;
@@ -467,7 +471,7 @@ font-size: 12px;
 .selected-data td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left; 
+  text-align: left;
 }
 .selected-data td {
   width: fit-content;
@@ -490,8 +494,7 @@ font-size: 12px;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
-  transition:  background-color 0.5s;
-
+  transition: background-color 0.5s;
 }
 .download-button:hover:hover {
   background-color: #1f6d85;
@@ -508,13 +511,12 @@ font-size: 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition:  background-color 0.5s;
+  transition: background-color 0.5s;
   margin: 40px 0px 10px 0px;
 }
-.generate-payroll-button:hover{
+.generate-payroll-button:hover {
   background-color: #2f772b;
 }
-
 
 /* Leave-Page */
 
@@ -529,7 +531,8 @@ font-size: 12px;
 .leaveFilters {
   margin-bottom: 30px;
 }
-.leaveFilters select, .leaveFilters input {
+.leaveFilters select,
+.leaveFilters input {
   padding: 8px;
   margin-right: 15px;
   border-radius: 10px;
@@ -571,7 +574,8 @@ font-size: 12px;
 .flex {
   display: flex;
 }
-.formInp, .formDesp {
+.formInp,
+.formDesp {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -640,11 +644,7 @@ font-size: 12px;
   box-shadow: 0 0 5px #ddd !important;
 }
 
-
-
-
-
-.Payslip-SignUp{
+.Payslip-SignUp {
   /* margin-top: 5%; */
   justify-content: center;
   align-items: center;
@@ -652,17 +652,17 @@ font-size: 12px;
   position: absolute;
   flex-direction: column;
   /* border: 2px solid black; */
-  height:80%;
+  height: 80%;
   width: 100%;
 }
-.credentials{
+.credentials {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* width: 20%; */
 }
-.credentials input{
+.credentials input {
   /* width:100px; */
   margin: 10px;
   height: 40px;
@@ -675,13 +675,13 @@ font-size: 12px;
 
   transition: border-radius 0.4s;
   box-shadow: 0 0 5px rgb(124, 123, 123);
-
 }
-.credentials input:focus,input:active{
+.credentials input:focus,
+input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
-.credentials button{
+.credentials button {
   margin: 10px;
   height: 40px;
   width: 250px;
@@ -691,24 +691,25 @@ font-size: 12px;
   border-radius: 5px;
   transition: box-shadow 0.3s;
 }
-.credentials button:hover{
+.credentials button:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-p{
+p {
   font-size: small;
 }
-p:hover{
+p:hover {
   cursor: pointer;
 }
-.otpverify input{
+.otpverify input {
   width: 125px;
 }
-.otpverify input:focus,input:active{
+.otpverify input:focus,
+input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
-.otpverify button{
+.otpverify button {
   width: 100px;
 }
 .excel-reader-container {
@@ -739,7 +740,8 @@ p:hover{
   display: flex;
   justify-content: space-between;
 }
-.excel-form-group input, .excel-form-group select {
+.excel-form-group input,
+.excel-form-group select {
   border: solid 1px #000;
   width: 200px;
   padding: 5px;
