@@ -36,14 +36,14 @@ const Hero = () => {
                 </div>
             </div>
             <div className="dashLinks">
-                {(userdata.role==='admin' || userdata[0].role==='hr') && <div className="dashLink"><p onClick={() => setPage('addemployee')}>Add Employee</p></div>}
+                {(userdata.role==='admin' || userdata.role==='hr') && <div className="dashLink"><p onClick={() => setPage('addemployee')}>Add Employee</p></div>}
                 <div className="dashLink"><p onClick={() => setPage('dashboard')}>Dashboard</p></div>
                 <div className="dashLink"><p onClick={() => setPage('attendance')}>Attendance</p></div>
                 <div className="dashLink">
                     <p onClick={() => setPage('payslips')}>Pay Rolls</p>
                     <ul className="dashDropDownList">
                         <li onClick={() => setPage('payslips')}>Pay Slips</li>
-                        {(userdata.role==='admin' || userdata[0].role==='hr') && <li onClick={() => setPage('generate')}>Genarate</li>}
+                        {(userdata.role==='admin' || userdata.role==='hr') && <li onClick={() => setPage('generate')}>Genarate</li>}
                     </ul>
                 </div>
                 <div className="dashLink">
