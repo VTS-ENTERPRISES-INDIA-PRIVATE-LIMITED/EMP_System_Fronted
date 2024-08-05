@@ -1,13 +1,14 @@
 import React from "react";
 
-const Dashboard = () => {
+const Dashboard = ({name}) => {
     return (
         <div className="dashBoardPage">
             <div className="loginCard">
-                <div>
-                    <p><b>Good to see you Raj...! 👋</b></p>
-                    <p>you came 15mins earlier today.</p>
+                <div className="login-user">
+                    <p className="wish"><strong>Good to see you {name}...! 👋</strong></p>
+                    <b>you came 15mins earlier today.</b>
                 </div>
+                <div className="logtimescard">
                 <div className="loginCont">
                     <img src={process.env.PUBLIC_URL + 'assets/images/login.png'} alt="" />
                     <div className="loginTime">
@@ -22,8 +23,9 @@ const Dashboard = () => {
                         <p>5:00 PM</p>
                     </div>
                 </div>
+                </div>
             </div>
-            <div className="loginCard">
+            <div className="loginCard leavescard">
                 <div>
                     <p><b>Total number of leaves</b></p>
                     <p>10 days</p>
