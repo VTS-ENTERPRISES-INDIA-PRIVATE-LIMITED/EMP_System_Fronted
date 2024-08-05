@@ -30,7 +30,7 @@ const Login = () => {
     if (validate()) {
       // Submit form or perform login logic here
       console.log("Form submitted with:", { id, password });
-      const url = "http://localhost:5000/emp/login";
+      const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
       const creds = {
         empId: id,
         password: password,
@@ -38,8 +38,8 @@ const Login = () => {
       axios
         .post(url, creds)
         .then((res) => {
-          console.log(res.data[0]) 
-          navigate("/dashboard", { state: res.data });
+          console.log("the user data ",res.data[0]) 
+          navigate("/dashboard", { state: res.data[0] });
         })
         .catch(err=>alert("Invalid Credentials"));
     }

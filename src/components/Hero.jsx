@@ -12,37 +12,38 @@ const Hero = () => {
     
     const userdata = useLocation().state
     const [page, setPage] = useState('dashboard');
+
   return (
     <div className='heroSection'>
         <div className="dashboard">
             <div className="userDetails">
                 <img src={process.env.PUBLIC_URL + 'assets/images/logo.png'} alt="" className="userProfile" />
-                <div className="userData">
+                <div style={{textAlign:"left"}} className="userData">
                     <label>Name:</label>
-                    <div>Durga</div>
+                    <div >{userdata.Name}</div>
                 </div>
-                <div className="userData">
+                <div style={{textAlign:"left"}} className="userData">
                     <label>Employee ID:</label>
-                    <div>VTS2025051</div>
+                    <div >{userdata.empId}</div>
                 </div>
-                <div className="userData">
+                <div style={{textAlign:"left"}} className="userData">
                     <label>Email:</label>
-                    <div>durgaking@gmail.com</div>
+                    <div >{userdata.email}</div>
                 </div>
-                <div className="userData">
+                <div style={{textAlign:"left"}} className="userData">
                     <label>Phone No:</label>
-                    <div>9381736150</div>
+                    <div >{userdata.phone}</div>
                 </div>
             </div>
             <div className="dashLinks">
-                {(userdata[0].role==='admin' || userdata[0].role==='hr') && <div className="dashLink"><p onClick={() => setPage('addemployee')}>Add Employee</p></div>}
+                {(userdata.role==='admin' || userdata[0].role==='hr') && <div className="dashLink"><p onClick={() => setPage('addemployee')}>Add Employee</p></div>}
                 <div className="dashLink"><p onClick={() => setPage('dashboard')}>Dashboard</p></div>
                 <div className="dashLink"><p onClick={() => setPage('attendance')}>Attendance</p></div>
                 <div className="dashLink">
                     <p onClick={() => setPage('payslips')}>Pay Rolls</p>
                     <ul className="dashDropDownList">
                         <li onClick={() => setPage('payslips')}>Pay Slips</li>
-                        {(userdata[0].role==='admin' || userdata[0].role==='hr') && <li onClick={() => setPage('generate')}>Genarate</li>}
+                        {(userdata.role==='admin' || userdata[0].role==='hr') && <li onClick={() => setPage('generate')}>Genarate</li>}
                     </ul>
                 </div>
                 <div className="dashLink">
