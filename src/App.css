@@ -154,6 +154,7 @@ body {
 .loginCont {
   display: flex;
   align-items: center;
+
   /* gap:2px; */
 }
 
@@ -171,17 +172,24 @@ body {
   margin-right: 10px;
   margin-bottom: 8px;
 }
+/* .loginCard .loginCard-leavescard {
+  padding: 5px;
+} */
+.leavescard {
+  padding-top: 15px;
+}
 .leavescard .leave-card {
   display: flex;
   width: 33%;
   gap: 5px;
+  /* padding-top: 5px; */
   /* flex-direction: column; */
   justify-content: space-between;
   /* align-items: center; */
 }
 .logtimescard {
   display: flex;
-  gap: 8px;
+  gap: 50px;
 }
 .logtimescard .loginCont {
   margin: 0px 4px;
