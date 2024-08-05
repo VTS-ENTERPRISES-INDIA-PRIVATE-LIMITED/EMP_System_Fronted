@@ -32,7 +32,7 @@ const Login = () => {
     if (validate()) {
       // Submit form or perform login logic here
       console.log("Form submitted with:", { id, password });
-      const url = "${process.env.REACT_APP_BACKEND_URL}/emp/login;"
+      const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`
       const creds = {
         empId: id,
         password: password,
