@@ -22,62 +22,62 @@ const AddEmployee = () => {
     phoneNumber: ""
   });
 
-const validate = ()=>{
-  let valid = true
-  const newErrs = {
-    name: "",
-    employeeId: "",
-    email: "",
-    phoneNumber: ""
-  }
-  const nameValid = /[a-zA-Z]{6,}/.test(formData.name)
-  const employeeIdValid = /^VTS202[\d]{4}$/.test(formData.employeeId)
-  const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(formData.email)
-  const phoneNumberValid = /^[0-9]{10}$/.test(formData.phoneNumber)
-  
-  if(!formData.name){
-    newErrs.name = "Employee Name required"
-    valid = false
-  } else {
-    if (!nameValid) {
-      newErrs.name = "Name requires atleast 6 characters"
-      valid = false
-    } 
-  }
-  if (!formData.employeeId) {
-    newErrs.employeeId = "Employee ID required"
-    valid = false
-  } else {
-    if(!employeeIdValid){
-      newErrs.employeeId = "Invalid employee ID"
-      valid = false
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "name") {
+      if (!value) {
+        error = "Employee Name required";
+      } else if (!/[a-zA-Z]{6,}/.test(value)) {
+        error = "Name requires at least 6 characters";
+      }
     }
-  }
-  if (!formData.email) {
-    newErrs.email = "Employee email required"
-    valid = false
-  } else {
-    if(!emailValid){
-      newErrs.email = "Enter a valid mail address"
-      valid = false
+
+    if (name === "employeeId") {
+      if (!value) {
+        error = "Employee ID required";
+      } else if (!/^VTS202[\d]{4}$/.test(value)) {
+        error = "Invalid employee ID";
+      }
     }
-  }
-  if (!formData.phoneNumber) {
-    newErrs.phoneNumber = "Employee phone number required"
-    valid = false
-  } else { 
-    if(!phoneNumberValid){
-      newErrs.phoneNumber = "Please enter a valid phone number"
-      valid = false
+
+    if (name === "email") {
+      if (!value) {
+        error = "Employee email required";
+      } else if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+        error = "Enter a valid email address";
+      }
     }
-  }
-  setErrMsg(newErrs)
-  return valid
-}
+
+    if (name === "phoneNumber") {
+      if (!value) {
+        error = "Employee phone number required";
+      } else if (!/^[0-9]{10}$/.test(value)) {
+        error = "Please enter a valid phone number";
+      }
+    }
+
+    setErrMsg((prevErrs) => ({
+      ...prevErrs,
+      [name]: error,
+    }));
+
+    return error === "";
+  };
+
+  const validateAllFields = () => {
+    const isNameValid = validateField("name", formData.name);
+    const isEmployeeIdValid = validateField("employeeId", formData.employeeId);
+    const isEmailValid = validateField("email", formData.email);
+    const isPhoneNumberValid = validateField("phoneNumber", formData.phoneNumber);
+
+    return isNameValid && isEmployeeIdValid && isEmailValid && isPhoneNumberValid;
+  };
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
+
   const handleFileUpload = (event) => {
     if (file) {
       setUploadText("Uploading");
@@ -113,18 +113,20 @@ const validate = ()=>{
       reader.readAsArrayBuffer(file);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    validateField(name, value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data:", formData);
-    if(validate()) {
+    if (validateAllFields()) {
       const data = {
         empId: formData.employeeId,
         name: formData.name,
@@ -140,10 +142,10 @@ const validate = ()=>{
       toast.error("Something went wrong");
     }
   };
+
   return (
     <div>
       <ToastContainer />
-
       <div className="excel-reader-container">
         <div>
           <h4 style={{ marginTop: "70px" }}>Add Multiple Emp Data</h4>
@@ -182,7 +184,6 @@ const validate = ()=>{
               />
             </div>
             {errMsg.name && <span className='warningMsg'>{errMsg.name}</span>}
-            {/* <span className={errMsg.name === "" ? "warningMsg" : "warningMsg visible"}>{errMsg.name}</span> */}
             <div className="excel-form-group">
               <label htmlFor="employeeId">Employee ID:</label>
               <input
