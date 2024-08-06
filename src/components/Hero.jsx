@@ -21,17 +21,17 @@ const Hero = () => {
             alt=""
             className="userProfile"
           />
-          <div style={{ textAlign: "left" }} className="userData">
+          <div className="userData">
             <label>Name:</label>
             <div>{userdata.Name}</div>
           </div>
-          <div style={{ textAlign: "left" }} className="userData">
+          <div className="userData">
             <label>Emp ID:</label>
             <div>{userdata.empId}</div>
           </div>
           <div className="userData">
-            <label style={{ textAlign: "left" }}>Role :</label>
-            <div>{userdata.role}</div>
+            <label>Role :</label>
+            <div className="userData-role">{userdata.role}</div>
           </div>
           {/* <div style={{ textAlign: "left" }} className="userData">
             <label>Email:</label>

@@ -52,7 +52,7 @@ const Login = () => {
   return (
     <>
       <div className="login-main">
-        <div className="Payslip-SignUp">
+        <div className="Payslip-LogIn">
           <ToastContainer />
           <div style={{ display: "flex", alignItems: "center" }}>
             <img

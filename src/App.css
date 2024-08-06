@@ -47,10 +47,14 @@ body {
 }
 .userData {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: column; */
   margin: 10px 0;
   justify-content: space-between;
   gap: 5px;
+  /* margin-left: ; */
+}
+.userData-role {
+  justify-content: flex-start;
 }
 .userData label {
   font-weight: 600;
@@ -236,9 +240,19 @@ body {
 .payRollDetails::-webkit-scrollbar {
   display: none;
 }
+.dateFilter select {
+  box-shadow: 0 0 10px #bbb;
+  border-radius: 7px;
+  /* padding: 30px;
+  width: 450px; */
+  height: 25px;
+  text-align: center;
+}
+
 .dateFilter {
   margin-top: 30px;
 }
+
 .dateFilter input[type="date"] {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -255,7 +269,7 @@ body {
   border-radius: 30px;
 }
 .dataTable thead {
-  background-color: #bbb;
+  background-color: #f5f5f5;
 }
 .dataTable th {
   padding: 10px 20px;
@@ -654,8 +668,11 @@ body {
   width: 200px;
   box-shadow: 0 0 5px #ddd !important;
 }
-
-.Payslip-SignUp {
+.PaySlip-Table {
+  margin-top: 50px;
+  /* margin-right: 80%; */
+}
+.Payslip-LogIn {
   /* margin-top: 5%; */
   justify-content: center;
   align-items: center;
@@ -663,8 +680,12 @@ body {
   position: absolute;
   flex-direction: column;
   /* border: 2px solid black; */
-  height: 80%;
-  width: 100%;
+  padding: 20px;
+  box-shadow: 0 0 10px rgb(146, 145, 145);
+  height: fit-content;
+  width: fit-content;
+  /* margin: auto; */
+  border-radius: 7px;
 }
 .credentials {
   display: flex;
@@ -805,6 +826,8 @@ input:active {
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   background-color: white;
+  margin-left: 38%;
+  margin-top: 15%;
 }
 .login-name {
   background: linear-gradient(
