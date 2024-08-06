@@ -9,37 +9,53 @@ const Login = () => {
   const [errors, setErrors] = useState({ id: "", password: "" });
   const navigate = useNavigate();
 
-  const validate = () => {
-    let valid = true;
-    const newErrors = { id: "", password: "" };
-    const verifyId = /^VTS202\d{4}$/.test(id)
-    const verifyPswd = /^.{6,}$/.test(password)
-    if (!id) {
-      newErrors.id = "ID is required";
-      valid = false;
-    } else {
-      if (!verifyId) {
-        newErrors.id = "Invalid Empolyee ID";
-        valid = false;
-      }
-    }
-    if (!password) {
-      newErrors.password = "Password is required";
-      valid = false;
-    } else {
-      if (!verifyPswd) {
-        newErrors.password = "Minimum 6 characters"
-        valid = false;
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "id") {
+      if (!value) {
+        error = "ID is required";
+      } else if (!/^VTS202\d{4}$/.test(value)) {
+        error = "Invalid Employee ID";
       }
     }
 
-    setErrors(newErrors);
-    return valid;
+    if (name === "password") {
+      if (!value) {
+        error = "Password is required";
+      } else if (!/^.{6,}$/.test(value)) {
+        error = "Minimum 6 characters";
+      }
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: error,
+    }));
+
+    return error === "";
+  };
+
+  const validateAllFields = () => {
+    const isIdValid = validateField("id", id);
+    const isPasswordValid = validateField("password", password);
+
+    return isIdValid && isPasswordValid;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "id") {
+      setId(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+    validateField(name, value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (validateAllFields()) {
       console.log("Form submitted with:", { id, password });
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
       const creds = {
@@ -77,9 +93,10 @@ const Login = () => {
             <div>
               <input
                 type="text"
+                name="id"
                 placeholder="ID"
                 value={id}
-                onChange={(e) => setId(e.target.value)}
+                onChange={handleChange}
               />
               {errors.id && (
                 <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
@@ -90,9 +107,10 @@ const Login = () => {
             <div>
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value.trim())}
+                onChange={handleChange}
               />
               {errors.password && (
                 <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
