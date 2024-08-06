@@ -12,6 +12,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
+  const [otpReceived, setOtpReceived] = useState("");
   const [emailError, setEmailError] = useState("");
   const [otpError, setOtpError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -35,19 +36,32 @@ const SignUp = () => {
       return;
     }
     setEmailError("");
-    setOtpSent(true);
+    const url = `http://localhost:5000/emp/sendotp`;
+    axios
+      .post(url, { email })
+      .then((res) => {
+        alert(res.data.otp);
+        setOtpReceived(res.data.otp);
+        setOtpSent(true);
+      })
+      .catch((err) => toast.error("Error Sending OTP"));
 
     // Logic to send OTP goes here
   };
 
   const handleVerifyOtp = () => {
+    alert(otp);
     if (!validateOtp(otp)) {
       alert("Please enter a valid 6-digit OTP.");
       return;
     }
-    setOtpError("");
-    setOtpVerified(true);
-    // Logic to verify OTP goes here
+    if (otp === otpReceived.toString()) {
+      setOtpError("");
+
+      setOtpVerified(true);
+    } else {
+      setOtpError("Invalid OTP");
+    }
   };
 
   const handleResetPassword = () => {
@@ -60,7 +74,7 @@ const SignUp = () => {
       setPasswordError("Passwords do not match.");
       return;
     }
-    if (newPassword === confirmPassword) {
+    if (newPassword === confirmPassword && otpVerified) {
       setPasswordError("");
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/resetpassword`;
       axios
@@ -79,7 +93,7 @@ const SignUp = () => {
 
   return (
     <div className="Payslip-SignUp">
-      <h3>Reset Password</h3>
+      <h2>Reset Password</h2>
       <div className="credentials">
         <input
           type="email"
@@ -91,40 +105,47 @@ const SignUp = () => {
         {!otpSent && <button onClick={handleGetOtp}>Get OTP</button>}
 
         {otpSent && (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div className="otpverify">
-              <input
-                type="text"
-                placeholder="Enter OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
-              {otpError && <p style={{ color: "red" }}>{otpError}</p>}
-              <button onClick={handleVerifyOtp}>Verify</button>
-            </div>
-            {otpVerified && (
-              <>
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                {passwordError && (
-                  <p style={{ color: "red", textAlign: "center" }}>
-                    {passwordError}
-                  </p>
+          <>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="otpverify">
+                {!otpVerified && (
+                  <input
+                    type="text"
+                    placeholder="Enter OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
                 )}
-                <button onClick={handleResetPassword}>Reset Password</button>
-              </>
-            )}
-          </div>
+
+                {otpError && <p style={{ color: "red" }}>{otpError}</p>}
+                {!otpVerified && (
+                  <button onClick={handleVerifyOtp}>Verify</button>
+                )}
+              </div>
+              {otpVerified && (
+                <>
+                  <input
+                    type="password"
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                  {passwordError && (
+                    <p style={{ color: "red", textAlign: "center" }}>
+                      {passwordError}
+                    </p>
+                  )}
+                  <button onClick={handleResetPassword}>Reset Password</button>
+                </>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>
