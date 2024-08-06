@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [otpSent, setOtpSent] = useState(false);
@@ -60,8 +62,11 @@ const SignUp = () => {
     }
     if (newPassword === confirmPassword){
       setPasswordError('');
+      const url = `${process.env.REACT_APP_BACKEND_URL}/emp/resetpassword`
+      axios.post(url,{email:email,password:newPassword})
+      .then(res=>toast.success("Reset Password Successful",{position:"top-center"}))
+      .catch(err=>toast.error("Failed to reset Password",{position:"top-center"}))
       navigate('/');
-    // Logic to reset password goes here
     }
 
   };
