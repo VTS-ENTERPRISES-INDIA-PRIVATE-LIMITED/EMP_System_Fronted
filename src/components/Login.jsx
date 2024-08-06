@@ -8,18 +8,29 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ id: "", password: "" });
   const navigate = useNavigate();
+
   const validate = () => {
     let valid = true;
     const newErrors = { id: "", password: "" };
-
+    const verifyId = /^VTS202\d{4}$/.test(id)
+    const verifyPswd = /^.{6,}$/.test(password)
     if (!id) {
       newErrors.id = "ID is required";
       valid = false;
+    } else {
+      if (!verifyId) {
+        newErrors.id = "Invalid Empolyee ID";
+        valid = false;
+      }
     }
-
     if (!password) {
       newErrors.password = "Password is required";
       valid = false;
+    } else {
+      if (!verifyPswd) {
+        newErrors.password = "Minimum 6 characters"
+        valid = false;
+      }
     }
 
     setErrors(newErrors);
@@ -81,7 +92,7 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
               />
               {errors.password && (
                 <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>

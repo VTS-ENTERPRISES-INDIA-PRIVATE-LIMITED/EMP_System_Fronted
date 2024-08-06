@@ -723,6 +723,11 @@ input:active {
 .otpverify button {
   width: 100px;
 }
+
+/* AddEmployee */
+
+
+
 .excel-reader-container {
   display: flex;
   flex-direction: column;
@@ -755,7 +760,8 @@ input:active {
   border-radius: 7px;
   padding: 30px;
   width: 450px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .excel-form-group {
   border-radius: 3px;
@@ -770,13 +776,18 @@ input:active {
   padding: 5px;
   border-radius: 7px;
 }
-.excel-form-header {
-}
 .excel-form-group select {
   border: solid 1px #000;
   width: 200px;
   padding: 5px;
   border-radius: 7px;
+}
+.warningMsg{
+  font-size: 12px;
+  color: red;
+  padding: 0 20px;
+  margin: -5px 0 ;
+  align-self: flex-end;
 }
 .submit-button {
   margin-top: 20px;
@@ -786,6 +797,7 @@ input:active {
   background-color: #288ca7;
   transition: background-color 0.3s;
   color: #fff;
+  align-self: center;
 }
 .submit-button:hover {
   background-color: #1f6d85;

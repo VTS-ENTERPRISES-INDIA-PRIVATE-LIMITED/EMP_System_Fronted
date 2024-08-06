@@ -15,63 +15,39 @@ const AddEmployee = () => {
     phoneNumber: "",
   });
 
-  const [errMsg, setErrMsg] = useState({
-    name: "",
-    employeeId: "",
-    email: "",
-    phoneNumber: ""
-  });
+  const [errMsgName, setErrMsgName] = useState("");
+  const [errMsgEmp, setErrMsgEmp] = useState("");
+  const [errMsgRole, setErrMsgRole] = useState("");
+  const [errMsgEmail, setErrMsgEmail] = useState("");
+  const [errMsgPhn, setErrMsgPhn] = useState("");
 
-const validate = ()=>{
+const validate = (name, employeeId, role, email, phoneNumber)=>{
+  const nameValid = /^[\w]{6,}&/.test(name)
+  const employeeIdValid = /^VTS202\d{4}$/.test(employeeId)
+  const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)
+  const roleValid = "Employee"||"admin"||"hr"
+  const phoneNumberValid = /[/d]{10}/.test(phoneNumber)
   let valid = true
-  const newErrs = {
-    name: "",
-    employeeId: "",
-    email: "",
-    phoneNumber: ""
-  }
-  const nameValid = /[a-zA-Z]{6,}/.test(formData.name)
-  const employeeIdValid = /^VTS202[\d]{4}$/.test(formData.employeeId)
-  const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(formData.email)
-  const phoneNumberValid = /^[0-9]{10}$/.test(formData.phoneNumber)
-  
-  if(!formData.name){
-    newErrs.name = "Employee Name required"
+  if(!nameValid){
+    setErrMsgName("Name requires atleast 6 characters")
     valid = false
-  } else {
-    if (!nameValid) {
-      newErrs.name = "Name requires atleast 6 characters"
-      valid = false
-    } 
   }
-  if (!formData.employeeId) {
-    newErrs.employeeId = "Employee ID required"
+  if(!employeeIdValid){
+    setErrMsgEmp("Invalid employee ID")
     valid = false
-  } else {
-    if(!employeeIdValid){
-      newErrs.employeeId = "Invalid employee ID"
-      valid = false
-    }
   }
-  if (!formData.email) {
-    newErrs.email = "Employee email required"
+  if(!emailValid){
+    setErrMsgEmail("Enter a valid mail address")
     valid = false
-  } else {
-    if(!emailValid){
-      newErrs.email = "Enter a valid mail address"
-      valid = false
-    }
   }
-  if (!formData.phoneNumber) {
-    newErrs.phoneNumber = "Employee phone number required"
+  if(role !== roleValid){
+    setErrMsgRole("Select a valid role")
     valid = false
-  } else { 
-    if(!phoneNumberValid){
-      newErrs.phoneNumber = "Please enter a valid phone number"
-      valid = false
-    }
   }
-  setErrMsg(newErrs)
+  if(!phoneNumberValid){
+    setErrMsgPhn("Please enter a valid phone number")
+    valid = false
+  }
   return valid
 }
 
@@ -113,6 +89,7 @@ const validate = ()=>{
       reader.readAsArrayBuffer(file);
     }
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -123,8 +100,9 @@ const validate = ()=>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    console.log(validate())
     if(validate()) {
+      console.log("Form Data:", formData);
       const data = {
         empId: formData.employeeId,
         name: formData.name,
@@ -136,7 +114,8 @@ const validate = ()=>{
       axios.post(url, data).then((res) => {
         toast.success("Data Added Successfully");
       });
-    } else {
+    }
+    else {
       toast.error("Something went wrong");
     }
   };
@@ -181,8 +160,8 @@ const validate = ()=>{
                 onChange={handleChange}
               />
             </div>
-            {errMsg.name && <span className='warningMsg'>{errMsg.name}</span>}
-            {/* <span className={errMsg.name === "" ? "warningMsg" : "warningMsg visible"}>{errMsg.name}</span> */}
+            {errMsgName && <span className = "warningMsg">{errMsgName}</span>}
+            {/* <span className={errMsg === "" ? "warningMsg" : "warningMsg visible"}>{errMsg}</span> */}
             <div className="excel-form-group">
               <label htmlFor="employeeId">Employee ID:</label>
               <input
@@ -193,7 +172,7 @@ const validate = ()=>{
                 onChange={handleChange}
               />
             </div>
-            {errMsg.employeeId && <span className='warningMsg'>{errMsg.employeeId}</span>}    
+            {errMsgEmp && <span className = "warningMsg">{errMsgEmp}</span>}
             <div className="excel-form-group">
               <label htmlFor="role">Role:</label>
               <select
@@ -207,6 +186,7 @@ const validate = ()=>{
                 <option value="Admin">Admin</option>
               </select>
             </div>
+            {errMsgRole && <span className = "warningMsg">{errMsgRole}</span>}
             <div className="excel-form-group">
               <label htmlFor="email">Email:</label>
               <input
@@ -217,7 +197,7 @@ const validate = ()=>{
                 onChange={handleChange}
               />
             </div>
-            {errMsg.email && <span className='warningMsg'>{errMsg.email}</span>}
+            {errMsgEmail && <span className = "warningMsg">{errMsgEmail}</span>}
             <div className="excel-form-group">
               <label htmlFor="phoneNumber">Phone Number:</label>
               <input
@@ -228,7 +208,7 @@ const validate = ()=>{
                 onChange={handleChange}
               />
             </div>
-            {errMsg.phoneNumber && <span className='warningMsg'>{errMsg.phoneNumber}</span>}
+            {errMsgPhn && <span className = "warningMsg">{errMsgPhn}</span>}
             <button type="submit" className="submit-button">
               Submit
             </button>

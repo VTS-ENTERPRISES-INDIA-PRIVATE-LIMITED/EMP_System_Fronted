@@ -17,7 +17,7 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState('');
   const [gotOtp,setGotOtp] = useState(false)
   const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i;
     return emailPattern.test(email);
   };
 
