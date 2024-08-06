@@ -25,8 +25,6 @@ function App() {
         <Route path="/reset-password" element={<SignUp />} />
     </Routes>
     </BrowserRouter>
-      
-      
       {/* <button onClick={downloadPdf}>Download payslip</button> */}
     </>
   );
