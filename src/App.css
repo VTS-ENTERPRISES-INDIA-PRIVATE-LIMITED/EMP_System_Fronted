@@ -49,7 +49,7 @@ body {
   display: flex;
   flex-direction: row;
   margin: 10px 0;
-  justify-content: right;
+  justify-content: space-between;
   gap: 5px;
 }
 .userData label {
@@ -74,6 +74,7 @@ body {
 }
 .dashLink:hover {
   cursor: pointer;
+  background-color: #bbb;
 }
 .dashLink:hover .dashDropDownList {
   display: block;
@@ -97,7 +98,7 @@ body {
   width: 100%;
 }
 .dashDropDownList li:hover {
-  background-color: #bbb;
+  background-color: #ccc;
 }
 .dashDropDownList li::before {
   content: "➜";
@@ -726,7 +727,7 @@ input:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 150%;
+  margin-left: 100%;
 }
 .excel-reader-file-input {
   display: none;
@@ -739,11 +740,21 @@ input:active {
   padding: 5px 20px;
   margin: 20px 0;
 }
+.excel-multiple-data {
+  box-shadow: 0 0 10px #bbb;
+  padding: 3px 15px;
+  /* padding-top: 10px; */
+  width: 450px;
+  border-radius: 7px;
+
+  /* width: 50%; */
+  /* margin-right: 30px; */
+}
 .excel-form-container {
   box-shadow: 0 0 10px #bbb;
   border-radius: 7px;
   padding: 30px;
-  width: 400px;
+  width: 450px;
   text-align: center;
 }
 .excel-form-group {
@@ -758,6 +769,8 @@ input:active {
   width: 200px;
   padding: 5px;
   border-radius: 7px;
+}
+.excel-form-header {
 }
 .excel-form-group select {
   border: solid 1px #000;

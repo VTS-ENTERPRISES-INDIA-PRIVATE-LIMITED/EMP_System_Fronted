@@ -38,10 +38,9 @@ const Login = () => {
       axios
         .post(url, creds)
         .then((res) => {
-          if(!res.data[0])
-          {
-            toast.error("Invalid Credentials !",{position:"top-center"})
-            return
+          if (!res.data[0]) {
+            toast.error("Invalid Credentials !", { position: "top-center" });
+            return;
           }
           console.log("the user data ", res.data[0]);
           navigate("/dashboard", { state: res.data[0] });
