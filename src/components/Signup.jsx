@@ -65,13 +65,15 @@ const SignUp = () => {
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/resetpassword`;
       axios
         .post(url, { email: email, password: newPassword })
-        .then((res) =>
-          toast.success("Reset Password Successful", { position: "top-center" })
-        )
+        .then((res) => {
+          toast.success("Reset Password Successful", {
+            position: "top-center",
+          });
+          navigate("/");
+        })
         .catch((err) =>
           toast.error("Failed to reset Password", { position: "top-center" })
         );
-      navigate("/");
     }
   };
 
