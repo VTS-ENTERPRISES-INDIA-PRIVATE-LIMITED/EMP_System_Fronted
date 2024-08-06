@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import * as XLSX from "xlsx";
 
 const AddEmployee = () => {
@@ -46,7 +46,7 @@ const AddEmployee = () => {
             toast.success("Data Added Successfully");
           })
           .catch((err) => {
-            setUploadText("Failed")
+            setUploadText("Failed");
             toast.error("Failed to add Data");
           });
       };
@@ -66,95 +66,111 @@ const AddEmployee = () => {
     e.preventDefault();
     console.log("Form Data:", formData);
     const data = {
-      empId : formData.employeeId,
-      name : formData.name,
-      email : formData.email,
-      phone : formData.phoneNumber,
-      role : formData.role
-    }
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addemployee`
-    axios.post(url,data)
-    .then(res=>{
-      toast.success("Data Added Successfully")
-    })
+      empId: formData.employeeId,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phoneNumber,
+      role: formData.role,
+    };
+    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addemployee`;
+    axios.post(url, data).then((res) => {
+      toast.success("Data Added Successfully");
+    });
   };
   return (
     <div>
       <ToastContainer />
-      <div className="excel-reader-container">
-        <input
-          type="file"
-          accept=".xlsx, .xls"
-          onChange={handleFileChange}
-          // className="excel-reader-file-input"
-        />
-        <button className="excel-upload-btn" onClick={handleFileUpload}>
-          {uplaodText}
-        </button>
 
-        <form onSubmit={handleSubmit} className="excel-form-container">
-          <div className="excel-form-group">
-            <label htmlFor="name">Name:</label>
+      <div className="excel-reader-container">
+        <div>
+          <h4 style={{ marginTop: "70px" }}>Add Multiple Emp Data</h4>
+          <div
+            className="excel-multiple-data"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "auto",
+              alignItems: "center",
+            }}
+          >
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileChange}
+              // className="excel-reader-file-input"
             />
+            <button className="excel-upload-btn" onClick={handleFileUpload}>
+              {uplaodText}
+            </button>
           </div>
-          <div className="excel-form-group">
-            <label htmlFor="employeeId">Employee ID:</label>
-            <input
-              type="text"
-              id="employeeId"
-              name="employeeId"
-              value={formData.employeeId}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="excel-form-group">
-            <label htmlFor="role">Role:</label>
-            <select
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <option value="HR">HR</option>
-              <option value="Employee">Employee</option>
-              <option value="Admin">Admin</option>
-            </select>
-          </div>
-          <div className="excel-form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="excel-form-group">
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
+        </div>
+
+        <div>
+          <h4 style={{ marginTop: "30px" }}>Add Single Emp Data</h4>
+          <form onSubmit={handleSubmit} className="excel-form-container">
+            <div className="excel-form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="excel-form-group">
+              <label htmlFor="employeeId">Employee ID:</label>
+              <input
+                type="text"
+                id="employeeId"
+                name="employeeId"
+                value={formData.employeeId}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="excel-form-group">
+              <label htmlFor="role">Role:</label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="HR">HR</option>
+                <option value="Employee">Employee</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <div className="excel-form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="excel-form-group">
+              <label htmlFor="phoneNumber">Phone Number:</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
