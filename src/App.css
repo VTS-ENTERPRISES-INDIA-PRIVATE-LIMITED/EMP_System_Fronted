@@ -47,8 +47,10 @@ body {
 }
 .userData {
   display: flex;
+  flex-direction: row;
   margin: 10px 0;
-  justify-content: space-between;
+  justify-content: right;
+  gap: 5px;
 }
 .userData label {
   font-weight: 600;
@@ -92,7 +94,7 @@ body {
   background-color: #ddd;
   border-top: solid 1px #bbb;
   padding-left: 60px;
-  width: calc(100% - 60px);
+  width: 100%;
 }
 .dashDropDownList li:hover {
   background-color: #bbb;
@@ -724,6 +726,7 @@ input:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 150%;
 }
 .excel-reader-file-input {
   display: none;
@@ -732,33 +735,40 @@ input:active {
   border: none;
   background-color: #44c33d;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 7px;
   padding: 5px 20px;
   margin: 20px 0;
 }
 .excel-form-container {
   box-shadow: 0 0 10px #bbb;
-  border-radius: 20px;
+  border-radius: 7px;
   padding: 30px;
   width: 400px;
   text-align: center;
 }
 .excel-form-group {
+  border-radius: 3px;
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
 }
-.excel-form-group input,
+
+.excel-form-group input {
+  border: solid 1px #000;
+  width: 200px;
+  padding: 5px;
+  border-radius: 7px;
+}
 .excel-form-group select {
   border: solid 1px #000;
   width: 200px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 .submit-button {
   margin-top: 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 7px;
   padding: 5px 20px;
   background-color: #288ca7;
   transition: background-color 0.3s;
@@ -768,9 +778,6 @@ input:active {
   background-color: #1f6d85;
   cursor: pointer;
 }
-
-
-
 
 .Payslip-SignUp {
   display: flex;
@@ -824,7 +831,7 @@ input:active {
 }
 .credentials input:focus,
 input:active {
-  border-radius: 20px;
+  /* border-radius: 20px; */
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
 .credentials button {

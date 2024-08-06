@@ -41,6 +41,18 @@ const data = [
     age: 32,
     address: "Sydney No. 1 Lake Park",
   },
+  {
+    key: "4",
+    name: "Joe Black",
+    age: 32,
+    address: "Sydney No. 1 Lake Park",
+  },
+  {
+    key: "5",
+    name: "Joe Black",
+    age: 32,
+    address: "Sydney No. 1 Lake Park",
+  },
 ];
 
 const Dashboard = ({ name }) => {
