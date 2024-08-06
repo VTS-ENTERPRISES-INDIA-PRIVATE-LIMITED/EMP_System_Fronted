@@ -116,7 +116,11 @@ const Payslips = ({ empId }) => {
       <div className="payRollDetails">
         <div className="dateFilter">
           <label style={{ marginRight: "30px" }}>
-            <select value={selectedMonth} onChange={handleMonthChange}>
+            <select
+              value={selectedMonth}
+              onChange={handleMonthChange}
+              style={{ padding: "3px" }}
+            >
               <option value="">Select Month</option>
               {Array.from(new Set(pdfs.map((pdf) => pdf.month))).map(
                 (month) => (
