@@ -47,14 +47,10 @@ body {
 }
 .userData {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: row;
   margin: 10px 0;
   justify-content: space-between;
   gap: 5px;
-  /* margin-left: ; */
-}
-.userData-role {
-  justify-content: flex-start;
 }
 .userData label {
   font-weight: 600;
@@ -240,23 +236,12 @@ body {
 .payRollDetails::-webkit-scrollbar {
   display: none;
 }
-.dateFilter select {
-  box-shadow: 0 0 10px #bbb;
-  border-radius: 7px;
-  /* padding: 10px; */
-  /* width: 450px; */
-  height: 25px;
-  text-align: center;
-  font-size: 15px;
-}
-
 .dateFilter {
   margin-top: 30px;
 }
-
 .dateFilter input[type="date"] {
-  /* border: 1px solid #ccc; */
-  /* border-radius: 4px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
   padding: 5px;
   font-size: 16px;
   margin-left: 10px;
@@ -270,7 +255,7 @@ body {
   border-radius: 30px;
 }
 .dataTable thead {
-  background-color: #f5f5f5;
+  background-color: #bbb;
 }
 .dataTable th {
   padding: 10px 20px;
@@ -669,11 +654,8 @@ body {
   width: 200px;
   box-shadow: 0 0 5px #ddd !important;
 }
-.PaySlip-Table {
-  margin-top: 50px;
-  /* margin-right: 80%; */
-}
-.Payslip-LogIn {
+
+.Payslip-SignUp {
   /* margin-top: 5%; */
   justify-content: center;
   align-items: center;
@@ -681,12 +663,8 @@ body {
   position: absolute;
   flex-direction: column;
   /* border: 2px solid black; */
-  padding: 20px;
-  box-shadow: 0 0 10px rgb(146, 145, 145);
-  height: fit-content;
-  width: fit-content;
-  /* margin: auto; */
-  border-radius: 7px;
+  height: 80%;
+  width: 100%;
 }
 .credentials {
   display: flex;
@@ -745,6 +723,11 @@ input:active {
 .otpverify button {
   width: 100px;
 }
+
+/* AddEmployee */
+
+
+
 .excel-reader-container {
   display: flex;
   flex-direction: column;
@@ -777,7 +760,8 @@ input:active {
   border-radius: 7px;
   padding: 30px;
   width: 450px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .excel-form-group {
   border-radius: 3px;
@@ -792,13 +776,18 @@ input:active {
   padding: 5px;
   border-radius: 7px;
 }
-.excel-form-header {
-}
 .excel-form-group select {
   border: solid 1px #000;
   width: 200px;
   padding: 5px;
   border-radius: 7px;
+}
+.warningMsg{
+  font-size: 12px;
+  color: red;
+  padding: 0 20px;
+  margin: -5px 0 ;
+  align-self: flex-end;
 }
 .submit-button {
   margin-top: 20px;
@@ -808,6 +797,7 @@ input:active {
   background-color: #288ca7;
   transition: background-color 0.3s;
   color: #fff;
+  align-self: center;
 }
 .submit-button:hover {
   background-color: #1f6d85;
@@ -827,8 +817,6 @@ input:active {
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   background-color: white;
-  margin-left: 38%;
-  margin-top: 15%;
 }
 .login-name {
   background: linear-gradient(
