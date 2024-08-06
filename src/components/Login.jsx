@@ -38,10 +38,9 @@ const Login = () => {
       axios
         .post(url, creds)
         .then((res) => {
-          if(!res.data[0])
-          {
-            toast.error("Invalid Credentials !",{position:"top-center"})
-            return
+          if (!res.data[0]) {
+            toast.error("Invalid Credentials !", { position: "top-center" });
+            return;
           }
           console.log("the user data ", res.data[0]);
           navigate("/dashboard", { state: res.data[0] });
@@ -55,18 +54,7 @@ const Login = () => {
       <div className="login-main">
         <div className="Payslip-SignUp">
           <ToastContainer />
-<<<<<<< HEAD
-          <div
-            style={{
-              padding: "13px",
-              height: "fit-content",
-              display: "flex",
-              alignContent: "center",
-            }}
-          >
-=======
           <div style={{ display: "flex", alignItems: "center" }}>
->>>>>>> 5f9a09a5d11b61d3d0a89f9cf66288844ea97357
             <img
               style={{ height: "40px", width: "40px" }}
               src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
