@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -220,3 +221,227 @@ const validate = (name, employeeId, role, email, phoneNumber)=>{
 };
 
 export default AddEmployee;
+=======
+import axios from "axios";
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import * as XLSX from "xlsx";
+
+const AddEmployee = () => {
+  const [file, setFile] = useState();
+  const [uplaodText, setUploadText] = useState("Upload");
+  const [formData, setFormData] = useState({
+    name: "",
+    employeeId: "",
+    role: "Employee",
+    email: "",
+    phoneNumber: "",
+  });
+
+  const [errMsgName, setErrMsgName] = useState("");
+  const [errMsgEmp, setErrMsgEmp] = useState("");
+  const [errMsgRole, setErrMsgRole] = useState("");
+  const [errMsgEmail, setErrMsgEmail] = useState("");
+  const [errMsgPhn, setErrMsgPhn] = useState("");
+
+const validate = (name, employeeId, role, email, phoneNumber)=>{
+  const nameValid = /^[\w]{6,}&/.test(name)
+  const employeeIdValid = /^VTS202\d{4}$/.test(employeeId)
+  const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)
+  const roleValid = "Employee"||"admin"||"hr"
+  const phoneNumberValid = /[/d]{10}/.test(phoneNumber)
+  let valid = true
+  if(!nameValid){
+    setErrMsgName("Name requires atleast 6 characters")
+    valid = false
+  }
+  if(!employeeIdValid){
+    setErrMsgEmp("Invalid employee ID")
+    valid = false
+  }
+  if(!emailValid){
+    setErrMsgEmail("Enter a valid mail address")
+    valid = false
+  }
+  if(role !== roleValid){
+    setErrMsgRole("Select a valid role")
+    valid = false
+  }
+  if(!phoneNumberValid){
+    setErrMsgPhn("Please enter a valid phone number")
+    valid = false
+  }
+  return valid
+}
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+  const handleFileUpload = (event) => {
+    if (file) {
+      setUploadText("Uploading");
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+        const filteredData = jsonData.filter((row) => {
+          return Object.values(row).some(
+            (value) => value && value.toString().trim() !== ""
+          );
+        });
+
+        console.log(filteredData);
+
+        const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addempdata`;
+        axios
+          .post(url, filteredData)
+          .then((res) => {
+            setUploadText("Uploaded");
+            toast.success("Data Added Successfully");
+          })
+          .catch((err) => {
+            setUploadText("Failed");
+            toast.error("Failed to add Data");
+          });
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(validate())
+    if(validate()) {
+      console.log("Form Data:", formData);
+      const data = {
+        empId: formData.employeeId,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phoneNumber,
+        role: formData.role,
+      };
+      const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addemployee`;
+      axios.post(url, data).then((res) => {
+        toast.success("Data Added Successfully");
+      });
+    }
+    else {
+      toast.error("Something went wrong");
+    }
+  };
+  return (
+    <div>
+      <ToastContainer />
+
+      <div className="excel-reader-container">
+        <div>
+          <h4 style={{ marginTop: "70px" }}>Add Multiple Emp Data</h4>
+          <div
+            className="excel-multiple-data"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "auto",
+              alignItems: "center",
+            }}
+          >
+            <input
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileChange}
+              // className="excel-reader-file-input"
+            />
+            <button className="excel-upload-btn" onClick={handleFileUpload}>
+              {uplaodText}
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h4 style={{ marginTop: "30px" }}>Add Single Emp Data</h4>
+          <form onSubmit={handleSubmit} className="excel-form-container">
+            <div className="excel-form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            {errMsgName && <span className = "warningMsg">{errMsgName}</span>}
+            {/* <span className={errMsg === "" ? "warningMsg" : "warningMsg visible"}>{errMsg}</span> */}
+            <div className="excel-form-group">
+              <label htmlFor="employeeId">Employee ID:</label>
+              <input
+                type="text"
+                id="employeeId"
+                name="employeeId"
+                value={formData.employeeId}
+                onChange={handleChange}
+              />
+            </div>
+            {errMsgEmp && <span className = "warningMsg">{errMsgEmp}</span>}
+            <div className="excel-form-group">
+              <label htmlFor="role">Role:</label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+              >
+                <option value="HR">HR</option>
+                <option value="Employee">Employee</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            {errMsgRole && <span className = "warningMsg">{errMsgRole}</span>}
+            <div className="excel-form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            {errMsgEmail && <span className = "warningMsg">{errMsgEmail}</span>}
+            <div className="excel-form-group">
+              <label htmlFor="phoneNumber">Phone Number:</label>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+            {errMsgPhn && <span className = "warningMsg">{errMsgPhn}</span>}
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddEmployee;
+>>>>>>> 35f6c135d058799dae503307a52810c98a07fb33
