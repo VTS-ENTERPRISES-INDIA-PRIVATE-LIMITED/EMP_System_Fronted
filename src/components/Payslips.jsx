@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-
+import { MdOutlineFileDownload } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa";
 const Payslips = ({empId}) => {
     const [pdfs, setPayslipData] = useState([]);
     const [selectedPdf, setSelectedPdf] = useState(null);
@@ -116,8 +117,8 @@ const Payslips = ({empId}) => {
                                         <td>{pdf.month} Month Payslip</td>
                                         <td>{pdf.month} {pdf.year}</td>
                                         <td className="tableBtns">
-                                            <img src={process.env.PUBLIC_URL + 'assets/images/eye.png'} alt='view' onClick={() => setSelectedPdf(pdf.url)}/>
-                                            <img src={process.env.PUBLIC_URL + 'assets/images/download.png'} alt='download' onClick={() => handleDownload(pdf.url)}/>
+                                            <FaRegEye style={{fontSize:"20px",cursor:"pointer",color:"blue",marginRight:"10px"}} onClick={() => setSelectedPdf(pdf.url)} />
+                                            <MdOutlineFileDownload style={{fontSize:"20px",cursor:"pointer",color:"blue"}} onClick={() => handleDownload(pdf.url)} />
                                         </td>
                                     </tr>
                                 ))
