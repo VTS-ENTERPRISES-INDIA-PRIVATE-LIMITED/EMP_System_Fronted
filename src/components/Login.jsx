@@ -1,17 +1,26 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-
+import Cookies from "js-cookie";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ id: "", password: "" });
+ 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (Cookies.get('employee')) {
+      console.log("Already logged in ", JSON.parse(Cookies.get('employee')));
+      navigate("/dashboard", { state: JSON.parse(Cookies.get('employee')) });
+    }
+    else{
+      console.log("Bad Luck Next time")
+    }
+  });
   const validateField = (name, value) => {
     let error = "";
-
     if (name === "id") {
       if (!value) {
         error = "ID is required";
@@ -70,6 +79,7 @@ const Login = () => {
             return;
           }
           console.log("the user data ", res.data[0]);
+          Cookies.set('employee',JSON.stringify(res.data[0]))
           navigate("/dashboard", { state: res.data[0] });
         })
         .catch((err) => alert("Invalid Credentials"));
