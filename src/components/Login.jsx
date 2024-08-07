@@ -78,17 +78,41 @@ const Login = () => {
 
   return (
     <>
-      <div style={{display:"flex",width:"100vw",height:"100vh",margin:"20vh 10vw",alignContent:"center"}} className="login-page-main-container">
-        <div style={{width:"30vw",display:"flex",justifyContent:"center",alignItems:"center"}} className="banner-image-for-login">
-          <img style={{width:"150px",height:"150px"}} src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg" alt="banner" />
+      <div
+        style={{
+          display: "flex",
+          width: "100vw",
+          height: "100vh",
+          margin: "20vh 10vw",
+          alignContent: "center",
+        }}
+        className="login-page-main-container"
+      >
+        <div
+          style={{
+            width: "30vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          className="banner-image-for-login"
+        >
+          <img
+            style={{ width: "150px", height: "150px" }}
+            src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
+            alt="banner"
+          />
           <div>
             <h1 className="VTS-Title">VTS</h1>
             <h5>ENTERPRISES</h5>
           </div>
         </div>
-        <div  className="login-page-vl"></div>
+        <div className="login-page-vl"></div>
         <div className="login-main">
-          <div className="Payslip-SignUp">
+          <div
+            className="Payslip-SignUp
+          "
+          >
             <ToastContainer />
             <div style={{ display: "flex", alignItems: "center" }}>
               <img
