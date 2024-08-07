@@ -118,8 +118,6 @@ body {
 
 /* Employee-Page */
 
-
-
 /* Dashboard-Page */
 
 .dashBoardPage {
@@ -246,8 +244,8 @@ body {
   margin-top: 30px;
 }
 .dateFilter input[type="date"] {
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 4px;_ */
   padding: 5px;
   font-size: 16px;
   margin-left: 10px;
@@ -732,16 +730,18 @@ input:active {
 
 /* AddEmployee */
 
-
-
 .excel-reader-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 100%;
+  width: calc(100vw - 300px);
+  justify-content: center;
 }
 .excel-reader-file-input {
-  display: none;
+  /* display: none; */
+  border-radius: 7px;
+  padding: 6px;
+  /* box-shadow: 0 0 10px rgb(124, 123, 123); */
 }
 .excel-upload-btn {
   border: none;
@@ -757,10 +757,10 @@ input:active {
   /* padding-top: 10px; */
   width: 450px;
   border-radius: 7px;
-
   /* width: 50%; */
   /* margin-right: 30px; */
 }
+
 .excel-form-container {
   box-shadow: 0 0 10px #bbb;
   border-radius: 7px;
@@ -782,17 +782,18 @@ input:active {
   padding: 5px;
   border-radius: 7px;
 }
+
 .excel-form-group select {
   border: solid 1px #000;
   width: 200px;
   padding: 5px;
   border-radius: 7px;
 }
-.warningMsg{
+.warningMsg {
   font-size: 12px;
   color: red;
   padding: 0 20px;
-  margin: -5px 0 ;
+  margin: -5px 0;
   align-self: flex-end;
 }
 .submit-button {

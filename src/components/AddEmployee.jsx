@@ -162,7 +162,7 @@ const AddEmployee = () => {
               type="file"
               accept=".xlsx, .xls"
               onChange={handleFileChange}
-              // className="excel-reader-file-input"
+              className="excel-reader-file-input"
             />
             <button className="excel-upload-btn" onClick={handleFileUpload}>
               {uplaodText}
