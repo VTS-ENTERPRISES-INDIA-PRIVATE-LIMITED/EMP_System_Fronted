@@ -24,9 +24,9 @@ const columns = [
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
+    // name: "John Brown",
+    // age: 32,
+    // address: "New York No. 1 Lake Park",
   },
 ];
 const Payslips = ({ empId }) => {

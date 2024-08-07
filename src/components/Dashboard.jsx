@@ -1,57 +1,41 @@
 import React from "react";
 import { Space, Table, Tag } from "antd";
+const dataSource = [
+  {
+    key: "1",
+    name: "Invoice Generation",
+    start: "5/08/24",
+    end: "10/08/24",
+    description: "Make Sure to complete this project before 10/8/24.",
+  },
+  // {
+  //   key: "2",
+  //   name: "John",
+  //   age: 42,
+  //   address: "10 Downing Street",
+  // },
+];
+
 const columns = [
   {
     title: "Title",
     dataIndex: "name",
-    key: "title",
+    key: "name",
   },
   {
     title: "Start Date",
-    dataIndex: "age",
-    key: "age",
+    dataIndex: "start",
+    key: "start",
   },
   {
     title: "End Date",
-    dataIndex: "address",
-    key: "address",
+    dataIndex: "end",
+    key: "end",
   },
-
   {
     title: "Description",
-    key: "action",
-  },
-];
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "5",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
+    dataIndex: "description",
+    key: "description",
   },
 ];
 
@@ -172,7 +156,7 @@ const Dashboard = ({ name }) => {
           </tr>
         </tbody>
       </table> */}
-      <Table columns={columns} dataSource={data} />
+      <Table dataSource={dataSource} columns={columns} />
     </div>
   );
 };
