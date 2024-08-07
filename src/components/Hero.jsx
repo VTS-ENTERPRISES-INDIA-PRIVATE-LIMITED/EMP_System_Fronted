@@ -8,12 +8,14 @@ import Attendance from "./Attendance";
 import AddEmployee from "./AddEmployee";
 import { useLocation, useNavigate } from "react-router-dom";
 import ViewEmp from "./ViewEmp";
-
+import Cookies from 'js-cookie'
 const Hero = () => {
+
   const userdata = useLocation().state;
   const navigate = useNavigate()
   const [page, setPage] = useState("dashboard");
   const handleLogout=()=>{
+    Cookies.remove('employee')
     navigate("/")
   }
   return (

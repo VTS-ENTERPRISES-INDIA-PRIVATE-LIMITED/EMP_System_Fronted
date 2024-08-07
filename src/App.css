@@ -3,6 +3,7 @@
 
 
 body {
+  background-color: #F5F5F5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -830,7 +831,7 @@ input:active {
 /* login-page component style code */
 
 .banner-image-for-login{
-  height: 20vw;  
+  height: 40vh;  
   animation: slideLeft 1s ease-in-out;
 }
 .VTS-Title{
@@ -846,7 +847,7 @@ input:active {
   height: 45vh;
   background-color: grey;
   border-radius: 60%;
-  margin: 5vh 5vw;
+  margin: 2% 5vw;
   animation: slideDown 1s ease-in-out;
 }
 .login-main{
@@ -878,6 +879,9 @@ input:active {
   );
   background-clip: text;
   color: transparent;
+}
+.login-comp{
+  background-color: #757575;
 }
 
 .credentials {
