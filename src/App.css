@@ -563,12 +563,88 @@ body {
   padding: 10px 20px;
 }
 .leaveTable td {
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 .leaveTable img {
   width: 20px;
 }
 
+.aprvBtn {
+  border: none;
+  background-color: #0f0;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 2px 10px;
+  margin-right: 10px;
+}
+.dclBtn {
+  border: solid 1px #f00;
+  background-color: #fff;
+  color: #f00;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 2px 10px;
+  transition: color 0.3s, background-color 0.3s;
+}
+.dclBtn:hover {
+  background-color: #f00;
+  color: #fff;
+}
+.aprvStatus {
+  font-size: 14px;
+}
+.aprvStatus img {
+  margin-right: 5px;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.popup-content textarea {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.popup-buttons button {
+  padding: 2px 15px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.cancelBtn {
+  background-color: red;
+  color: white;
+}
+.saveBtn {
+  background-color: #0f0;
+  color: white;
+}
 /* Leave-From */
 
 .leaveForm {
@@ -589,8 +665,7 @@ body {
 .flex {
   display: flex;
 }
-.formInp,
-.formDesp {
+.formInp {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -600,20 +675,14 @@ body {
   height: 30px;
   border-radius: 5px;
   border: solid 1px #000;
-}
-.formDesp input {
-  height: 30px;
-  border-radius: 5px;
-  width: 100%;
-  border: solid 1px #000;
-  margin: 0 20px;
+  outline: none;
+  padding: 10px;
 }
 .formBtn {
   border-radius: 20px;
   border: 2px solid;
-  padding: 8px 20px;
+  padding: 5px 20px;
   margin-left: 20px;
-  font-weight: bold;
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
@@ -692,7 +761,7 @@ body {
   box-shadow: 0 0 5px rgb(124, 123, 123);
 }
 .credentials input:focus,
-input:active {
+.credentials input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
@@ -720,7 +789,7 @@ p:hover {
   width: 125px;
 }
 .otpverify input:focus,
-input:active {
+.otpverify input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
@@ -860,11 +929,6 @@ input:active {
 
   transition: border-radius 0.4s;
   box-shadow: 0 0 5px rgb(124, 123, 123);
-}
-.credentials input:focus,
-input:active {
-  /* border-radius: 20px; */
-  box-shadow: 0 0 10px rgb(124, 123, 123);
 }
 .credentials button {
   margin: 10px;
