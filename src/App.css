@@ -75,12 +75,12 @@ body {
 .dashLink:hover {
   cursor: pointer;
   background-color: #bbb;
+  font-weight: 700;
 }
 .dashLink:hover .dashDropDownList {
   display: block;
 }
 .dashDropDownList {
-  transition: display 0.6s ease-in-out;
   display: none;
   width: 100%;
   list-style-type: none;
@@ -95,6 +95,8 @@ body {
   background-color: #ddd;
   border-top: solid 1px #bbb;
   padding-left: 60px;
+  font-size: 14px;
+  font-weight: 100;
   width: 100%;
 }
 .dashDropDownList li:hover {
@@ -113,6 +115,10 @@ body {
   transform: rotate(0deg);
   cursor: pointer;
 }
+
+/* Employee-Page */
+
+
 
 /* Dashboard-Page */
 

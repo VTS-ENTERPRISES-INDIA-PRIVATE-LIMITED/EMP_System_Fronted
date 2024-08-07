@@ -46,11 +46,11 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "id") {
-      setId(value);
+      setId(value.trim());
     } else if (name === "password") {
-      setPassword(value);
+      setPassword(value.trim());
     }
-    validateField(name, value);
+    validateField(name, value.trim());
   };
 
   const handleSubmit = (e) => {

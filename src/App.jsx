@@ -5,6 +5,7 @@ import GeneratePayslips from "./components/GeneratePayslips";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/Signup";
+import ViewEmp from "./components/ViewEmp";
 function App() {
   const downloadPdf = async () => {
     
@@ -19,6 +20,7 @@ function App() {
         <Hero /></>} />
         <Route path="/" element={<Login />} />
         <Route path="/reset-password" element={<SignUp />} />
+        <Route path="/viewEmp" element={<ViewEmp/>} />
     </Routes>
     </BrowserRouter>
       
