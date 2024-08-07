@@ -78,51 +78,61 @@ const Login = () => {
 
   return (
     <>
-      <div className="login-main">
-        <div className="Payslip-SignUp">
-          <ToastContainer />
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              style={{ height: "40px", width: "40px" }}
-              src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
-              alt="Logo"
-            />
-            <h2 className="login-name">Login</h2>
+      <div style={{display:"flex",width:"100vw",height:"100vh",margin:"20vh 10vw",alignContent:"center"}} className="login-page-main-container">
+        <div style={{width:"30vw",display:"flex",justifyContent:"center",alignItems:"center"}} className="banner-image-for-login">
+          <img style={{width:"150px",height:"150px"}} src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg" alt="banner" />
+          <div>
+            <h1 className="VTS-Title">VTS</h1>
+            <h5>ENTERPRISES</h5>
           </div>
-          <form onSubmit={handleSubmit} className="credentials">
-            <div>
-              <input
-                type="text"
-                name="id"
-                placeholder="ID"
-                value={id}
-                onChange={handleChange}
+        </div>
+        <div  className="login-page-vl"></div>
+        <div className="login-main">
+          <div className="Payslip-SignUp">
+            <ToastContainer />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                style={{ height: "40px", width: "40px" }}
+                src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
+                alt="Logo"
               />
-              {errors.id && (
-                <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
-                  {errors.id}
-                </p>
-              )}
+              <h2 className="login-name">Login</h2>
             </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
-              />
-              {errors.password && (
-                <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
-                  {errors.password}
-                </p>
-              )}
-              <a href="reset-password">
-                <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
-              </a>
-            </div>
-            <button type="submit">Login</button>
-          </form>
+            <form onSubmit={handleSubmit} className="credentials">
+              <div>
+                <input
+                  type="text"
+                  name="id"
+                  placeholder="ID"
+                  value={id}
+                  onChange={handleChange}
+                />
+                {errors.id && (
+                  <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
+                    {errors.id}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handleChange}
+                />
+                {errors.password && (
+                  <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
+                    {errors.password}
+                  </p>
+                )}
+                <a href="reset-password">
+                  <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
+                </a>
+              </div>
+              <button type="submit">Login</button>
+            </form>
+          </div>
         </div>
       </div>
     </>
