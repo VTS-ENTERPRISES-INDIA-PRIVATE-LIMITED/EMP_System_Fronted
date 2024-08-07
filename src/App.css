@@ -243,6 +243,9 @@ body {
 .dateFilter {
   margin-top: 30px;
 }
+.dateFilter select {
+  padding: 3px;
+}
 .dateFilter input[type="date"] {
   /* border: 1px solid #ccc; */
   /* border-radius: 4px;_ */
@@ -670,6 +673,13 @@ body {
   height: 80%;
   width: 100%;
 }
+.PaySlip-Table {
+  margin-top: 20px;
+  /* width: 100px; */
+}
+/* .PaySlipTable-noData {
+  width: 50px;
+} */
 .credentials {
   display: flex;
   flex-direction: column;
@@ -824,6 +834,9 @@ input:active {
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   background-color: white;
+}
+.ant-pagination {
+  display: none !important;
 }
 .login-name {
   background: linear-gradient(
