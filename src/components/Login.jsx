@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
@@ -8,27 +8,54 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ id: "", password: "" });
   const navigate = useNavigate();
-  const validate = () => {
-    let valid = true;
-    const newErrors = { id: "", password: "" };
 
-    if (!id) {
-      newErrors.id = "ID is required";
-      valid = false;
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "id") {
+      if (!value) {
+        error = "ID is required";
+      } else if (!/^VTS202\d{4}$/.test(value)) {
+        error = "Invalid Employee ID";
+      }
     }
 
-    if (!password) {
-      newErrors.password = "Password is required";
-      valid = false;
+    if (name === "password") {
+      if (!value) {
+        error = "Password is required";
+      } else if (!/^.{6,}$/.test(value)) {
+        error = "Minimum 6 characters";
+      }
     }
 
-    setErrors(newErrors);
-    return valid;
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: error,
+    }));
+
+    return error === "";
+  };
+
+  const validateAllFields = () => {
+    const isIdValid = validateField("id", id);
+    const isPasswordValid = validateField("password", password);
+
+    return isIdValid && isPasswordValid;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "id") {
+      setId(value.trim());
+    } else if (name === "password") {
+      setPassword(value.trim());
+    }
+    validateField(name, value.trim());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
+    if (validateAllFields()) {
       console.log("Form submitted with:", { id, password });
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
       const creds = {
@@ -52,7 +79,7 @@ const Login = () => {
   return (
     <>
       <div className="login-main">
-        <div className="Payslip-LogIn">
+        <div className="Payslip-SignUp">
           <ToastContainer />
           <div style={{ display: "flex", alignItems: "center" }}>
             <img
@@ -66,9 +93,10 @@ const Login = () => {
             <div>
               <input
                 type="text"
+                name="id"
                 placeholder="ID"
                 value={id}
-                onChange={(e) => setId(e.target.value)}
+                onChange={handleChange}
               />
               {errors.id && (
                 <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
@@ -79,9 +107,10 @@ const Login = () => {
             <div>
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
               />
               {errors.password && (
                 <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>

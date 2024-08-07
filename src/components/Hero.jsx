@@ -7,6 +7,7 @@ import LeaveForm from "./LeaveForm";
 import Attendance from "./Attendance";
 import AddEmployee from "./AddEmployee";
 import { useLocation } from "react-router-dom";
+import ViewEmp from "./ViewEmp";
 
 const Hero = () => {
   const userdata = useLocation().state;
@@ -21,17 +22,17 @@ const Hero = () => {
             alt=""
             className="userProfile"
           />
-          <div className="userData">
+          <div style={{ textAlign: "left" }} className="userData">
             <label>Name:</label>
             <div>{userdata.Name}</div>
           </div>
-          <div className="userData">
+          <div style={{ textAlign: "left" }} className="userData">
             <label>Emp ID:</label>
             <div>{userdata.empId}</div>
           </div>
           <div className="userData">
-            <label>Role :</label>
-            <div className="userData-role">{userdata.role}</div>
+            <label style={{ textAlign: "left" }}>Role :</label>
+            <div>{userdata.role}</div>
           </div>
           {/* <div style={{ textAlign: "left" }} className="userData">
             <label>Email:</label>
@@ -45,7 +46,13 @@ const Hero = () => {
         <div className="dashLinks">
           {(userdata.role === "admin" || userdata.role === "hr") && (
             <div className="dashLink">
-              <p onClick={() => setPage("addemployee")}>Add Employee</p>
+              <p onClick={() => setPage("addemployee")}>Employee</p>
+              {(userdata.role === "admin" || userdata.role === "hr") && (
+              <ul className="dashDropDownList">
+                <li onClick={() => setPage("addemployee")}>Add Employee</li>
+                  <li onClick={() => setPage("viewemployee")}>View Details</li>
+              </ul>
+              )}
             </div>
           )}
           <div className="dashLink">
@@ -72,13 +79,14 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      {page === "addemployee" && <AddEmployee />}
+      {page === "viewemployee" && <ViewEmp />}
       {page === "dashboard" && <Dashboard name={userdata.Name} />}
       {page === "attendance" && <Attendance />}
       {page === "payslips" && <Payslips empId={userdata.empId} />}
       {page === "generate" && <Uploadfile />}
       {page === "leave" && <Leave />}
       {page === "applyleave" && <LeaveForm />}
-      {page === "addemployee" && <AddEmployee />}
     </div>
   );
 };
