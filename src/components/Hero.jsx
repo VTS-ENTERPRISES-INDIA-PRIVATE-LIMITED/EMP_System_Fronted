@@ -6,13 +6,16 @@ import Leave from "./Leave";
 import LeaveForm from "./LeaveForm";
 import Attendance from "./Attendance";
 import AddEmployee from "./AddEmployee";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ViewEmp from "./ViewEmp";
 
 const Hero = () => {
   const userdata = useLocation().state;
+  const navigate = useNavigate()
   const [page, setPage] = useState("dashboard");
-
+  const handleLogout=()=>{
+    navigate("/")
+  }
   return (
     <div className="heroSection">
       <div className="dashboard">
@@ -44,6 +47,9 @@ const Hero = () => {
           </div> */}
         </div>
         <div className="dashLinks">
+        <div className="dashLink">
+            <p onClick={() => setPage("dashboard")}>Dashboard</p>
+          </div>
           {(userdata.role === "admin" || userdata.role === "hr") && (
             <div className="dashLink">
               <p onClick={() => setPage("addemployee")}>Employee</p>
@@ -55,9 +61,7 @@ const Hero = () => {
               )}
             </div>
           )}
-          <div className="dashLink">
-            <p onClick={() => setPage("dashboard")}>Dashboard</p>
-          </div>
+          
           <div className="dashLink">
             <p onClick={() => setPage("attendance")}>Attendance</p>
           </div>
@@ -76,6 +80,9 @@ const Hero = () => {
               <li onClick={() => setPage("leave")}>Details</li>
               <li onClick={() => setPage("applyleave")}>Apply for leave</li>
             </ul>
+          </div>
+          <div className="dashLink">
+            <p onClick={handleLogout}>Logout</p>
           </div>
         </div>
       </div>
