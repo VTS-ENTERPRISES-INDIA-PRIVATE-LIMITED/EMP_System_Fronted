@@ -3,17 +3,34 @@ import axios from "axios";
 import { Button, Modal } from "antd";
 const ViewEmp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [viewData, setViewData] = useState({Name: '', email : '', phone : '', role: '', id: ''})
-  const [dataList, setDataList] = useState()
-  const [editName, setEditName] = useState()
-  const [editemail, setEditemail] = useState()
-  const [editphone, setEditphone] = useState()
-  const [editrole, setEditrole] = useState()
-  const [Message, setMessage] = useState()
-  const [validMessage, setvalidMessage] = useState({Name : '', email : '', phone : '', role: '', id: ''})
-  const [validity, setValidity] = useState(true)
-  const [viewEmpData, setViewEmpData] = useState({Name: '', email : '', phone : '', role: ''})
-  const [popUp, setPopUp] = useState(false)
+  const [viewData, setViewData] = useState({
+    Name: "",
+    email: "",
+    phone: "",
+    role: "",
+    id: "",
+  });
+  const [dataList, setDataList] = useState();
+  const [editName, setEditName] = useState();
+  const [editemail, setEditemail] = useState();
+  const [editphone, setEditphone] = useState();
+  const [editrole, setEditrole] = useState();
+  const [Message, setMessage] = useState();
+  const [validMessage, setvalidMessage] = useState({
+    Name: "",
+    email: "",
+    phone: "",
+    role: "",
+    id: "",
+  });
+  const [validity, setValidity] = useState(true);
+  const [viewEmpData, setViewEmpData] = useState({
+    Name: "",
+    email: "",
+    phone: "",
+    role: "",
+  });
+  const [popUp, setPopUp] = useState(false);
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   const showModal = () => {
@@ -21,10 +38,10 @@ const ViewEmp = () => {
   };
   const handleOk = () => {
     setIsModalOpen(false);
-    setViewData({ Name: "" })
+    setViewData({ Name: "" });
   };
   const handleCancel = () => {
-    setViewData({ Name: "" })
+    setViewData({ Name: "" });
     setIsModalOpen(false);
   };
   const handleView = () => {
@@ -34,14 +51,19 @@ const ViewEmp = () => {
     });
   };
 
-  const handleViewIndividual = (Id) =>{
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`
-    axios.post(url)
-    .then((res)=>
-      setViewEmpData({empId: Id, Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
-  )
-  setPopUp(true)
-  }
+  const handleViewIndividual = (Id) => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`;
+    axios.post(url).then((res) =>
+      setViewEmpData({
+        empId: Id,
+        Name: res.data[0][0].Name,
+        email: res.data[0][0].email,
+        phone: res.data[0][0].phone,
+        role: res.data[0][0].role,
+      })
+    );
+    setPopUp(true);
+  };
 
   const handleEdit = async (Id) => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`;
@@ -119,39 +141,58 @@ const ViewEmp = () => {
 
   return (
     <div className="viewCont">
-      <div className='viewContDiv'>
-        <table className='viewContTable'>
+      <div className="viewContDiv">
+        <table className="viewContTable">
           <thead>
             <tr>
-            <th>S.No</th>
-            <th>Employee ID</th>
-            <th>Employee Name</th>
-            <th>Employee Role</th>
-            <th>View</th>
-            <th>Edit</th>
-            <th>Delete</th>
+              <th>S.No</th>
+              <th>Employee ID</th>
+              <th>Employee Name</th>
+              <th>Employee Role</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {dataList?.map((empDet, index)=>{
-              return(<tr  key = {empDet.empId}>
-                <td>{index+1}</td>
-                <td>{empDet.empId}</td>
-                <td>{empDet.Name}</td>
-                <td>{empDet.role}</td>
-                <td><button onClick={ ()=>handleViewIndividual(empDet.empId)}
-                className='editBtn'>View</button></td>
-                <td><button onClick={
-                  ()=>
-                  handleShowEditForm(empDet.empId)} className='editBtn'>Edit</button></td>
-                <td><button className='DelBtn' onClick={()=>handleDelete(empDet.empId)}>Delete</button></td>
-              </tr>)
-            })
-            }
+            {dataList?.map((empDet, index) => {
+              return (
+                <tr key={empDet.empId}>
+                  <td>{index + 1}</td>
+                  <td>{empDet.empId}</td>
+                  <td>{empDet.Name}</td>
+                  <td>{empDet.role}</td>
+                  <td>
+                    <button
+                      onClick={() => handleViewIndividual(empDet.empId)}
+                      className="editBtn"
+                    >
+                      View
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => handleShowEditForm(empDet.empId)}
+                      className="editBtn"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="DelBtn"
+                      onClick={() => handleDelete(empDet.empId)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        </div>
-      
+      </div>
+
       <Modal
         // title="Basic Modal"
 
@@ -229,9 +270,8 @@ const ViewEmp = () => {
             <option value="admin">admin</option>
             <option value="hr">hr</option>
           </select>
-          
         </form>
-        
+
         <div
           style={{
             display: "flex",
@@ -245,7 +285,7 @@ const ViewEmp = () => {
               e.preventDefault();
               handleCancel();
               handleEdit(viewData.id);
-              handleOk()
+              handleOk();
               setViewData({ Name: "" });
             }}
             style={{
@@ -253,7 +293,7 @@ const ViewEmp = () => {
               border: "none",
               // alignItems: "center",
               borderRadius: "7px",
-              backgroundColor: "#288ca7",
+              backgroundColor: "#07076e",
               color: "#fff",
               // marginTop: "10px",
               // justifyContent: "flex-end",
@@ -264,10 +304,12 @@ const ViewEmp = () => {
           </button>
         </div>
       </Modal>
-        {popUp && 
+      {popUp && (
         <div className="viewPop">
           <div className="viewEmpData">
-            <buttton className="closeView" onClick={()=>setPopUp(false)}>x</buttton>
+            <buttton className="closeView" onClick={() => setPopUp(false)}>
+              x
+            </buttton>
             <div className="empData">
               <label htmlFor="">Employee Id</label>
               <div className="empDataValue">{viewEmpData.empId}</div>
@@ -294,7 +336,7 @@ const ViewEmp = () => {
             </div>
           </div>
         </div>
-        }
+      )}
     </div>
   );
 };
@@ -391,5 +433,5 @@ export default ViewEmp;
 //           </button> */}
 
 //           {/* <button type="submit" className="subButton">
-          
+
 //         </button> */}

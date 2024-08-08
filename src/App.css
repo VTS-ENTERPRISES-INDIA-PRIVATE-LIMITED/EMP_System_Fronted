@@ -582,26 +582,26 @@ body {
 
 .aprvBtn {
   border: none;
-  background-color: #0f0;
-  color: #fff;
+  background-color: #07076e;
+  color: white;
   border-radius: 20px;
   font-size: 14px;
   padding: 2px 10px;
   margin-right: 10px;
 }
 .dclBtn {
-  border: solid 1px #f00;
-  background-color: #fff;
-  color: #f00;
+  border: solid 1px #07076e;
+  background-color: white;
+  color: #07076e;
   border-radius: 20px;
   font-size: 14px;
   padding: 2px 10px;
   transition: color 0.3s, background-color 0.3s;
 }
-.dclBtn:hover {
+/* .dclBtn:hover {
   background-color: #f00;
   color: #fff;
-}
+} */
 .aprvStatus {
   font-size: 14px;
 }
@@ -704,29 +704,29 @@ body {
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
-  background-color: #44c33d;
+  background-color: #07076e;
   color: white;
   border-radius: 7px;
   border: 2px solid;
   padding: 5px 20px;
 }
-.formSubBtn:hover {
+/* .formSubBtn:hover {
   color: #2f772b;
   background-color: #fff;
-  border-color: #2f772b;
-}
+  border-color: #07076e;
+} */
 .formCancelBtn {
-  background-color: #f00d;
-  color: white;
+  background-color: white;
+  color: #07076e;
   border-radius: 7px;
   border: 2px solid;
   padding: 5px 20px;
 }
-.formCancelBtn:hover {
+/* .formCancelBtn:hover {
   color: #f00e;
   background-color: #fff;
   border-color: #f00e;
-}
+} */
 
 .btnGrp {
   position: relative;
@@ -993,7 +993,7 @@ p:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-.viewCont{
+.viewCont {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -1021,7 +1021,7 @@ p:hover {
   /* border: none; */
 }
 
-.viewContTable thead{
+.viewContTable thead {
   background-color: #07076e;
   color: white;
   border: #000 1px solid;
@@ -1047,7 +1047,7 @@ p:hover {
   align-self: center;
 }
 
-.viewContTable .DelBtn{
+.viewContTable .DelBtn {
   border: 1px solid #07076e;
   color: #07076e;
   border-radius: 7px;
@@ -1086,7 +1086,7 @@ p:hover {
   justify-content: center;
   align-items: center;
 }
-.viewEmpData{
+.viewEmpData {
   position: relative;
   background-color: #ddd;
   border-radius: 7px;
@@ -1104,7 +1104,7 @@ p:hover {
   color: black;
   border-radius: 5px;
 }
-.closeView:hover{
+.closeView:hover {
   color: white;
   background-color: red;
   cursor: pointer;
@@ -1117,7 +1117,7 @@ p:hover {
 .empData label {
   font-weight: bold;
 }
-.editEmp{
+.editEmp {
   display: none;
   justify-content: center;
   align-items: center;
