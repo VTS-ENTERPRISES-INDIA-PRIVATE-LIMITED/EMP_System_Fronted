@@ -94,7 +94,7 @@ const Hero = () => {
       {page === "payslips" && <Payslips empId={userdata.empId} />}
       {page === "generate" && <Uploadfile />}
       {page === "leave" && <Leave />}
-      {page === "applyleave" && <LeaveForm />}
+      {page === "applyleave" && <LeaveForm userdata={userdata} />}
     </div>
   );
 };
