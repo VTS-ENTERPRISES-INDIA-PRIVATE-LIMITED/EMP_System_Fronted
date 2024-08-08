@@ -26,7 +26,7 @@ const LeaveForm = ({ userdata }) => {
       const fromDate = new Date(leave_fdate);
       const toDate = new Date(leave_tdate);
       const timeDiff = toDate - fromDate;
-      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
+      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1;
       setLeaveCount(daysDiff);
     } else {
       setLeaveCount(0);
@@ -42,7 +42,7 @@ const LeaveForm = ({ userdata }) => {
         {
           empId: formData.empId,
           Name: formData.Name,
-          role: role,
+          role: userdata.role,
           reason: formData.reason,
           leave_fdate: formData.leave_fdate,
           leave_tdate: formData.leave_tdate,
