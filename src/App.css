@@ -992,39 +992,49 @@ p:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-.viewCont{
+.viewCont {
+  z-index: 1;
   flex: auto;
-  border: black 1px solid;
+  border: none;
   padding: 10px;
 }
 
-.viewContDiv{
+.viewContDiv {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+  margin-left: 100px;
+  margin-top: 35px;
+  /* border: none; */
 }
 
-.viewContTable{
-  border: #000 1px solid;
+.viewContTable {
+  /* border: #000 1px solid; */
   margin: 20px;
+  box-shadow: 0 0 10px rgb(146, 145, 145);
+
+  /* border: none; */
 }
 
-.viewContTable thead{
+.viewContTable thead {
   background-color: #bbb;
-  border: #000 1px solid;
+  /* border: #000 1px solid; */
   padding: 10px;
 }
 
-.viewContTable th{
+.viewContTable th {
   text-align: center;
   margin: 10px;
   padding: 10px 20px;
 }
 
-.viewContTable td{
+.viewContTable td {
   padding: 10px 20px;
 }
 
-.viewContTable .editBtn{
+.viewContTable .editBtn {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
@@ -1033,7 +1043,7 @@ p:hover {
   align-self: center;
 }
 
-.viewContTable .DelBtn{
+.viewContTable .DelBtn {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
@@ -1041,32 +1051,49 @@ p:hover {
   color: #fff;
   align-self: center;
 }
+/* .ant-modal-content {
+  margin: 20px;
+  box-shadow: 0 0 10px rgb(146, 145, 145);
+  border: none;
+} */
+.ant-modal-footer button {
+  display: none;
+}
 
-.editEmp{
+.biur-this-container {
+  filter: blur(5px);
+}
+.editEmp {
+  z-index: 3;
+  backdrop-filter: 5px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  background-color: white;
   display: none;
   justify-content: center;
   align-items: center;
-
 }
 
-.editEmp .visible{
+.editEmp .visible {
   display: flex;
 }
 
-.editEmpform{
+.editEmpform {
   padding: 20px;
-  border: #000 1px solid;
+  /* border: #000 1px solid; */
+  /* margin: 20px; */
+  box-shadow: 0 0 10px rgb(146, 145, 145);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  
 }
 
 .editEmpInp {
   margin: 10px;
   height: 40px;
-  width: 250px;  
+  width: 250px;
   border-radius: 5px;
   padding: 0px 20px;
   outline: none;
@@ -1080,7 +1107,7 @@ p:hover {
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
 
-.editEmpSelect{
+.editEmpSelect {
   padding: 5px 20px;
   border: 1px solid black;
   border-radius: 5px;
@@ -1088,7 +1115,7 @@ p:hover {
   box-shadow: 0 0 5px rgb(124, 123, 123);
 }
 
-.editEmp .subButton{
+.editEmp .subButton {
   margin-top: 20px;
   border: none;
   border-radius: 7px;
@@ -1098,23 +1125,31 @@ p:hover {
   color: #fff;
   align-self: center;
 }
-
-.invalidMsg{
+.ant-modal-close {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.ant-modal-close svg:hover {
+  /* background-color: red; */
+}
+.invalidMsg {
   color: red;
   font-size: 12px;
 }
 
-.cancelBtn{ 
+.cancelBtn {
   border: none;
   border-radius: 7px;
-  padding: .5px 9px;
+  padding: 0.5px 9px;
   background-color: #cf2620;
   transition: background-color 0.3s;
   color: #fff;
   align-self: center;
   position: absolute;
-  right:5px;
+  right: 5px;
   top: 5px;
+}
+.cancelBtn:hover {
 }
 @keyframes slideDown {
   from {
