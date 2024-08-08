@@ -79,7 +79,13 @@ const Hero = () => {
           <div className="dashLink">
             <p>Leave</p>
             <ul className="dashDropDownList">
-              {(userdata.role === "admin" || userdata.role === "hr" || userdata.role==="team-lead") && (<><li onClick={() => setPage("leave")}>Approve Leaves</li></>)}
+              {(userdata.role === "admin" ||
+                userdata.role === "hr" ||
+                userdata.role === "team-lead") && (
+                <>
+                  <li onClick={() => setPage("leave")}>Approve Leaves</li>
+                </>
+              )}
               <li onClick={() => setPage("applyleave")}>Apply for leave</li>
             </ul>
           </div>
