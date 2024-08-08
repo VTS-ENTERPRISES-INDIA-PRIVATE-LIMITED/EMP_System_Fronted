@@ -674,6 +674,7 @@ body {
 }
 .flex {
   display: flex;
+  margin-bottom: 2px;
 }
 .formInp {
   display: flex;

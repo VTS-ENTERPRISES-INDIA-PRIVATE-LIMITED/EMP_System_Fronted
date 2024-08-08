@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
+<<<<<<< HEAD
 const LeaveForm = ({role}) => {
+=======
+const LeaveForm = ({ userdata }) => {
+>>>>>>> a2c53d7c3f97a4b3deb409f7ade7bd64806bcaa8
   const [leaveCount, setLeaveCount] = useState(0);
   const [formData, setFormData] = useState({
-    empId: "",
-    Name: "",
+    empId: userdata.empId,
+    Name: userdata.Name,
     role: "",
     reason: "",
     leave_fdate: "",
@@ -26,7 +30,11 @@ const LeaveForm = ({role}) => {
       const fromDate = new Date(leave_fdate);
       const toDate = new Date(leave_tdate);
       const timeDiff = toDate - fromDate;
+<<<<<<< HEAD
       const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
+=======
+      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1;
+>>>>>>> a2c53d7c3f97a4b3deb409f7ade7bd64806bcaa8
       setLeaveCount(daysDiff);
     } else {
       setLeaveCount(0);
@@ -64,28 +72,19 @@ const LeaveForm = ({role}) => {
         </span>
         <div className="flex">
           <div className="formHolder">
-            <div className="formInp">
+            <div className="formInp" style={{ gap: "10px" }}>
               <label htmlFor="empId">ID</label>
               <input
                 type="text"
                 name="empId"
+                disabled={true}
                 id="empId"
                 value={formData.empId}
                 onChange={handleChange}
               />
             </div>
-            {/* <div className="formInp">
-              <label htmlFor="reason">Reason</label>
-              <input
-                type="text"
-                name="reason"
-                id="reason"
-                value={formData.reason}
-                onChange={handleChange}
-              />
-            </div> */}
 
-            <div className="formInp">
+            <div className="formInp" style={{ gap: "10px" }}>
               <label htmlFor="leave_fdate">From</label>
               <input
                 type="date"
@@ -93,6 +92,7 @@ const LeaveForm = ({role}) => {
                 id="leave_fdate"
                 value={formData.leave_fdate}
                 onChange={handleChange}
+                style={{ marginLeft: "1px", width: "100%" }}
               />
             </div>
           </div>
@@ -102,21 +102,13 @@ const LeaveForm = ({role}) => {
               <input
                 type="text"
                 name="Name"
+                disabled={true}
                 id="Name"
                 value={formData.Name}
                 onChange={handleChange}
               />
             </div>
-            {/* <div className="formInp">
-              <label htmlFor="reason">Reason</label>
-              <input
-                type="text"
-                name="reason"
-                id="reason"
-                value={formData.reason}
-                onChange={handleChange}
-              />
-            </div> */}
+
             <div className="formInp">
               <label htmlFor="leave_tdate">To</label>
               <input
@@ -125,13 +117,20 @@ const LeaveForm = ({role}) => {
                 id="leave_tdate"
                 value={formData.leave_tdate}
                 onChange={handleChange}
+                style={{ marginLeft: "48px", width: "100%" }}
               />
             </div>
           </div>
         </div>
         <div>
           <div>
-            <p>no.of leaves taken :{leaveCount} </p>
+            {leaveCount > 0 ? (
+              <p style={{ marginTop: "1px" }}>
+                * Applying leave for <b>{leaveCount}</b> days.
+              </p>
+            ) : (
+              <></>
+            )}
           </div>
           <div>
             <label htmlFor="reason">Reason</label>
@@ -145,8 +144,9 @@ const LeaveForm = ({role}) => {
               onChange={handleChange}
               style={{
                 resize: "none",
-                margin: "5px",
-                width: "100%",
+                margin: "5px 10px 20px 0px",
+                // marginLeft: "10px",
+                width: "96%",
                 // padding: "40px",
                 borderRadius: "5px",
                 marginBottom: "20px",
