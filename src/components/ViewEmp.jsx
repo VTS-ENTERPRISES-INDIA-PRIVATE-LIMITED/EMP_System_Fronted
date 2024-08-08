@@ -12,6 +12,8 @@ const ViewEmp = () => {
   const [Message, setMessage] = useState()
   const [validMessage, setvalidMessage] = useState({Name : '', email : '', phone : '', role: '', id: ''})
   const [validity, setValidity] = useState(true)
+  const [viewEmpData, setViewEmpData] = useState({Name: '', email : '', phone : '', role: ''})
+  const [popUp, setPopUp] = useState(false)
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
@@ -21,6 +23,15 @@ const ViewEmp = () => {
     .then((res)=>{
       setDataList(res.data)
     })
+  }
+
+  const handleViewIndividual = (Id) =>{
+    const url = `http://localhost:5000/admin/viewEmp/${Id}`
+    axios.post(url)
+    .then((res)=>
+      setViewEmpData({empId: Id, Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
+  )
+  setPopUp(true)
   }
 
   const handleEdit = async (Id) => {
@@ -100,6 +111,7 @@ const ViewEmp = () => {
             <th>Employee ID</th>
             <th>Employee Name</th>
             <th>Employee Role</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
@@ -111,6 +123,8 @@ const ViewEmp = () => {
                 <td>{empDet.empId}</td>
                 <td>{empDet.Name}</td>
                 <td>{empDet.role}</td>
+                <td><button onClick={ ()=>handleViewIndividual(empDet.empId)}
+                className='editBtn'>View</button></td>
                 <td><button onClick={
                   ()=>
                   handleShowEditForm(empDet.empId)} className='editBtn'>Edit</button></td>
@@ -155,6 +169,37 @@ const ViewEmp = () => {
           }}>Submit</button>
         </form>
       </div>
+        {popUp && 
+        <div className="viewPop">
+          <div className="viewEmpData">
+            <buttton className="closeView" onClick={()=>setPopUp(false)}>x</buttton>
+            <div className="empData">
+              <label htmlFor="">Employee Id</label>
+              <div className="empDataValue">{viewEmpData.empId}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Employee Name</label>
+              <div className="empDataValue">{viewEmpData.Name}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Role</label>
+              <div className="empDataValue">{viewEmpData.role}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Email</label>
+              <div className="empDataValue">{viewEmpData.email}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Phone</label>
+              <div className="empDataValue">{viewEmpData.phone}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">No. of Leaves</label>
+              <div className="empDataValue">10</div>
+            </div>
+          </div>
+        </div>
+        }
     </div>
   )
 }
