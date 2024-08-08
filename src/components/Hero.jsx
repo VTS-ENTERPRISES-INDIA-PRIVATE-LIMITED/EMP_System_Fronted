@@ -9,18 +9,40 @@ import AddEmployee from "./AddEmployee";
 import { useLocation, useNavigate } from "react-router-dom";
 import ViewEmp from "./ViewEmp";
 import Cookies from "js-cookie";
+
+import { GoHome } from "react-icons/go";
+import { IoIosPeople } from "react-icons/io";
+import { BsCalendar2Date } from "react-icons/bs";
+import { MdOutlinePayments } from "react-icons/md";
+import { FaRegCalendarTimes } from "react-icons/fa";
+import { TbLogout } from "react-icons/tb";
+
 const Hero = () => {
   const userdata = useLocation().state;
   const navigate = useNavigate();
   const [page, setPage] = useState("dashboard");
   const handleLogout = () => {
+    localStorage.setItem("lastlogout", getCurrentTime());
     Cookies.remove("employee");
     navigate("/");
   };
+  const getCurrentTime = () => {
+    const date = new Date();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
+
+    return `${hours}:${minutesFormatted} ${ampm}`;
+  };
+
   return (
     <div className="heroSection">
       <div className="dashboard">
-        <div className="userDetails">
+        {/* <div className="userDetails">
           <img
             src={process.env.PUBLIC_URL + "assets/images/logo.png"}
             alt=""
@@ -38,22 +60,40 @@ const Hero = () => {
             <label style={{ textAlign: "left" }}>Role :</label>
             <div>{userdata.role}</div>
           </div>
-          {/* <div style={{ textAlign: "left" }} className="userData">
+          <div style={{ textAlign: "left" }} className="userData">
             <label>Email:</label>
             <div>{userdata.email}</div>
           </div>
           <div style={{ textAlign: "left" }} className="userData">
             <label>Phone No:</label>
             <div>{userdata.phone}</div>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
+
         <div className="dashLinks">
-          <div className="dashLink">
-            <p onClick={() => setPage("dashboard")}>Dashboard</p>
+          <div
+            style={{ display: "flex", alignItems: "center" }}
+            className="dashLink"
+          >
+            <p onClick={() => setPage("dashboard")}>
+              <GoHome style={{ fontSize: "20px", marginRight: "9px" }} />{" "}
+              <span
+                style={{ fontSize: "16px", position: "relative", top: "3px" }}
+              >
+                Dashboard
+              </span>
+            </p>
           </div>
           {(userdata.role === "admin" || userdata.role === "hr") && (
             <div className="dashLink">
-              <p onClick={() => setPage("addemployee")}>Employee</p>
+              <p onClick={() => setPage("addemployee")}>
+                <IoIosPeople style={{ fontSize: "20px", marginRight: "9px" }} />{" "}
+                <span
+                  style={{ fontSize: "16px", position: "relative", top: "3px" }}
+                >
+                  Employee
+                </span>{" "}
+              </p>
               {(userdata.role === "admin" || userdata.role === "hr") && (
                 <ul className="dashDropDownList">
                   <li onClick={() => setPage("addemployee")}>Add Employee</li>
@@ -64,28 +104,69 @@ const Hero = () => {
           )}
 
           <div className="dashLink">
-            <p onClick={() => setPage("attendance")}>Attendance</p>
+            <p onClick={() => setPage("attendance")}>
+              <BsCalendar2Date
+                style={{ fontSize: "17px", marginRight: "9px" }}
+              />{" "}
+              <span
+                style={{ fontSize: "16px", position: "relative", top: "3px" }}
+              >
+                {" "}
+                Attendance
+              </span>{" "}
+            </p>
           </div>
           <div className="dashLink">
-            <p>Payroll</p>
+            <p>
+              <MdOutlinePayments
+                style={{ fontSize: "22px", marginRight: "9px" }}
+              />{" "}
+              <span
+                style={{ fontSize: "16px", position: "relative", top: "3px" }}
+              >
+                Payroll
+              </span>
+            </p>
             <ul className="dashDropDownList">
               <li onClick={() => setPage("payslips")}>Pay Slips</li>
               {(userdata.role === "admin" || userdata.role === "hr") && (
-                <li onClick={() => setPage("generate")}>Genarate</li>
+                <li onClick={() => setPage("generate")}>Generate</li>
               )}
             </ul>
           </div>
 
           <div className="dashLink">
-            <p>Leave</p>
+            <p>
+              <FaRegCalendarTimes
+                style={{ fontSize: "20px", marginRight: "9px" }}
+              />{" "}
+              <span
+                style={{ fontSize: "16px", position: "relative", top: "3px" }}
+              >
+                Leave
+              </span>{" "}
+            </p>
             <ul className="dashDropDownList">
-              {(userdata.role === "admin" || userdata.role === "hr" || userdata.role==="team-lead") && (<><li onClick={() => setPage("leave")}>Approve Leaves</li></>)}
+              {(userdata.role === "admin" ||
+                userdata.role === "hr" ||
+                userdata.role === "team-lead") && (
+                <>
+                  <li onClick={() => setPage("leave")}>Approve Leaves</li>
+                </>
+              )}
               <li onClick={() => setPage("applyleave")}>Apply for leave</li>
             </ul>
           </div>
 
           <div className="dashLink">
-            <p onClick={handleLogout}>Logout</p>
+            <p onClick={handleLogout}>
+              <TbLogout style={{ fontSize: "20px", marginRight: "9px" }} />{" "}
+              <span
+                style={{ fontSize: "16px", position: "relative", top: "2px" }}
+              >
+                Logout
+              </span>{" "}
+            </p>
           </div>
         </div>
       </div>

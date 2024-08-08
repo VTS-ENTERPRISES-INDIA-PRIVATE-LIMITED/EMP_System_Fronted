@@ -1,5 +1,6 @@
 import React from "react";
 import { Space, Table, Tag } from "antd";
+import Cookies from 'js-cookie'
 const dataSource = [
   {
     key: "1",
@@ -57,7 +58,7 @@ const Dashboard = ({ name }) => {
             />
             <div className="loginTime">
               <b>Login</b>
-              <p>8:45 AM</p>
+              <p>{localStorage.getItem('lastlogin')}</p>
             </div>
           </div>
           <div className="loginCont">
@@ -67,7 +68,7 @@ const Dashboard = ({ name }) => {
             />
             <div className="loginTime">
               <b>Logout</b>
-              <p>5:00 PM</p>
+              <p>{localStorage.getItem('lastlogout') ? localStorage.getItem('lastlogout'):"--"}</p>
             </div>
           </div>
         </div>
@@ -76,7 +77,7 @@ const Dashboard = ({ name }) => {
         <div>
           <b>Total leave</b>
 
-          <p style={{ color: "blue", fontSize: "25px" }}>34 </p>
+          <p style={{ color: "blue", fontSize: "25px",fontWeight:"500" }}>34 </p>
           <div className="leave-card">
             <div style={{ display: "flex", marginRight: "9px" }}>
               <p style={{ marginRight: "5px", color: "grey" }}> Paid</p>
@@ -90,7 +91,7 @@ const Dashboard = ({ name }) => {
         </div>
         <div>
           <b>Total leave taken</b>
-          <p style={{ color: "blue", fontSize: "25px" }}>20</p>
+          <p style={{ color: "blue", fontSize: "25px",fontWeight:"500" }}>20</p>
           <div className="leave-card">
             <div style={{ display: "flex", marginRight: "9px" }}>
               <p style={{ marginRight: "5px", color: "grey" }}> Paid</p>
@@ -104,7 +105,7 @@ const Dashboard = ({ name }) => {
         </div>
         <div>
           <b>Total leave Available</b>
-          <p style={{ color: "blue", fontSize: "25px" }}>87 </p>
+          <p style={{ color: "blue", fontSize: "25px",fontWeight:"500" }}>87 </p>
           <div className="leave-card">
             <div style={{ display: "flex", marginRight: "9px" }}>
               <p style={{ marginRight: "5px", color: "grey" }}> Paid</p>

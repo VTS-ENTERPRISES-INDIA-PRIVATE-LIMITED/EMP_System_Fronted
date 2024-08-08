@@ -30,8 +30,8 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
-  width: 300px;
-  border: solid #ddd;
+  width: 20vw;
+  /* border: solid #ddd; */
   border-width: 0 2px 0 0;
 }
 .userDetails {
@@ -60,7 +60,7 @@ body {
   margin-right: 30px;
 }
 .dashLinks {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   border-top: solid 2px #ddd;
   width: 100%;
   overflow-y: scroll;
@@ -141,11 +141,12 @@ body {
   box-shadow: 0 0 5px #bbb;
   background-color: #fff;
   border-radius: 10px;
-  padding: 7px 20px;
-  margin: 20px 0;
+  padding: 25px 30px;
+  margin: 10px 0;
 }
 .loginCard .wish {
   font-weight: 900;
+  font-size: 17px;
   margin-top: 10px;
 }
 
@@ -158,7 +159,7 @@ body {
   font-size: 15px;
   font-weight: 500; */
   margin-top: 3px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .login-user p {
   margin-top: -1px;
