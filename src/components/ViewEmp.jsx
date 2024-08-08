@@ -15,7 +15,7 @@ const ViewEmp = () => {
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
   const handleView = () =>{
-    const url = `http://localhost:5000/admin/viewEmp`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp`;
     axios.post(url)
     .then((res)=>{
       setDataList(res.data)
@@ -23,7 +23,7 @@ const ViewEmp = () => {
   }
 
   const handleEdit = async (Id) => {
-    const url = `http://localhost:5000/admin/updateEmp/${Id}`
+    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`
     axios.post(url, {editName,editemail,editphone,editrole})
     .then((res) => {
       setMessage(res.data.message)
@@ -31,7 +31,7 @@ const ViewEmp = () => {
   }
 
   const handleShowEditForm = (Id) =>{
-    const url = `http://localhost:5000/admin/viewEmp/${Id}`
+    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`
     axios.post(url)
     .then((res)=>{
       setViewData({id:Id ,Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
@@ -43,7 +43,7 @@ const ViewEmp = () => {
   }
 
   const handleDelete = (Id) => {
-    const url =  `http://localhost:5000/admin/deleteEmp/${Id}`
+    const url =  `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`
     
     axios.post(url)
     .then(()=>console.log('deleted successfully'))
