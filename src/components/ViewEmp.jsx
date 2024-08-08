@@ -11,11 +11,12 @@ const ViewEmp = () => {
   const [editrole, setEditrole] = useState()
   const [Message, setMessage] = useState()
   const [validMessage, setvalidMessage] = useState({Name : '', email : '', phone : '', role: '', id: ''})
+  const [validity, setValidity] = useState(true)
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
   const handleView = () =>{
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp`;
+    const url = `http://localhost:5000/admin/viewEmp`;
     axios.post(url)
     .then((res)=>{
       setDataList(res.data)
@@ -23,7 +24,7 @@ const ViewEmp = () => {
   }
 
   const handleEdit = async (Id) => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`
+    const url = `http://localhost:5000/admin/updateEmp/${Id}`
     axios.post(url, {editName,editemail,editphone,editrole})
     .then((res) => {
       setMessage(res.data.message)
@@ -31,7 +32,7 @@ const ViewEmp = () => {
   }
 
   const handleShowEditForm = (Id) =>{
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`
+    const url = `http://localhost:5000/admin/viewEmp/${Id}`
     axios.post(url)
     .then((res)=>{
       setViewData({id:Id ,Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
@@ -43,7 +44,7 @@ const ViewEmp = () => {
   }
 
   const handleDelete = (Id) => {
-    const url =  `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`
+    const url =  `http://localhost:5000/admin/deleteEmp/${Id}`
     
     axios.post(url)
     .then(()=>console.log('deleted successfully'))
@@ -55,27 +56,33 @@ const ViewEmp = () => {
   const validateName = (Name) => {
     if(!validName.test(Name))
     {
-    return setvalidMessage({Name : 'Enter a valid username'})}
+      setvalidMessage({...validMessage, Name :'Enter a valid username'})
+      setValidity(false)}
     else{
-      return setvalidMessage('')
+      setvalidMessage({...validMessage, Name :''})
+      setValidity(true)
     }
   }
   const validateEmail = (email) => {
     if(!emailPattern.test(email))
     {
-    return setvalidMessage('Enter a valid email')}
+     setvalidMessage({...validMessage, email :'Enter a valid email'})
+     setValidity(false)}
     else{
       console.log('')
-      return setvalidMessage('')
+       setvalidMessage({...validMessage, email :''})
+       setValidity(true)
     }
   }
   const validatePhone = (phone) => {
     if(!phonePattern.test(phone))
     {
-    return setvalidMessage('Enter a valid phone number')}
+     setvalidMessage({...validMessage, phone :'Enter a valid phone number'})
+     setValidity(false)}
     else{
       console.log('')
-      return setvalidMessage('')
+       setvalidMessage({...validMessage, phone :''})
+       setValidity(true)
     }
   }
 
@@ -122,17 +129,17 @@ const ViewEmp = () => {
           onChange={(e)=>{
             validateName(e.target.value)
             setEditName(e.target.value)}}/>
-            {validMessage === 'Enter a valid username' && <span className='invalidMsg'>{validMessage}</span>}
+            {validMessage.Name && <span className='invalidMsg'>{validMessage.Name}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.email} 
           onChange={(e)=>{
             validateEmail(e.target.value)
             setEditemail(e.target.value)}}/>
-            {validMessage === 'Enter a valid email' && <span className='invalidMsg'>{validMessage}</span>}
+            {validMessage.email && <span className='invalidMsg'>{validMessage.email}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.phone} 
           onChange={(e)=>{
             validatePhone(e.target.value)
             setEditphone(e.target.value)}}/>
-            {validMessage === 'Enter a valid phone number' && <span className='invalidMsg'>{validMessage}</span>}
+            {validMessage.phone && <span className='invalidMsg'>{validMessage.phone}</span>}
           <select className='editEmpSelect' value={editrole}
           onChange={(e)=>{
             setEditrole(e.target.value)
