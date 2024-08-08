@@ -82,6 +82,7 @@ body {
 }
 .dashLink:hover .dashDropDownList {
   display: block;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList {
   display: none;
@@ -89,6 +90,7 @@ body {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li {
   display: flex;
@@ -101,9 +103,11 @@ body {
   font-size: 14px;
   font-weight: 100;
   width: 100%;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li:hover {
   background-color: #ccc;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li::before {
   content: "➜";
@@ -670,6 +674,7 @@ body {
 }
 .flex {
   display: flex;
+  margin-bottom: 2px;
 }
 .formInp {
   display: flex;
@@ -684,16 +689,25 @@ body {
   outline: none;
   padding: 10px;
 }
-.formBtn {
-  border-radius: 20px;
-  border: 2px solid;
-  padding: 5px 20px;
-  margin-left: 20px;
+
+.formBtnCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+  /* border-radius: 7px; */
+  /* border: 2px solid; */
+  padding: 5px 50px;
+  /* width: 100%; */
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
   background-color: #44c33d;
   color: white;
+  border-radius: 7px;
+  border: 2px solid;
+  padding: 5px 20px;
 }
 .formSubBtn:hover {
   color: #2f772b;
@@ -703,6 +717,9 @@ body {
 .formCancelBtn {
   background-color: #f00d;
   color: white;
+  border-radius: 7px;
+  border: 2px solid;
+  padding: 5px 20px;
 }
 .formCancelBtn:hover {
   color: #f00e;
