@@ -992,10 +992,12 @@ p:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-.viewCont {
-  z-index: 1;
-  flex: auto;
-  border: none;
+.viewCont{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: black 1px solid;
   padding: 10px;
 }
 
@@ -1005,7 +1007,7 @@ p:hover {
   justify-content: center;
   align-items: center;
   /* margin: auto; */
-  margin-left: 100px;
+  margin-left: 10px;
   margin-top: 35px;
   /* border: none; */
 }
@@ -1018,9 +1020,10 @@ p:hover {
   /* border: none; */
 }
 
-.viewContTable thead {
-  background-color: #bbb;
-  /* border: #000 1px solid; */
+.viewContTable thead{
+  background-color: #07076e;
+  color: white;
+  border: #000 1px solid;
   padding: 10px;
 }
 
@@ -1038,17 +1041,17 @@ p:hover {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
-  background-color: #288ca7;
+  background-color: #07076e;
   color: #fff;
   align-self: center;
 }
 
-.viewContTable .DelBtn {
-  border: none;
+.viewContTable .DelBtn{
+  border: 1px solid #07076e;
+  color: #07076e;
   border-radius: 7px;
   padding: 5px 20px;
-  background-color: black;
-  color: #fff;
+  background-color: white;
   align-self: center;
 }
 /* .ant-modal-content {
@@ -1070,6 +1073,50 @@ p:hover {
   top: 20%;
   left: 50%;
   background-color: white;
+}
+.viewPop {
+  position: absolute;
+  background-color: #75757590;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.viewEmpData{
+  position: relative;
+  background-color: #ddd;
+  border-radius: 7px;
+  width: 350px;
+  padding: 40px 30px 30px;
+}
+.closeView {
+  position: absolute;
+
+  top: 10px;
+  right: 20px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  color: black;
+  border-radius: 5px;
+}
+.closeView:hover{
+  color: white;
+  background-color: red;
+  cursor: pointer;
+}
+.empData {
+  display: flex;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+.empData label {
+  font-weight: bold;
+}
+.editEmp{
   display: none;
   justify-content: center;
   align-items: center;
