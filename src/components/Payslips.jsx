@@ -52,6 +52,7 @@ const Payslips = ({ empId }) => {
   useEffect(() => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/${empId}`;
     axios
+
       .get(url)
       .then((res) => {
         setPayslipData(res.data);
@@ -153,7 +154,7 @@ const Payslips = ({ empId }) => {
           {pdfs ? (
             // <Table columns={columns} dataSource={pdfs} />
             <>
-              <table className="dataTable" border={"1px"}>
+              <table className="dataTable">
                 <thead>
                   <tr>
                     <th>Month</th>

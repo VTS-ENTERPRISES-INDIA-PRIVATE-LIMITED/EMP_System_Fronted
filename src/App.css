@@ -1,8 +1,7 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
+  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -83,6 +82,7 @@ body {
 }
 .dashLink:hover .dashDropDownList {
   display: block;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList {
   display: none;
@@ -90,6 +90,7 @@ body {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li {
   display: flex;
@@ -102,9 +103,11 @@ body {
   font-size: 14px;
   font-weight: 100;
   width: 100%;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li:hover {
   background-color: #ccc;
+  transition: ease-in-out 0.5s;
 }
 .dashDropDownList li::before {
   content: "➜";
@@ -258,7 +261,7 @@ body {
   margin-left: 10px;
 }
 .dataTable {
-  margin-top: 30px;
+  margin-top: 7px;
   text-align: center;
   border: solid 1px #999;
   border-spacing: 0;
@@ -644,7 +647,7 @@ body {
   cursor: pointer;
   border-radius: 20px;
 }
-.cancelBtn {
+.closeBtn {
   background-color: red;
   color: white;
 }
@@ -671,6 +674,7 @@ body {
 }
 .flex {
   display: flex;
+  margin-bottom: 2px;
 }
 .formInp {
   display: flex;
@@ -685,16 +689,25 @@ body {
   outline: none;
   padding: 10px;
 }
-.formBtn {
-  border-radius: 20px;
-  border: 2px solid;
-  padding: 5px 20px;
-  margin-left: 20px;
+
+.formBtnCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+  /* border-radius: 7px; */
+  /* border: 2px solid; */
+  padding: 5px 50px;
+  /* width: 100%; */
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
   background-color: #44c33d;
   color: white;
+  border-radius: 7px;
+  border: 2px solid;
+  padding: 5px 20px;
 }
 .formSubBtn:hover {
   color: #2f772b;
@@ -704,6 +717,9 @@ body {
 .formCancelBtn {
   background-color: #f00d;
   color: white;
+  border-radius: 7px;
+  border: 2px solid;
+  padding: 5px 20px;
 }
 .formCancelBtn:hover {
   color: #f00e;
@@ -736,23 +752,17 @@ body {
 }
 
 .Payslip-SignUp {
-  /* margin-top: 5%; */
   justify-content: center;
   align-items: center;
   display: flex;
-  position: absolute;
   flex-direction: column;
-  /* border: 2px solid black; */
-  height: 80%;
-  width: 100%;
 }
 .PaySlip-Table {
   margin-top: 20px;
+  /* border-radius: 50px; */
   /* width: 100px; */
 }
-/* .PaySlipTable-noData {
-  width: 50px;
-} */
+
 .credentials {
   display: flex;
   flex-direction: column;
@@ -894,31 +904,28 @@ p:hover {
   cursor: pointer;
 }
 
-
-
 /* login-page component style code */
 
-.banner-image-for-login{
-  height: 20vw;  
+.banner-image-for-login {
+  height: 20vw;
   animation: slideLeft 1s ease-in-out;
 }
-.VTS-Title{
+.VTS-Title {
   letter-spacing: 10px;
   font-family: "Encode Sans Semi Expanded", sans-serif;
   font-weight: 600;
   font-style: normal;
-  
 }
 
-.login-page-vl{
+.login-page-vl {
   width: 2px;
   height: 45vh;
   background-color: grey;
   border-radius: 60%;
-  margin: 5vh 5vw;
+  margin: 5% 5vw;
   animation: slideDown 1s ease-in-out;
 }
-.login-main{
+.login-main {
   animation: slideRight 1s ease-in-out;
 }
 .Payslip-SignUp {
@@ -927,9 +934,9 @@ p:hover {
   width: fit-content;
   justify-content: center;
   align-items: center;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
+  /* position: absolute; */
+  /* flex-direction: column; */
+  margin: 5vh 5vw;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
@@ -947,6 +954,9 @@ p:hover {
   );
   background-clip: text;
   color: transparent;
+}
+.login-comp {
+  background-color: #757575;
 }
 
 .credentials {
@@ -982,41 +992,160 @@ p:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
+.viewCont{
+  flex: auto;
+  border: black 1px solid;
+  padding: 10px;
+}
 
+.viewContDiv{
+  display: flex;
+  justify-content: center;
+}
 
+.viewContTable{
+  border: #000 1px solid;
+  margin: 20px;
+}
 
+.viewContTable thead{
+  background-color: #bbb;
+  border: #000 1px solid;
+  padding: 10px;
+}
+
+.viewContTable th{
+  text-align: center;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+.viewContTable td{
+  padding: 10px 20px;
+}
+
+.viewContTable .editBtn{
+  border: none;
+  border-radius: 7px;
+  padding: 5px 20px;
+  background-color: #288ca7;
+  color: #fff;
+  align-self: center;
+}
+
+.viewContTable .DelBtn{
+  border: none;
+  border-radius: 7px;
+  padding: 5px 20px;
+  background-color: black;
+  color: #fff;
+  align-self: center;
+}
+
+.editEmp{
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.editEmp .visible{
+  display: flex;
+}
+
+.editEmpform{
+  padding: 20px;
+  border: #000 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  
+}
+
+.editEmpInp {
+  margin: 10px;
+  height: 40px;
+  width: 250px;  
+  border-radius: 5px;
+  padding: 0px 20px;
+  outline: none;
+  border: none;
+  transition: border-radius 0.4s;
+  box-shadow: 0 0 5px rgb(124, 123, 123);
+}
+.editEmpInp:focus,
+.editEmpInp:active {
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(124, 123, 123);
+}
+
+.editEmpSelect{
+  padding: 5px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 0 5px rgb(124, 123, 123);
+}
+
+.editEmp .subButton{
+  margin-top: 20px;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 20px;
+  background-color: #288ca7;
+  transition: background-color 0.3s;
+  color: #fff;
+  align-self: center;
+}
+
+.invalidMsg{
+  color: red;
+  font-size: 12px;
+}
+
+.cancelBtn{ 
+  border: none;
+  border-radius: 7px;
+  padding: .5px 9px;
+  background-color: #cf2620;
+  transition: background-color 0.3s;
+  color: #fff;
+  align-self: center;
+  position: absolute;
+  right:5px;
+  top: 5px;
+}
 @keyframes slideDown {
-  from{
+  from {
     opacity: 0;
     transform: translateY(-60%);
   }
-  to{
+  to {
     opacity: 1;
-    transform : translateY(0)
+    transform: translateY(0);
   }
 }
 
 @keyframes slideLeft {
-  from{
+  from {
     opacity: 1;
     transform: translateX(-60%);
   }
-  
-  to{
+
+  to {
     opacity: 1;
     transform: translateX(0%);
   }
 }
 
 @keyframes slideRight {
-  from{
+  from {
     opacity: 0;
     transform: translateX(+60%);
   }
-  to{
+  to {
     opacity: 1;
     transform: translateX(0);
   }
-
-  
 }

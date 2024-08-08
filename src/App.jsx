@@ -20,7 +20,6 @@ function App() {
         <Hero /></>} />
         <Route path="/" element={<Login />} />
         <Route path="/reset-password" element={<SignUp />} />
-        <Route path="/viewEmp" element={<ViewEmp/>} />
     </Routes>
     </BrowserRouter>
       

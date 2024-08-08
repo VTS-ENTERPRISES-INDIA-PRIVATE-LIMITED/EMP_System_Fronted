@@ -8,14 +8,15 @@ import Attendance from "./Attendance";
 import AddEmployee from "./AddEmployee";
 import { useLocation, useNavigate } from "react-router-dom";
 import ViewEmp from "./ViewEmp";
-
+import Cookies from "js-cookie";
 const Hero = () => {
   const userdata = useLocation().state;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [page, setPage] = useState("dashboard");
-  const handleLogout=()=>{
-    navigate("/")
-  }
+  const handleLogout = () => {
+    Cookies.remove("employee");
+    navigate("/");
+  };
   return (
     <div className="heroSection">
       <div className="dashboard">
@@ -47,26 +48,26 @@ const Hero = () => {
           </div> */}
         </div>
         <div className="dashLinks">
-        <div className="dashLink">
+          <div className="dashLink">
             <p onClick={() => setPage("dashboard")}>Dashboard</p>
           </div>
           {(userdata.role === "admin" || userdata.role === "hr") && (
             <div className="dashLink">
               <p onClick={() => setPage("addemployee")}>Employee</p>
               {(userdata.role === "admin" || userdata.role === "hr") && (
-              <ul className="dashDropDownList">
-                <li onClick={() => setPage("addemployee")}>Add Employee</li>
+                <ul className="dashDropDownList">
+                  <li onClick={() => setPage("addemployee")}>Add Employee</li>
                   <li onClick={() => setPage("viewemployee")}>View Details</li>
-              </ul>
+                </ul>
               )}
             </div>
           )}
-          
+
           <div className="dashLink">
             <p onClick={() => setPage("attendance")}>Attendance</p>
           </div>
           <div className="dashLink">
-            <p onClick={() => setPage("payslips")}>Pay Rolls</p>
+            <p>Payroll</p>
             <ul className="dashDropDownList">
               <li onClick={() => setPage("payslips")}>Pay Slips</li>
               {(userdata.role === "admin" || userdata.role === "hr") && (
@@ -74,13 +75,21 @@ const Hero = () => {
               )}
             </ul>
           </div>
+
           <div className="dashLink">
-            <p onClick={() => setPage("leave")}>Leave</p>
+            <p>Leave</p>
             <ul className="dashDropDownList">
-              <li onClick={() => setPage("leave")}>Details</li>
+              {(userdata.role === "admin" ||
+                userdata.role === "hr" ||
+                userdata.role === "team-lead") && (
+                <>
+                  <li onClick={() => setPage("leave")}>Approve Leaves</li>
+                </>
+              )}
               <li onClick={() => setPage("applyleave")}>Apply for leave</li>
             </ul>
           </div>
+
           <div className="dashLink">
             <p onClick={handleLogout}>Logout</p>
           </div>
@@ -93,7 +102,7 @@ const Hero = () => {
       {page === "payslips" && <Payslips empId={userdata.empId} />}
       {page === "generate" && <Uploadfile />}
       {page === "leave" && <Leave />}
-      {page === "applyleave" && <LeaveForm />}
+      {page === "applyleave" && <LeaveForm userdata={userdata} />}
     </div>
   );
 };
