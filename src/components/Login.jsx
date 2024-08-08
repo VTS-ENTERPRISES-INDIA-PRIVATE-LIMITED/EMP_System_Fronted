@@ -1,17 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import Cookies from "js-cookie";
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ id: "", password: "" });
+  const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (Cookies.get('employee')) {
+      console.log("Already logged in ", JSON.parse(Cookies.get('employee')));
+      navigate("/dashboard", { state: JSON.parse(Cookies.get('employee')) });
+    }
+    else{
+      console.log("Bad Luck Next time")
+    }
+  });
   const validateField = (name, value) => {
     let error = "";
-
     if (name === "id") {
       if (!value) {
         error = "ID is required";
@@ -56,6 +68,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateAllFields()) {
+      setIsLoading(true)
       console.log("Form submitted with:", { id, password });
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
       const creds = {
@@ -70,6 +83,7 @@ const Login = () => {
             return;
           }
           console.log("the user data ", res.data[0]);
+          Cookies.set('employee',JSON.stringify(res.data[0]))
           navigate("/dashboard", { state: res.data[0] });
         })
         .catch((err) => alert("Invalid Credentials"));
@@ -78,51 +92,85 @@ const Login = () => {
 
   return (
     <>
-      <div className="login-main">
-        <div className="Payslip-SignUp">
-          <ToastContainer />
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              style={{ height: "40px", width: "40px" }}
-              src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
-              alt="Logo"
-            />
-            <h2 className="login-name">Login</h2>
+      <div
+        style={{
+          display: "flex",
+          width: "100vw",
+          height: "100vh",
+          margin: "20vh 10vw",
+          alignContent: "center",
+        }}
+        className="login-page-main-container"
+      >
+        <div
+          style={{
+            width: "30vw",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          className="banner-image-for-login"
+        >
+          <img
+            style={{ width: "150px", height: "150px" }}
+            src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
+            alt="banner"
+          />
+          <div>
+            <h1 className="VTS-Title">VTS</h1>
+            <h5>ENTERPRISES</h5>
           </div>
-          <form onSubmit={handleSubmit} className="credentials">
-            <div>
-              <input
-                type="text"
-                name="id"
-                placeholder="ID"
-                value={id}
-                onChange={handleChange}
+        </div>
+        <div className="login-page-vl"></div>
+        <div className="login-main">
+          <div
+            className="Payslip-SignUp
+          "
+          >
+            <ToastContainer />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                style={{ height: "40px", width: "40px" }}
+                src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
+                alt="Logo"
               />
-              {errors.id && (
-                <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
-                  {errors.id}
-                </p>
-              )}
+              <h2 className="login-name">Login</h2>
             </div>
-            <div>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
-              />
-              {errors.password && (
-                <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
-                  {errors.password}
-                </p>
-              )}
-              <a href="reset-password">
-                <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
-              </a>
-            </div>
-            <button type="submit">Login</button>
-          </form>
+            <form onSubmit={handleSubmit} className="credentials">
+              <div>
+                <input
+                  type="text"
+                  name="id"
+                  placeholder="ID"
+                  value={id}
+                  onChange={handleChange}
+                />
+                {errors.id && (
+                  <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
+                    {errors.id}
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={handleChange}
+                />
+                {errors.password && (
+                  <p style={{ color: "red", margin: "0px 0px 0px 10px" }}>
+                    {errors.password}
+                  </p>
+                )}
+                <a href="reset-password">
+                  <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
+                </a>
+              </div>
+              <button type="submit">{isLoading ? (<><Spin indicator={<LoadingOutlined spin />} size="small" color="white" /> {" "}Logging In..</>):("Login")}</button>
+            </form>
+          </div>
         </div>
       </div>
     </>

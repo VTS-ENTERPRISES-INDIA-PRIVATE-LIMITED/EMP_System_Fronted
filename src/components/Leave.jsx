@@ -1,42 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Leave = () => {
-
-    const leaveData = [
-        { applyDate: '02/05/2024', reason: 'Sick', leaveDate: '05/05/2024', status: 'approved' },
-        { applyDate: '02/05/2024', reason: 'Sick', leaveDate: '05/05/2024', status: 'approved' },
-        { applyDate: '02/05/2024', reason: 'Sick', leaveDate: '05/05/2024', status: 'rejected' }
-    ];
-
-    const uniqueReasons = Array.from(new Set(leaveData.map(item => item.reason)));
-    const uniqueStatuses = Array.from(new Set(leaveData.map(item => item.status)));
-    
-    const parseDate = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return new Date(`${year}-${month}-${day}`);
-    };
+    const [leaveData, setLeaveData] = useState([]);
     const [filter, setFilter] = useState({
         reason: '',
         status: '',
         date: ''
     });
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedLeaveId, setSelectedLeaveId] = useState(null);
+    const [remark, setRemark] = useState('');
+
+    useEffect(() => {
+        fetchLeaveData();
+    }, []);
+
+    const fetchLeaveData = () => {
+        axios.get(process.env.REACT_APP_BACKEND_URL+"/leave/show")
+            .then(response => {
+                const fetchedData = response.data.map(item => ({
+                    leaveId: item.leaveId,
+                    empId: item.empId,
+                    name: item.Name,
+                    role: item.role,
+                    reason: item.reason,
+                    leave_fdate: new Date(item.leave_fdate).toLocaleDateString('en-GB'),
+                    leave_tdate: new Date(item.leave_tdate).toLocaleDateString('en-GB'),
+                    remark: item.remark,
+                    status: item.approved ? 'approved' : 'rejected'
+                }));
+                setLeaveData(fetchedData);
+            })
+            .catch(error => console.error("There was an error fetching the leave data:", error));
+    };
+
+    const uniqueReasons = Array.from(new Set(leaveData.map(item => item.reason)));
+    const uniqueStatuses = Array.from(new Set(leaveData.map(item => item.status)));
+
+    const parseDate = (dateString) => {
+        const [day, month, year] = dateString.split('/');
+        return new Date(`${year}-${month}-${day}`);
+    };
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilter({ ...filter, [name]: value });
     };
 
-    // Parse the single date input
+    const handleApprove = (leaveId) => {
+        axios.post(process.env.REACT_APP_BACKEND_URL+"/leave/approve", { leaveId })
+            .then(response => {
+                console.log(response.data);
+                fetchLeaveData();  // Fetch the updated data
+            })
+            .catch(error => console.error("There was an error approving the leave:", error));
+    };
+
+    const handleDecline = (leaveId) => {
+        setSelectedLeaveId(leaveId);
+        setShowPopup(true);
+    };
+
+    const handlePopupSave = () => {
+        axios.post(process.env.REACT_APP_BACKEND_URL+"leave/update", { leaveId: selectedLeaveId, remark :remark})
+            .then(response => {
+                console.log(response.data);
+                fetchLeaveData();  // Fetch the updated data
+                setShowPopup(false);  // Close the popup
+            })
+            .catch(error => console.error("There was an error updating the leave:", error));
+        setRemark('')
+        setShowPopup(false);
+    };
+
+
     const filterDate = filter.date ? parseDate(filter.date) : null;
 
-    // Filter the data
     const filteredData = leaveData.filter((item) => {
-        const applyDate = parseDate(item.applyDate);
-        const leaveDate = parseDate(item.leaveDate);
+        const leaveFDate = parseDate(item.leave_fdate);
+        const leaveTDate = parseDate(item.leave_tdate);
 
         const isReasonMatch = !filter.reason || item.reason === filter.reason;
         const isStatusMatch = !filter.status || item.status === filter.status;
-        const isDateInRange = !filterDate || (filterDate >= applyDate && filterDate <= leaveDate);
+        const isDateInRange = !filterDate || (filterDate >= leaveFDate && filterDate <= leaveTDate);
 
         return isReasonMatch && isStatusMatch && isDateInRange;
     });
@@ -44,7 +91,7 @@ const Leave = () => {
     return (
         <div className="leaveCont">
             <div className="leaveFilters">
-            <select
+                <select
                     name="reason"
                     value={filter.reason}
                     onChange={handleFilterChange}
@@ -74,30 +121,68 @@ const Leave = () => {
             </div>
             <table className="leaveTable">
                 <thead>
-                    <th>Date of apply</th>
-                    <th>Reason</th>
-                    <th>Date of Leave</th>
-                    <th>Status</th>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Reason</th>
+                        <th>Leave From Date</th>
+                        <th>Leave To Date</th>
+                        <th>Status</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {filteredData.map((row, index) => (
                         <tr key={index}>
-                            <td>{row.applyDate}</td>
+                            <td>{row.empId}</td>
+                            <td>{row.name}</td>
+                            <td>{row.role}</td>
                             <td>{row.reason}</td>
-                            <td>{row.leaveDate}</td>
+                            <td>{row.leave_fdate}</td>
+                            <td>{row.leave_tdate}</td>
                             <td>
-                                <img
-                                    src={process.env.PUBLIC_URL + (row.status === 'approved' ? 'assets/images/right.png' : 'assets/images/wrong.png')}
-                                    alt=""
-                                />
+                                {row.status === 'approved' ? 
+                                <div className="aprvStatus">
+                                    <img src={process.env.PUBLIC_URL + 'assets/images/right.png'} alt="right"/> Approved
+                                </div> : 
+                                <>
+                                {row.remark === null ?
+                                    <>
+                                        <button onClick={() => handleApprove(row.leaveId)} className="aprvBtn">Approve</button>
+                                        <button onClick={() => handleDecline(row.leaveId)} className="dclBtn">Decline</button>
+                                    </>
+                                    :
+                                    <div className="aprvStatus">
+                                        <img src={process.env.PUBLIC_URL + 'assets/images/wrong.png'} alt="wrong"/> Declined
+                                    </div>
+                                }
+                                </>
+                                }
                             </td>
                         </tr>
                     ))}
-
                 </tbody>
             </table>
-        </div>
-    )
-}
 
-export default Leave
+            {/* Remark Popup */}
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h5>Enter Remark</h5>
+                        <textarea 
+                            value={remark}
+                            onChange={(e) => setRemark(e.target.value)}
+                            rows="3"
+                        />
+                        <div className="popup-buttons">
+                            <button className="cancelBtn" onClick={() => setShowPopup(false)}>Cancel</button>
+                            <button className="saveBtn" onClick={handlePopupSave}>Save</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Leave;

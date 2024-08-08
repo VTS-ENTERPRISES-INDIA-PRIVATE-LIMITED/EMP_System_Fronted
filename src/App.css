@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Expanded:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 body {
+  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -243,6 +246,9 @@ body {
 .dateFilter {
   margin-top: 30px;
 }
+.dateFilter select {
+  padding: 3px;
+}
 .dateFilter input[type="date"] {
   /* border: 1px solid #ccc; */
   /* border-radius: 4px;_ */
@@ -251,7 +257,7 @@ body {
   margin-left: 10px;
 }
 .dataTable {
-  margin-top: 30px;
+  margin-top: 7px;
   text-align: center;
   border: solid 1px #999;
   border-spacing: 0;
@@ -563,12 +569,88 @@ body {
   padding: 10px 20px;
 }
 .leaveTable td {
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 .leaveTable img {
   width: 20px;
 }
 
+.aprvBtn {
+  border: none;
+  background-color: #0f0;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 2px 10px;
+  margin-right: 10px;
+}
+.dclBtn {
+  border: solid 1px #f00;
+  background-color: #fff;
+  color: #f00;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 2px 10px;
+  transition: color 0.3s, background-color 0.3s;
+}
+.dclBtn:hover {
+  background-color: #f00;
+  color: #fff;
+}
+.aprvStatus {
+  font-size: 14px;
+}
+.aprvStatus img {
+  margin-right: 5px;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.popup-content textarea {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.popup-buttons button {
+  padding: 2px 15px;
+  margin-left: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.closeBtn {
+  background-color: red;
+  color: white;
+}
+.saveBtn {
+  background-color: #0f0;
+  color: white;
+}
 /* Leave-From */
 
 .leaveForm {
@@ -589,8 +671,7 @@ body {
 .flex {
   display: flex;
 }
-.formInp,
-.formDesp {
+.formInp {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -600,20 +681,14 @@ body {
   height: 30px;
   border-radius: 5px;
   border: solid 1px #000;
-}
-.formDesp input {
-  height: 30px;
-  border-radius: 5px;
-  width: 100%;
-  border: solid 1px #000;
-  margin: 0 20px;
+  outline: none;
+  padding: 10px;
 }
 .formBtn {
   border-radius: 20px;
   border: 2px solid;
-  padding: 8px 20px;
+  padding: 5px 20px;
   margin-left: 20px;
-  font-weight: bold;
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
@@ -660,16 +735,17 @@ body {
 }
 
 .Payslip-SignUp {
-  /* margin-top: 5%; */
   justify-content: center;
   align-items: center;
   display: flex;
-  position: absolute;
   flex-direction: column;
-  /* border: 2px solid black; */
-  height: 80%;
-  width: 100%;
 }
+.PaySlip-Table {
+  margin-top: 20px;
+  /* border-radius: 50px; */
+  /* width: 100px; */
+}
+
 .credentials {
   display: flex;
   flex-direction: column;
@@ -692,7 +768,7 @@ body {
   box-shadow: 0 0 5px rgb(124, 123, 123);
 }
 .credentials input:focus,
-input:active {
+.credentials input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
@@ -720,7 +796,7 @@ p:hover {
   width: 125px;
 }
 .otpverify input:focus,
-input:active {
+.otpverify input:active {
   border-radius: 20px;
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
@@ -811,19 +887,46 @@ input:active {
   cursor: pointer;
 }
 
+/* login-page component style code */
+
+.banner-image-for-login {
+  height: 20vw;
+  animation: slideLeft 1s ease-in-out;
+}
+.VTS-Title {
+  letter-spacing: 10px;
+  font-family: "Encode Sans Semi Expanded", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.login-page-vl {
+  width: 2px;
+  height: 45vh;
+  background-color: grey;
+  border-radius: 60%;
+  margin: 5% 5vw;
+  animation: slideDown 1s ease-in-out;
+}
+.login-main {
+  animation: slideRight 1s ease-in-out;
+}
 .Payslip-SignUp {
   display: flex;
   height: fit-content;
   width: fit-content;
   justify-content: center;
   align-items: center;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
+  /* position: absolute; */
+  /* flex-direction: column; */
+  margin: 5vh 5vw;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   background-color: white;
+}
+.ant-pagination {
+  display: none !important;
 }
 .login-name {
   background: linear-gradient(
@@ -835,13 +938,10 @@ input:active {
   background-clip: text;
   color: transparent;
 }
-.login-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #f4f2ee;
+.login-comp {
+  background-color: #757575;
 }
+
 .credentials {
   display: flex;
   flex-direction: column;
@@ -861,11 +961,6 @@ input:active {
   transition: border-radius 0.4s;
   box-shadow: 0 0 5px rgb(124, 123, 123);
 }
-.credentials input:focus,
-input:active {
-  /* border-radius: 20px; */
-  box-shadow: 0 0 10px rgb(124, 123, 123);
-}
 .credentials button {
   margin: 10px;
   height: 40px;
@@ -880,8 +975,6 @@ input:active {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-
-
 .viewCont{
   flex: auto;
   border: black 1px solid;
@@ -1000,4 +1093,37 @@ input:active {
   position: absolute;
   right:5px;
   top: 5px;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-60%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 1;
+    transform: translateX(-60%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(+60%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

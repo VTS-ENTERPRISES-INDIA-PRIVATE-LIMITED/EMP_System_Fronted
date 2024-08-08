@@ -2,33 +2,40 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
-import { Space, Table, Tag } from "antd";
 
-const columns = [
-  {
-    title: "Title",
-    dataIndex: "name",
-    key: "title",
-  },
-  {
-    title: " Date",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Action",
-    dataIndex: "address",
-    key: "address",
-  },
-];
-const data = [
-  {
-    key: "1",
-    // name: "John Brown",
-    // age: 32,
-    // address: "New York No. 1 Lake Park",
-  },
-];
+// import { Space, Table, Tag } from "antd";
+
+// const columns = [
+//   {
+//     title: "Title",
+//     dataIndex: "empId",
+//     key: "empId",
+//   },
+
+//   {
+//     title: " Month",
+//     dataIndex: "month",
+//     key: "empId",
+//   },
+//   {
+//     title: "Year",
+//     dataIndex: "year",
+//     key: "empId",
+//   },
+//   {
+//     title: " Url",
+//     dataIndex: "url",
+//     key: "empId",
+//   },
+// ];
+// const data = [
+//   {
+//     key: "1",
+//     name: "emp name",
+//     age: "date",
+//     address: "No data available",
+//   },
+// ];
 const Payslips = ({ empId }) => {
   const [pdfs, setPayslipData] = useState([]);
   const [selectedPdf, setSelectedPdf] = useState(null);
@@ -45,6 +52,7 @@ const Payslips = ({ empId }) => {
   useEffect(() => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/getpayslips/${empId}`;
     axios
+
       .get(url)
       .then((res) => {
         setPayslipData(res.data);
@@ -143,51 +151,74 @@ const Payslips = ({ empId }) => {
           </label>
         </div>
         <div className="PaySlip-Table">
-          <Table columns={columns} dataSource={data} />
-          {/* <table className="dataTable" border={"1px"}>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredPdfs.length > 0 ? (
-                filteredPdfs.map((pdf) => (
-                  <tr key={pdf.empid}>
-                    <td>{pdf.month} Month Payslip</td>
+          {pdfs ? (
+            // <Table columns={columns} dataSource={pdfs} />
+            <>
+              <table className="dataTable">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>View/Download</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredPdfs.length > 0 ? (
+                    filteredPdfs.map((pdf) => (
+                      <tr key={pdf.empid}>
+                        <td>{pdf.month}</td>
+                        <td>{pdf.year}</td>
+                        <td className="tableBtns">
+                          <FaRegEye
+                            style={{
+                              fontSize: "20px",
+                              cursor: "pointer",
+                              color: "blue",
+                              marginRight: "10px",
+                            }}
+                            onClick={() => setSelectedPdf(pdf.url)}
+                          />
+                          <MdOutlineFileDownload
+                            style={{
+                              fontSize: "20px",
+                              cursor: "pointer",
+                              color: "blue",
+                            }}
+                            onClick={() => handleDownload(pdf.url)}
+                          />
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4">No Data Available</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+              {/* {pdfs.map((slip, index) => {
+                return (
+                  <tr>
                     <td>
-                      {pdf.month} {pdf.year}
+                      {slip.month} {slip.year}
                     </td>
-                    <td className="tableBtns">
-                      <FaRegEye
-                        style={{
-                          fontSize: "20px",
-                          cursor: "pointer",
-                          color: "blue",
-                          marginRight: "10px",
-                        }}
-                        onClick={() => setSelectedPdf(pdf.url)}
-                      />
-                      <MdOutlineFileDownload
-                        style={{
-                          fontSize: "20px",
-                          cursor: "pointer",
-                          color: "blue",
-                        }}
-                        onClick={() => handleDownload(pdf.url)}
-                      />
+                    <td>
+                      <span>View</span>
+                      <span>Download</span>
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="4">No Data Available</td>
-                </tr>
-              )}
-            </tbody>
-          </table> */}
+                );
+              })} */}
+            </>
+          ) : (
+            <div>
+              <img
+                src={process.env.PUBLIC_URL + "assets/images/box.png"}
+                alt="No Data"
+              />
+              <p>No Data</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="payRollPreview">

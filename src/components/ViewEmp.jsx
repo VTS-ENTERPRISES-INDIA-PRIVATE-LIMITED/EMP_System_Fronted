@@ -9,7 +9,8 @@ const ViewEmp = () => {
   const [editemail, setEditemail] = useState()
   const [editphone, setEditphone] = useState()
   const [editrole, setEditrole] = useState()
-  const [message, setMessage] = useState()
+  const [Message, setMessage] = useState()
+  const [validMessage, setvalidMessage] = useState()
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
@@ -31,7 +32,6 @@ const ViewEmp = () => {
 
   const handleShowEditForm = (Id) =>{
     const url = `http://localhost:5000/admin/viewEmp/${Id}`
-    console.log(url)
     axios.post(url)
     .then((res)=>{
       setViewData({id:Id ,Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
@@ -49,6 +49,37 @@ const ViewEmp = () => {
     .then(()=>console.log('deleted successfully'))
   }
   
+  const validName = /[\D]{6,}/
+  const emailPattern =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i
+  const phonePattern = /[0-9]{10}/
+  const validateName = (Name) => {
+    if(!validName.test(Name))
+    {console.log('enter a valid name')
+    return setvalidMessage('Enter a valid username')}
+    else{
+      console.log('')
+      return setvalidMessage('')
+    }
+  }
+  const validateEmail = (email) => {
+    if(!emailPattern.test(email))
+    {console.log('enter a valid email')
+    return setvalidMessage('Enter a valid email')}
+    else{
+      console.log('')
+      return setvalidMessage('')
+    }
+  }
+  const validatePhone = (phone) => {
+    if(!phonePattern.test(phone))
+    {console.log('enter a valid phone')
+    return setvalidMessage('Enter a valid email')}
+    else{
+      console.log('')
+      return setvalidMessage('')
+    }
+  }
+
 
   useEffect(handleView, [])
   useEffect(handleView, [dataList])
@@ -69,7 +100,7 @@ const ViewEmp = () => {
           </thead>
           <tbody>
             {dataList?.map((empDet, index)=>{
-              return(<tr  key = {empDet}>
+              return(<tr  key = {empDet.empId}>
                 <td>{index+1}</td>
                 <td>{empDet.empId}</td>
                 <td>{empDet.Name}</td>
@@ -88,9 +119,18 @@ const ViewEmp = () => {
         <form action="" className="editEmpform">
           <button type='button' className='cancelBtn' 
           onClick={()=>setViewData({Name : ""})}>x</button>
-          <input type="text" className='editEmpInp' defaultValue={viewData.Name} onChange={(e)=>{setEditName(e.target.value)}}/>
-          <input type="text" className='editEmpInp' defaultValue={viewData.email} onChange={(e)=>{setEditemail(e.target.value)}}/>
-          <input type="text" className='editEmpInp' defaultValue={viewData.phone} onChange={(e)=>{setEditphone(e.target.value)}}/>
+          <input type="text" className='editEmpInp' defaultValue={viewData.Name} 
+          onChange={(e)=>{
+            validateName(e.target.value)
+            setEditName(e.target.value)}}/>
+          <input type="text" className='editEmpInp' defaultValue={viewData.email} 
+          onChange={(e)=>{
+            validateEmail(e.target.value)
+            setEditemail(e.target.value)}}/>
+          <input type="text" className='editEmpInp' defaultValue={viewData.phone} 
+          onChange={(e)=>{
+            validatePhone(e.target.value)
+            setEditphone(e.target.value)}}/>
           <select className='editEmpSelect' value={editrole}
           onChange={(e)=>{
             setEditrole(e.target.value)
