@@ -75,13 +75,15 @@ const Hero = () => {
               )}
             </ul>
           </div>
+
           <div className="dashLink">
             <p>Leave</p>
             <ul className="dashDropDownList">
-              <li onClick={() => setPage("leave")}>Details</li>
+              {(userdata.role === "admin" || userdata.role === "hr" || userdata.role==="team-lead") && (<><li onClick={() => setPage("leave")}>Approve Leaves</li></>)}
               <li onClick={() => setPage("applyleave")}>Apply for leave</li>
             </ul>
           </div>
+
           <div className="dashLink">
             <p onClick={handleLogout}>Logout</p>
           </div>
@@ -94,7 +96,7 @@ const Hero = () => {
       {page === "payslips" && <Payslips empId={userdata.empId} />}
       {page === "generate" && <Uploadfile />}
       {page === "leave" && <Leave />}
-      {page === "applyleave" && <LeaveForm />}
+      {page === "applyleave" && <LeaveForm role={userdata.role} />}
     </div>
   );
 };

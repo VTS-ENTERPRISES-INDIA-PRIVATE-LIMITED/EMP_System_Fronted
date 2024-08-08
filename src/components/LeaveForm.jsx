@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
-const LeaveForm = () => {
+const LeaveForm = ({role}) => {
   const [leaveCount, setLeaveCount] = useState(0);
   const [formData, setFormData] = useState({
     empId: "",
@@ -25,7 +26,7 @@ const LeaveForm = () => {
       const fromDate = new Date(leave_fdate);
       const toDate = new Date(leave_tdate);
       const timeDiff = toDate - fromDate;
-      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; // Add 1 to include both from and to dates
+      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
       setLeaveCount(daysDiff);
     } else {
       setLeaveCount(0);
@@ -35,26 +36,28 @@ const LeaveForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(formData)
       const response = await axios.post(
         process.env.REACT_APP_BACKEND_URL + "/leave/apply",
         {
           empId: formData.empId,
           Name: formData.Name,
-          role: formData.role,
+          role: role,
           reason: formData.reason,
           leave_fdate: formData.leave_fdate,
           leave_tdate: formData.leave_tdate,
         }
       );
-      alert(response.data);
+      toast.success(response.data,{position:"top-center"});
     } catch (error) {
       console.error("There was an error applying for leave!", error);
-      alert("There was an error applying for leave.");
+      toast.error("There was an error applying for leave.",{position:"top-center"});
     }
   };
 
   return (
     <div className="leaveCont">
+      <ToastContainer/>
       <form className="leaveForm" onSubmit={handleSubmit}>
         <span className="formHeader">
           <b>Leave Application</b>
