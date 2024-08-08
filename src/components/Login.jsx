@@ -13,6 +13,7 @@ const Login = () => {
   const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate();
 
+
   useEffect(() => {
     if (Cookies.get('employee')) {
       console.log("Already logged in ", JSON.parse(Cookies.get('employee')));
@@ -51,7 +52,6 @@ const Login = () => {
   const validateAllFields = () => {
     const isIdValid = validateField("id", id);
     const isPasswordValid = validateField("password", password);
-
     return isIdValid && isPasswordValid;
   };
 
@@ -82,7 +82,8 @@ const Login = () => {
             toast.error("Invalid Credentials !", { position: "top-center" });
             return;
           }
-          console.log("the user data ", res.data[0]);
+          // console.log("the user data ", res.data[0]);
+          localStorage.setItem('lastlogin',getCurrentTime())
           Cookies.set('employee',JSON.stringify(res.data[0]))
           navigate("/dashboard", { state: res.data[0] });
         })
@@ -90,6 +91,19 @@ const Login = () => {
     }
   };
 
+  const getCurrentTime =()=> {
+    const date = new Date();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutesFormatted = minutes < 10 ? `0${minutes}` : minutes;
+  
+    return `${hours}:${minutesFormatted} ${ampm}`;
+  }
+  
   return (
     <>
       <div
