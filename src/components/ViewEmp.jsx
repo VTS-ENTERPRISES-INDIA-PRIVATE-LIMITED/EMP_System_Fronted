@@ -10,20 +10,32 @@ const ViewEmp = () => {
   const [editphone, setEditphone] = useState()
   const [editrole, setEditrole] = useState()
   const [Message, setMessage] = useState()
-  const [validMessage, setvalidMessage] = useState()
+  const [validMessage, setvalidMessage] = useState({Name : '', email : '', phone : '', role: '', id: ''})
+  const [validity, setValidity] = useState(true)
+  const [viewEmpData, setViewEmpData] = useState({Name: '', email : '', phone : '', role: ''})
+  const [popUp, setPopUp] = useState(false)
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
   const handleView = () =>{
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp`;
+    const url = `http://localhost:5000/admin/viewEmp`;
     axios.post(url)
     .then((res)=>{
       setDataList(res.data)
     })
   }
 
+  const handleViewIndividual = (Id) =>{
+    const url = `http://localhost:5000/admin/viewEmp/${Id}`
+    axios.post(url)
+    .then((res)=>
+      setViewEmpData({empId: Id, Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
+  )
+  setPopUp(true)
+  }
+
   const handleEdit = async (Id) => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`
+    const url = `http://localhost:5000/admin/updateEmp/${Id}`
     axios.post(url, {editName,editemail,editphone,editrole})
     .then((res) => {
       setMessage(res.data.message)
@@ -31,7 +43,7 @@ const ViewEmp = () => {
   }
 
   const handleShowEditForm = (Id) =>{
-    const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`
+    const url = `http://localhost:5000/admin/viewEmp/${Id}`
     axios.post(url)
     .then((res)=>{
       setViewData({id:Id ,Name : res.data[0][0].Name, email : res.data[0][0].email, phone : res.data[0][0].phone, role : res.data[0][0].role})
@@ -43,7 +55,7 @@ const ViewEmp = () => {
   }
 
   const handleDelete = (Id) => {
-    const url =  `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`
+    const url =  `http://localhost:5000/admin/deleteEmp/${Id}`
     
     axios.post(url)
     .then(()=>console.log('deleted successfully'))
@@ -54,29 +66,34 @@ const ViewEmp = () => {
   const phonePattern = /[0-9]{10}/
   const validateName = (Name) => {
     if(!validName.test(Name))
-    {console.log('enter a valid name')
-    return setvalidMessage('Enter a valid username')}
+    {
+      setvalidMessage({...validMessage, Name :'Enter a valid username'})
+      setValidity(false)}
     else{
-      console.log('')
-      return setvalidMessage('')
+      setvalidMessage({...validMessage, Name :''})
+      setValidity(true)
     }
   }
   const validateEmail = (email) => {
     if(!emailPattern.test(email))
-    {console.log('enter a valid email')
-    return setvalidMessage('Enter a valid email')}
+    {
+     setvalidMessage({...validMessage, email :'Enter a valid email'})
+     setValidity(false)}
     else{
       console.log('')
-      return setvalidMessage('')
+       setvalidMessage({...validMessage, email :''})
+       setValidity(true)
     }
   }
   const validatePhone = (phone) => {
     if(!phonePattern.test(phone))
-    {console.log('enter a valid phone')
-    return setvalidMessage('Enter a valid email')}
+    {
+     setvalidMessage({...validMessage, phone :'Enter a valid phone number'})
+     setValidity(false)}
     else{
       console.log('')
-      return setvalidMessage('')
+       setvalidMessage({...validMessage, phone :''})
+       setValidity(true)
     }
   }
 
@@ -94,6 +111,7 @@ const ViewEmp = () => {
             <th>Employee ID</th>
             <th>Employee Name</th>
             <th>Employee Role</th>
+            <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
@@ -105,6 +123,8 @@ const ViewEmp = () => {
                 <td>{empDet.empId}</td>
                 <td>{empDet.Name}</td>
                 <td>{empDet.role}</td>
+                <td><button onClick={ ()=>handleViewIndividual(empDet.empId)}
+                className='editBtn'>View</button></td>
                 <td><button onClick={
                   ()=>
                   handleShowEditForm(empDet.empId)} className='editBtn'>Edit</button></td>
@@ -123,14 +143,17 @@ const ViewEmp = () => {
           onChange={(e)=>{
             validateName(e.target.value)
             setEditName(e.target.value)}}/>
+            {validMessage.Name && <span className='invalidMsg'>{validMessage.Name}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.email} 
           onChange={(e)=>{
             validateEmail(e.target.value)
             setEditemail(e.target.value)}}/>
+            {validMessage.email && <span className='invalidMsg'>{validMessage.email}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.phone} 
           onChange={(e)=>{
             validatePhone(e.target.value)
             setEditphone(e.target.value)}}/>
+            {validMessage.phone && <span className='invalidMsg'>{validMessage.phone}</span>}
           <select className='editEmpSelect' value={editrole}
           onChange={(e)=>{
             setEditrole(e.target.value)
@@ -146,6 +169,37 @@ const ViewEmp = () => {
           }}>Submit</button>
         </form>
       </div>
+        {popUp && 
+        <div className="viewPop">
+          <div className="viewEmpData">
+            <buttton className="closeView" onClick={()=>setPopUp(false)}>x</buttton>
+            <div className="empData">
+              <label htmlFor="">Employee Id</label>
+              <div className="empDataValue">{viewEmpData.empId}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Employee Name</label>
+              <div className="empDataValue">{viewEmpData.Name}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Role</label>
+              <div className="empDataValue">{viewEmpData.role}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Email</label>
+              <div className="empDataValue">{viewEmpData.email}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">Phone</label>
+              <div className="empDataValue">{viewEmpData.phone}</div>
+            </div>
+            <div className="empData">
+              <label htmlFor="">No. of Leaves</label>
+              <div className="empDataValue">10</div>
+            </div>
+          </div>
+        </div>
+        }
     </div>
   )
 }
