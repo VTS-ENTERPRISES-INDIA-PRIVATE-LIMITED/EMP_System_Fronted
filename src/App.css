@@ -1099,6 +1099,11 @@ p:hover {
   align-self: center;
 }
 
+.invalidMsg{
+  color: red;
+  font-size: 12px;
+}
+
 .cancelBtn{ 
   border: none;
   border-radius: 7px;

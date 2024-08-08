@@ -10,7 +10,7 @@ const ViewEmp = () => {
   const [editphone, setEditphone] = useState()
   const [editrole, setEditrole] = useState()
   const [Message, setMessage] = useState()
-  const [validMessage, setvalidMessage] = useState()
+  const [validMessage, setvalidMessage] = useState({Name : '', email : '', phone : '', role: '', id: ''})
 
   // const [editData, setEditData] = useState({id:viewData.id ,Name: viewData.Name, email : viewData.email, phone : viewData.phone, role: viewData.role})
   
@@ -54,16 +54,15 @@ const ViewEmp = () => {
   const phonePattern = /[0-9]{10}/
   const validateName = (Name) => {
     if(!validName.test(Name))
-    {console.log('enter a valid name')
-    return setvalidMessage('Enter a valid username')}
+    {
+    return setvalidMessage({Name : 'Enter a valid username'})}
     else{
-      console.log('')
       return setvalidMessage('')
     }
   }
   const validateEmail = (email) => {
     if(!emailPattern.test(email))
-    {console.log('enter a valid email')
+    {
     return setvalidMessage('Enter a valid email')}
     else{
       console.log('')
@@ -72,8 +71,8 @@ const ViewEmp = () => {
   }
   const validatePhone = (phone) => {
     if(!phonePattern.test(phone))
-    {console.log('enter a valid phone')
-    return setvalidMessage('Enter a valid email')}
+    {
+    return setvalidMessage('Enter a valid phone number')}
     else{
       console.log('')
       return setvalidMessage('')
@@ -123,14 +122,17 @@ const ViewEmp = () => {
           onChange={(e)=>{
             validateName(e.target.value)
             setEditName(e.target.value)}}/>
+            {validMessage === 'Enter a valid username' && <span className='invalidMsg'>{validMessage}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.email} 
           onChange={(e)=>{
             validateEmail(e.target.value)
             setEditemail(e.target.value)}}/>
+            {validMessage === 'Enter a valid email' && <span className='invalidMsg'>{validMessage}</span>}
           <input type="text" className='editEmpInp' defaultValue={viewData.phone} 
           onChange={(e)=>{
             validatePhone(e.target.value)
             setEditphone(e.target.value)}}/>
+            {validMessage === 'Enter a valid phone number' && <span className='invalidMsg'>{validMessage}</span>}
           <select className='editEmpSelect' value={editrole}
           onChange={(e)=>{
             setEditrole(e.target.value)
