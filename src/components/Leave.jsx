@@ -12,10 +12,6 @@ const Leave = () => {
     const [selectedLeaveId, setSelectedLeaveId] = useState(null);
     const [remark, setRemark] = useState('');
 
-    useEffect(() => {
-        fetchLeaveData();
-    }, []);
-
     const fetchLeaveData = () => {
         axios.get(process.env.REACT_APP_BACKEND_URL+"/leave/show")
             .then(response => {
@@ -35,6 +31,8 @@ const Leave = () => {
             .catch(error => console.error("There was an error fetching the leave data:", error));
     };
 
+    useEffect(fetchLeaveData);
+
     const uniqueReasons = Array.from(new Set(leaveData.map(item => item.reason)));
     const uniqueStatuses = Array.from(new Set(leaveData.map(item => item.status)));
 
@@ -48,11 +46,11 @@ const Leave = () => {
         setFilter({ ...filter, [name]: value });
     };
 
-    const handleApprove = (leaveId) => {
-        axios.post(process.env.REACT_APP_BACKEND_URL+"/leave/approve", { leaveId })
+    const handleApprove = async (leaveId) => {
+        await axios.post(process.env.REACT_APP_BACKEND_URL+"/leave/approve", { leaveId })
             .then(response => {
                 console.log(response.data);
-                fetchLeaveData();  // Fetch the updated data
+                fetchLeaveData();
             })
             .catch(error => console.error("There was an error approving the leave:", error));
     };
@@ -62,10 +60,11 @@ const Leave = () => {
         setShowPopup(true);
     };
 
-    const handlePopupSave = () => {
-        axios.post(process.env.REACT_APP_BACKEND_URL+"leave/update", { leaveId: selectedLeaveId, remark :remark})
+    const handlePopupSave = async () => {
+        await axios.post(process.env.REACT_APP_BACKEND_URL+"/leave/update", { leaveId: selectedLeaveId, remark :remark})
             .then(response => {
                 console.log(response.data);
+                console.log(remark);
                 fetchLeaveData();  // Fetch the updated data
                 setShowPopup(false);  // Close the popup
             })
