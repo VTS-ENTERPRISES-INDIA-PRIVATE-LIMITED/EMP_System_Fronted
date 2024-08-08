@@ -921,7 +921,7 @@ p:hover {
   height: 45vh;
   background-color: grey;
   border-radius: 60%;
-  margin: 2% 5vw;
+  margin: 5% 5vw;
   animation: slideDown 1s ease-in-out;
 }
 .login-main {

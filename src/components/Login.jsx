@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Cookies from "js-cookie";
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
+
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ id: "", password: "" });
- 
+  const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,6 +68,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateAllFields()) {
+      setIsLoading(true)
       console.log("Form submitted with:", { id, password });
       const url = `${process.env.REACT_APP_BACKEND_URL}/emp/login`;
       const creds = {
@@ -164,7 +168,7 @@ const Login = () => {
                   <p style={{ marginLeft: "20px " }}>Forgot Password?</p>
                 </a>
               </div>
-              <button type="submit">Login</button>
+              <button type="submit">{isLoading ? (<><Spin indicator={<LoadingOutlined spin />} size="small" color="white" /> {" "}Logging In..</>):("Login")}</button>
             </form>
           </div>
         </div>
