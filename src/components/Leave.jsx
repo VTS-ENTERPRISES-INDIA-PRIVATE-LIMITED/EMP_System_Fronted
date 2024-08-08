@@ -72,23 +72,18 @@ const Leave = () => {
     setShowPopup(true);
   };
 
-  const handlePopupSave = () => {
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + "leave/update", {
-        leaveId: selectedLeaveId,
-        remark: remark,
-      })
-      .then((response) => {
-        console.log(response.data);
-        fetchLeaveData(); // Fetch the updated data
-        setShowPopup(false); // Close the popup
-      })
-      .catch((error) =>
-        console.error("There was an error updating the leave:", error)
-      );
-    setRemark("");
-    setShowPopup(false);
-  };
+    const handlePopupSave = async () => {
+        await axios.post(process.env.REACT_APP_BACKEND_URL+"/leave/update", { leaveId: selectedLeaveId, remark :remark})
+            .then(response => {
+                console.log(response.data);
+                console.log(remark);
+                fetchLeaveData();  // Fetch the updated data
+                setShowPopup(false);  // Close the popup
+            })
+            .catch(error => console.error("There was an error updating the leave:", error));
+        setRemark('')
+        setShowPopup(false);
+    };
 
   const filterDate = filter.date ? parseDate(filter.date) : null;
 
