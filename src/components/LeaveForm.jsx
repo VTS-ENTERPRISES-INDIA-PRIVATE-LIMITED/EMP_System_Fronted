@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
-<<<<<<< HEAD
-const LeaveForm = ({role}) => {
-=======
 const LeaveForm = ({ userdata }) => {
->>>>>>> a2c53d7c3f97a4b3deb409f7ade7bd64806bcaa8
   const [leaveCount, setLeaveCount] = useState(0);
   const [formData, setFormData] = useState({
     empId: userdata.empId,
@@ -30,11 +26,7 @@ const LeaveForm = ({ userdata }) => {
       const fromDate = new Date(leave_fdate);
       const toDate = new Date(leave_tdate);
       const timeDiff = toDate - fromDate;
-<<<<<<< HEAD
-      const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1; 
-=======
       const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1;
->>>>>>> a2c53d7c3f97a4b3deb409f7ade7bd64806bcaa8
       setLeaveCount(daysDiff);
     } else {
       setLeaveCount(0);
@@ -50,7 +42,7 @@ const LeaveForm = ({ userdata }) => {
         {
           empId: formData.empId,
           Name: formData.Name,
-          role: role,
+          role: userdata.role,
           reason: formData.reason,
           leave_fdate: formData.leave_fdate,
           leave_tdate: formData.leave_tdate,
