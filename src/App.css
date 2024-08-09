@@ -336,7 +336,7 @@ body {
   width: 110px;
   display: inline-block;
   padding: 10px 10px;
-  background-color: #288ca7;
+  background-color: #07076e;
   color: white;
   border: none;
   border-radius: 5px;
@@ -582,26 +582,26 @@ body {
 
 .aprvBtn {
   border: none;
-  background-color: #0f0;
-  color: #fff;
+  background-color: #07076e;
+  color: white;
   border-radius: 20px;
   font-size: 14px;
   padding: 2px 10px;
   margin-right: 10px;
 }
 .dclBtn {
-  border: solid 1px #f00;
-  background-color: #fff;
-  color: #f00;
+  border: solid 1px #07076e;
+  background-color: white;
+  color: #07076e;
   border-radius: 20px;
   font-size: 14px;
   padding: 2px 10px;
   transition: color 0.3s, background-color 0.3s;
 }
-.dclBtn:hover {
+/* .dclBtn:hover {
   background-color: #f00;
   color: #fff;
-}
+} */
 .aprvStatus {
   font-size: 14px;
 }
@@ -704,29 +704,29 @@ body {
   transition: border 0.3s, background-color 0.3s, color 0.3s;
 }
 .formSubBtn {
-  background-color: #44c33d;
+  background-color: #07076e;
   color: white;
   border-radius: 7px;
   border: 2px solid;
   padding: 5px 20px;
 }
-.formSubBtn:hover {
+/* .formSubBtn:hover {
   color: #2f772b;
   background-color: #fff;
-  border-color: #2f772b;
-}
+  border-color: #07076e;
+} */
 .formCancelBtn {
-  background-color: #f00d;
-  color: white;
+  background-color: white;
+  color: #07076e;
   border-radius: 7px;
   border: 2px solid;
   padding: 5px 20px;
 }
-.formCancelBtn:hover {
+/* .formCancelBtn:hover {
   color: #f00e;
   background-color: #fff;
   border-color: #f00e;
-}
+} */
 
 .btnGrp {
   position: relative;
@@ -839,7 +839,7 @@ p:hover {
 }
 .excel-upload-btn {
   border: none;
-  background-color: #44c33d;
+  background-color: #07076e;
   color: #fff;
   border-radius: 7px;
   padding: 5px 20px;
@@ -895,7 +895,7 @@ p:hover {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
-  background-color: #288ca7;
+  background-color: #07076e;
   transition: background-color 0.3s;
   color: #fff;
   align-self: center;
@@ -993,7 +993,7 @@ p:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(100, 102, 170);
 }
-.viewCont{
+.viewCont {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -1021,7 +1021,7 @@ p:hover {
   /* border: none; */
 }
 
-.viewContTable thead{
+.viewContTable thead {
   background-color: #07076e;
   color: white;
   border: #000 1px solid;
@@ -1038,7 +1038,7 @@ p:hover {
   padding: 10px 20px;
 }
 
-.viewContTable .editBtn {
+.editBtn {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
@@ -1047,7 +1047,7 @@ p:hover {
   align-self: center;
 }
 
-.viewContTable .DelBtn{
+.viewContTable .DelBtn {
   border: 1px solid #07076e;
   color: #07076e;
   border-radius: 7px;
@@ -1055,11 +1055,17 @@ p:hover {
   background-color: white;
   align-self: center;
 }
-/* .ant-modal-content {
-  margin: 20px;
-  box-shadow: 0 0 10px rgb(146, 145, 145);
-  border: none;
-} */
+.ant-modal .ant-modal-content {
+  position: relative;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  padding: 0;
+}
 .ant-modal-footer button {
   display: none;
 }
@@ -1086,9 +1092,9 @@ p:hover {
   justify-content: center;
   align-items: center;
 }
-.viewEmpData{
+.viewEmpData {
   position: relative;
-  background-color: #ddd;
+  background-color: white;
   border-radius: 7px;
   width: 350px;
   padding: 40px 30px 30px;
@@ -1104,7 +1110,7 @@ p:hover {
   color: black;
   border-radius: 5px;
 }
-.closeView:hover{
+.closeView:hover {
   color: white;
   background-color: red;
   cursor: pointer;
@@ -1117,7 +1123,7 @@ p:hover {
 .empData label {
   font-weight: bold;
 }
-.editEmp{
+.editEmp {
   display: none;
   justify-content: center;
   align-items: center;
@@ -1129,12 +1135,13 @@ p:hover {
 
 .editEmpform {
   padding: 20px;
-  /* border: #000 1px solid; */
-  /* margin: 20px; */
+  width: 500px;
+  height: 400px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 
@@ -1177,9 +1184,7 @@ p:hover {
   margin-top: 15px;
   margin-right: 15px;
 }
-.ant-modal-close svg:hover {
-  /* background-color: red; */
-}
+
 .invalidMsg {
   color: red;
   font-size: 12px;
@@ -1197,8 +1202,7 @@ p:hover {
   right: 5px;
   top: 5px;
 }
-.cancelBtn:hover {
-}
+
 @keyframes slideDown {
   from {
     opacity: 0;
