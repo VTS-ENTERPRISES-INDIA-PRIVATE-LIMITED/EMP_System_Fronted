@@ -267,9 +267,7 @@ const ViewEmp = () => {
             <option value="admin">admin</option>
             <option value="hr">hr</option>
           </select>
-        </form>
-
-        <div
+          <div
           style={{
             display: "flex",
             justifyContent: "flex-end",
@@ -292,7 +290,7 @@ const ViewEmp = () => {
               borderRadius: "7px",
               backgroundColor: "#07076e",
               color: "#fff",
-              // marginTop: "10px",
+              marginTop: "20px",
               // justifyContent: "flex-end",
               padding: "5px 20px",
             }}
@@ -300,6 +298,9 @@ const ViewEmp = () => {
             Submit
           </button>
         </div>
+        </form>
+
+        
       </Modal>
       {popUp && (
         <div className="viewPop">

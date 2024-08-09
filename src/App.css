@@ -1055,11 +1055,17 @@ p:hover {
   background-color: white;
   align-self: center;
 }
-/* .ant-modal-content {
-  margin: 20px;
-  box-shadow: 0 0 10px rgb(146, 145, 145);
-  border: none;
-} */
+.ant-modal .ant-modal-content {
+  position: relative;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  padding: 0;
+}
 .ant-modal-footer button {
   display: none;
 }
@@ -1088,7 +1094,7 @@ p:hover {
 }
 .viewEmpData {
   position: relative;
-  background-color: #ddd;
+  background-color: white;
   border-radius: 7px;
   width: 350px;
   padding: 40px 30px 30px;
@@ -1129,12 +1135,13 @@ p:hover {
 
 .editEmpform {
   padding: 20px;
-  /* border: #000 1px solid; */
-  /* margin: 20px; */
+  width: 500px;
+  height: 400px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 
