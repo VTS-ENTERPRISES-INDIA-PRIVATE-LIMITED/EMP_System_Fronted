@@ -92,9 +92,6 @@ const ViewEmp = () => {
     });
   };
 
-  // const handleEditModal = (v) => {
-  //   setblur((v) => !v);
-  // };
 
   const handleDelete = (Id) => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`;
@@ -334,6 +331,9 @@ const ViewEmp = () => {
               <label htmlFor="">No. of Leaves</label>
               <div className="empDataValue">10</div>
             </div>
+            <div className="empData">
+              <button className="editBtn" onClick={()=>{handleShowEditForm(viewEmpData.empId)}}>Edit</button>
+            </div>
           </div>
         </div>
       )}
@@ -342,96 +342,3 @@ const ViewEmp = () => {
 };
 
 export default ViewEmp;
-
-// {/* <div
-//         className="editEmp"
-//         id="editEmp"
-//         style={{ display: viewData.Name === "" ? "none" : "flex" }}
-//       >
-//         <form action="" className="editEmpform">
-//           <button
-//             type="button"
-//             className="cancelBtn"
-//             onClick={() => {
-//               setViewData({ Name: "" });
-//               handleEditModal(blur);
-//             }}
-//           >
-//             x
-//           </button>
-//           <input
-//             type="text"
-//             className="editEmpInp"
-//             defaultValue={viewData.Name}
-//             onChange={(e) => {
-//               validateName(e.target.value);
-//               setEditName(e.target.value);
-//             }}
-//           />
-//           {validMessage.Name && (
-//             <span className="invalidMsg">{validMessage.Name}</span>
-//           )}
-//           <input
-//             type="text"
-//             className="editEmpInp"
-//             defaultValue={viewData.email}
-//             onChange={(e) => {
-//               validateEmail(e.target.value);
-//               setEditemail(e.target.value);
-//             }}
-//           />
-//           {validMessage.email && (
-//             <span className="invalidMsg">{validMessage.email}</span>
-//           )}
-//           <input
-//             type="text"
-//             className="editEmpInp"
-//             defaultValue={viewData.phone}
-//             onChange={(e) => {
-//               validatePhone(e.target.value);
-//               setEditphone(e.target.value);
-//             }}
-//           />
-//           {validMessage.phone && (
-//             <span className="invalidMsg">{validMessage.phone}</span>
-//           )}
-//           <select
-//             className="editEmpSelect"
-//             value={editrole}
-//             onChange={(e) => {
-//               setEditrole(e.target.value);
-//             }}
-//           >
-//             <option value="Employee">Employee</option>
-//             <option value="admin">admin</option>
-//             <option value="hr">hr</option>
-//           </select>
-//           <button
-//             type="submit"
-//             className="subButton"
-//             onClick={(e) => {
-//               e.preventDefault();
-//               handleEdit(viewData.id);
-//               setViewData({ Name: "" });
-//             }}
-//           >
-//             Submit
-//           </button>
-//         </form>
-//       </div> */}
-
-// {/* <button
-//             type="submit"
-//             className="subButton"
-//             onClick={(e) => {
-//               e.preventDefault();
-//               handleEdit(viewData.id);
-//               setViewData({ Name: "" });
-//             }}
-//           >
-//             Submit
-//           </button> */}
-
-//           {/* <button type="submit" className="subButton">
-
-//         </button> */}
