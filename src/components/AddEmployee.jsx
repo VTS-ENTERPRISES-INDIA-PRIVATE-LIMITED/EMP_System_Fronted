@@ -135,7 +135,7 @@ const AddEmployee = () => {
         phone: formData.phoneNumber,
         role: formData.role,
       };
-      const url = `http://localhost:5000/admin/addEmp`;
+      const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addEmp`;
       console.log(url)
       axios.post(url, [data]).then((res) => {
         toast.success("Data Added Successfully");

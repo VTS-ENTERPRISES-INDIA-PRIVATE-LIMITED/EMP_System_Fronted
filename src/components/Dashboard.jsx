@@ -1,6 +1,5 @@
 import React from "react";
-import { Space, Table, Tag } from "antd";
-import Cookies from 'js-cookie'
+import { Table } from "antd";
 const dataSource = [
   {
     key: "1",
@@ -9,12 +8,7 @@ const dataSource = [
     end: "10/08/24",
     description: "Make Sure to complete this project before 10/8/24.",
   },
-  // {
-  //   key: "2",
-  //   name: "John",
-  //   age: 42,
-  //   address: "10 Downing Street",
-  // },
+ 
 ];
 
 const columns = [
@@ -118,45 +112,7 @@ const Dashboard = ({ name }) => {
           </div>
         </div>
       </div>
-      {/* <table className="anouncements">
-        <thead>
-          <td>
-            <b>Announcements</b>
-          </td>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Title</td>
-            <td>Start Date</td>
-            <td>End Date</td>
-            <td>Description</td>
-          </tr>
-          <tr>
-            <td>Title</td>
-            <td>Start Date</td>
-            <td>End Date</td>
-            <td>Description</td>
-          </tr>
-          <tr>
-            <td>Title</td>
-            <td>Start Date</td>
-            <td>End Date</td>
-            <td>Description</td>
-          </tr>
-          <tr>
-            <td>Title</td>
-            <td>Start Date</td>
-            <td>End Date</td>
-            <td>Description</td>
-          </tr>
-          <tr>
-            <td>Title</td>
-            <td>Start Date</td>
-            <td>End Date</td>
-            <td>Description</td>
-          </tr>
-        </tbody>
-      </table> */}
+
       <Table dataSource={dataSource} columns={columns} />
     </div>
   );

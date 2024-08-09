@@ -108,11 +108,18 @@ const Login = () => {
     <>
       <div
         style={{
+          
           display: "flex",
           width: "100vw",
           height: "100vh",
-          margin: "20vh 10vw",
+          justifyContent:"center",
+          padding:"13vh",
+          // margin: "15vh 10vw 0 10vw",
           alignContent: "center",
+          position:"absolute",
+          top:0,
+          backgroundColor:"white",
+          left:0
         }}
         className="login-page-main-container"
       >
@@ -126,15 +133,21 @@ const Login = () => {
           className="banner-image-for-login"
         >
           <img
-            style={{ width: "150px", height: "150px" }}
+            style={{ width: "150px", height: "150px" ,marginRight:"30px"}}
             src="https://res.cloudinary.com/drqiw6wyl/image/upload/v1722853169/e1mki1ies2t0ttrypbra.jpg"
             alt="banner"
           />
           <div>
             <h1 className="VTS-Title">VTS</h1>
-            <h5>ENTERPRISES</h5>
+            {/* <h5>ENTERPRISES</h5> */}
           </div>
         </div>
+        <img
+            style={{ width: "600px", height: "600px",position:"absolute",top:"20vh",left:"5vw" }}
+            src={`${process.env.PUBLIC_URL}/assets/images/image.png`}
+            // src="https://app.lottiefiles.com/animation/a8b716d1-9562-4534-94af-892a47bdea24"
+            alt="banner"
+          />
         <div className="login-page-vl"></div>
         <div className="login-main">
           <div

@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import GeneratePayslips from "./components/GeneratePayslips";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import SignUp from "./components/Signup";
 import ViewEmp from "./components/ViewEmp";
 function App() {

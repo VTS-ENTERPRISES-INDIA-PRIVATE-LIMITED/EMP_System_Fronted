@@ -8,7 +8,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 .navBar {
+  background-color: #495057;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 10px #ddd;
   height: 60px;
@@ -19,19 +21,33 @@ body {
   height: 40px;
   margin-right: 10px;
 }
+.vts-emp-data{
+  height: fit-content;
+
+  /* width: fit-content; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.vts-emp-data img{
+  margin: 0px 7px;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+}
 
 /* Hero-section */
 
-.heroSection {
+/* .heroSection {
   display: flex;
-}
-.dashboard {
+} */
+/* .dashboard {
   background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
   width: 20vw;
-  /* border: solid #ddd; */
+  /* border: solid #ddd;
   border-width: 0 2px 0 0;
 }
 .userDetails {
@@ -60,10 +76,11 @@ body {
   margin-right: 30px;
 }
 .dashLinks {
-  /* margin-top: 30px; */
+  /* margin-top: 30px; 
   border-top: solid 2px #ddd;
   width: 100%;
   overflow-y: scroll;
+  
 }
 .dashLinks::-webkit-scrollbar {
   display: none;
@@ -91,8 +108,8 @@ body {
   padding: 0;
   margin: 0;
   transition: ease-in-out 0.5s;
-}
-.dashDropDownList li {
+} */
+/* .dashDropDownList li {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -121,14 +138,14 @@ body {
   opacity: 1;
   transform: rotate(0deg);
   cursor: pointer;
-}
+} */
 
 /* Employee-Page */
 
 /* Dashboard-Page */
 
 .dashBoardPage {
-  background-color: #f5f5f5;
+  background-color: #dadcdf;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -908,7 +925,9 @@ p:hover {
 /* login-page component style code */
 
 .banner-image-for-login {
-  height: 20vw;
+  margin-top: -8vh;
+  margin-left: -13vh;
+  height: 14vw;
   animation: slideLeft 1s ease-in-out;
 }
 .VTS-Title {
@@ -920,10 +939,11 @@ p:hover {
 
 .login-page-vl {
   width: 2px;
-  height: 45vh;
+  
+  height: 70vh;
   background-color: grey;
   border-radius: 60%;
-  margin: 5% 5vw;
+  margin: 5% 0;
   animation: slideDown 1s ease-in-out;
 }
 .login-main {
@@ -937,7 +957,7 @@ p:hover {
   align-items: center;
   /* position: absolute; */
   /* flex-direction: column; */
-  margin: 5vh 5vw;
+  margin: 8vh 5vw;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgb(146, 145, 145);
@@ -1003,13 +1023,14 @@ p:hover {
 }
 
 .viewContDiv {
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   /* margin: auto; */
   margin-left: 10px;
-  margin-top: 35px;
+  /* margin-top: 35px; */
   /* border: none; */
 }
 
@@ -1046,7 +1067,15 @@ p:hover {
   color: #fff;
   align-self: center;
 }
-
+.DelBtn{
+  border: 1px solid #07076e;
+  margin: 10px;
+  color: #07076e;
+  border-radius: 7px;
+  padding: 5px 20px;
+  background-color: white;
+  align-self: center;
+}
 .viewContTable .DelBtn{
   border: 1px solid #07076e;
   color: #07076e;
@@ -1212,7 +1241,7 @@ p:hover {
 
 @keyframes slideLeft {
   from {
-    opacity: 1;
+    opacity: 0;
     transform: translateX(-60%);
   }
 
@@ -1231,4 +1260,199 @@ p:hover {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+
+
+
+/* 2nd version styling  */
+.heroSection {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.dashboard {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  width: 20vw; /* Sidebar width */
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.dashLinks {
+  /* padding-left: 5px; */
+  width: 100%;
+}
+.dashLink {
+  margin-bottom: 2px;
+  z-index: 1;
+  position: relative;
+  /* border-bottom: 1px solid #ddd; */
+  padding: 17px 25px;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  flex-direction: row; 
+  width: 100%;
+}
+.dashLinks .dashlink-heading{
+  color: #868e96;
+  padding:0 30px;
+}
+.dashLinks .dashlink-heading hr{
+  color:#495057;
+}
+.dashLink span {
+  margin-left: 10px;
+}
+
+.dashLink:hover {
+  
+  cursor: pointer;
+  background-color: #74c0fc;
+  color: white;
+  transform: translateX(10px);
+}
+
+.dashLink:hover span {
+  color: white;
+}
+
+.dashLink.active {
+  background-color: #1c7ed6;
+  color: white;
+  font-weight: 600;
+}
+
+.dashDropDownList li {
+  padding: 12px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.dashDropDownList {
+  z-index: 1;
+  position: absolute; 
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background-color: white;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none; 
+  z-index: 10; 
+}
+
+.dashLink:hover .dashDropDownList {
+  display: block; /* Show on hover */
+  background-color: white;
+}
+
+
+.dashDropDownList li:hover {
+  background-color: #d9d9d9;
+  color: #1890ff;
+}
+
+/* Remove the highlight effect on the dropdown */
+.dashLink:hover .dashHighlight {
+  display: none;
+}
+
+/* AddEmployee */
+
+.excel-reader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100vw - 300px);
+  justify-content: center;
+}
+.excel-reader-file-input {
+  /* display: none; */
+  border-radius: 7px;
+  padding: 6px;
+  /* box-shadow: 0 0 10px rgb(124, 123, 123); */
+}
+.excel-upload-btn {
+  border: none;
+  background-color: #07076e;
+  color: #fff;
+  border-radius: 7px;
+  padding: 5px 20px;
+  margin: 20px 0;
+}
+.excel-multiple-data {
+  box-shadow: 0 0 10px #bbb;
+  padding: 3px 15px;
+  /* padding-top: 10px; */
+  width: 450px;
+  border-radius: 7px;
+  /* width: 50%; */
+  /* margin-right: 30px; */
+}
+
+.excel-form-container {
+  box-shadow: 0 0 10px #bbb;
+  border-radius: 7px;
+  padding: 30px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+}
+.excel-form-group {
+  border-radius: 3px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.excel-form-group input {
+  border: solid 1px #000;
+  width: 200px;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.excel-form-group select {
+  border: solid 1px #000;
+  width: 200px;
+  padding: 5px;
+  border-radius: 7px;
+}
+.warningMsg {
+  font-size: 12px;
+  color: red;
+  padding: 0 20px;
+  margin: -5px 0;
+  align-self: flex-end;
+}
+.submit-button {
+  margin-top: 20px;
+  border: none;
+  border-radius: 7px;
+  padding: 5px 20px;
+  background-color: #07076e;
+  transition: background-color 0.3s;
+  color: #fff;
+  align-self: center;
+}
+.submit-button:hover {
+  background-color: #1f6d85;
+  cursor: pointer;
 }
