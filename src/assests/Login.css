@@ -1,0 +1,80 @@
+.banner-image-for-login {
+    height: 20vw;
+    animation: slideLeft 1s ease-in-out;
+  }
+  .VTS-Title {
+    letter-spacing: 10px;
+    font-family: "Encode Sans Semi Expanded", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .login-page-vl {
+    width: 2px;
+    height: 45vh;
+    background-color: grey;
+    border-radius: 60%;
+    margin: 5% 5vw;
+    animation: slideDown 1s ease-in-out;
+  }
+  .login-main {
+    animation: slideRight 1s ease-in-out;
+  }
+  .Payslip-SignUp {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh 5vw;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(146, 145, 145);
+    background-color: white;
+  }
+  .ant-pagination {
+    display: none !important;
+  }
+  .login-name {
+    background: linear-gradient(
+      30deg,
+      rgb(141, 77, 47),
+      rgb(98, 192, 201),
+      rgb(73, 172, 175)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .credentials input {
+    margin: 20px;
+    height: 40px;
+    width: 270px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0px 20px;
+    outline: none;
+    border: none;
+  
+    transition: border-radius 0.4s;
+    box-shadow: 0 0 5px rgb(124, 123, 123);
+  }
+  .credentials button {
+    margin: 10px;
+    height: 40px;
+    width: 280px;
+    background-color: rgb(100, 102, 170);
+    border: none;
+    color: aliceblue;
+    border-radius: 5px;
+    transition: box-shadow 0.3s;
+  }
+  .credentials button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(100, 102, 170);
+  }

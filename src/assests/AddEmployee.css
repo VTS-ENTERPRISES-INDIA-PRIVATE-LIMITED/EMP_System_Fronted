@@ -1,0 +1,75 @@
+.excel-reader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100vw - 300px);
+    justify-content: center;
+  }
+  .excel-reader-file-input {
+    border-radius: 7px;
+    padding: 6px;
+}
+  .excel-upload-btn {
+    border: none;
+    background-color: #07076e;
+    color: #fff;
+    border-radius: 7px;
+    padding: 5px 20px;
+    margin: 20px 0;
+  }
+  .excel-multiple-data {
+    box-shadow: 0 0 10px #bbb;
+    padding: 3px 15px;
+    width: 450px;
+    border-radius: 7px;
+  }
+  
+  .excel-form-container {
+    box-shadow: 0 0 10px #bbb;
+    border-radius: 7px;
+    padding: 30px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+  }
+  .excel-form-group {
+    border-radius: 3px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .excel-form-group input {
+    border: solid 1px #000;
+    width: 200px;
+    padding: 5px;
+    border-radius: 7px;
+  }
+  
+  .excel-form-group select {
+    border: solid 1px #000;
+    width: 200px;
+    padding: 5px;
+    border-radius: 7px;
+  }
+  .warningMsg {
+    font-size: 12px;
+    color: red;
+    padding: 0 20px;
+    margin: -5px 0;
+    align-self: flex-end;
+  }
+  .submit-button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 20px;
+    background-color: #07076e;
+    transition: background-color 0.3s;
+    color: #fff;
+    align-self: center;
+  }
+  .submit-button:hover {
+    background-color: #1f6d85;
+    cursor: pointer;
+  }
