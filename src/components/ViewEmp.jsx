@@ -101,7 +101,7 @@ const ViewEmp = () => {
         console.log(filteredData);
 
         const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addempdata`;
-        console.log(url)
+        console.log(url);
         axios
           .post(url, filteredData)
           .then((res) => {
@@ -218,7 +218,6 @@ const ViewEmp = () => {
         setMessage(res.data.message);
       });
   };
-  
 
   const handleShowEditForm = (Id) => {
     showModal();
@@ -312,7 +311,7 @@ const ViewEmp = () => {
         onCancel={handleCancelSingleEmpModal}
       >
         <div>
-          <h4 style={{ marginTop: "30px" }}>Add Single Emp Data</h4>
+          {/* <h4 style={{ marginTop: "30px" }}>Add Single Emp Data</h4> */}
           <form onSubmit={handleSubmit} className="excel-form-container">
             <div className="excel-form-group">
               <label htmlFor="name">Name:</label>
@@ -389,9 +388,13 @@ const ViewEmp = () => {
       >
         <AddMultipleEmployee />
       </Modal>
-      <div style={{width:"75%",textAlign:"left"}} className="action-items">
-        <button className="DelBtn"  onClick={showSingleEmpModal}>Add Employee</button>
-        <button className="DelBtn" onClick={showMultipleEmpModal}>Add Multiple Employees</button>
+      <div style={{ width: "75%", textAlign: "left" }} className="action-items">
+        <button className="DelBtn" onClick={showSingleEmpModal}>
+          Add Employee
+        </button>
+        <button className="DelBtn" onClick={showMultipleEmpModal}>
+          Add Multiple Employees
+        </button>
       </div>
       <div className="viewContDiv">
         <table className="viewContTable">
