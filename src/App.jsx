@@ -25,8 +25,8 @@ function App() {
             path="/dashboard"
             element={
               <>
-                {/* <Navbar /> */}
-                {/* <Hero /> */}
+                <Navbar />
+                <Hero />
               </>
             }
           />

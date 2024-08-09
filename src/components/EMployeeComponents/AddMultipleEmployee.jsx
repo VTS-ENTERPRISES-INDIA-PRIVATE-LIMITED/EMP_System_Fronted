@@ -3,8 +3,6 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 import { toast, ToastContainer } from "react-toastify";
 const AddMultipleEmployee = () => {
-   
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewData, setViewData] = useState({
     Name: "",
@@ -100,7 +98,7 @@ const AddMultipleEmployee = () => {
         console.log(filteredData);
 
         const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addempdata`;
-        console.log(url)
+        console.log(url);
         axios
           .post(url, filteredData)
           .then((res) => {
@@ -284,37 +282,38 @@ const AddMultipleEmployee = () => {
   const showSingleEmpModal = () => {
     setSingleEmpModal(true);
   };
- 
-
 
   return (
     <div>
-        <ToastContainer/>
-      <div>
-          <h6 style={{ marginTop: "70px" }}>Upload Employee Data</h6>
-          <p>{`***Fields must follow this pattern [*name,*empId,...]`}</p>
-          <div
-            className="excel-multiple-data"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              margin: "auto",
-              alignItems: "center",
-            }}
-          >
-            <input
-              type="file"
-              accept=".xlsx, .xls"
-              onChange={handleFileChange}
-              className="excel-reader-file-input"
-            />
-            <button className="excel-upload-btn" onClick={handleFileUpload}>
-              {uplaodText}
-            </button>
-          </div>
+      <ToastContainer />
+      <div
+        className="addMultipleCont"
+      >
+        {/* style={{ marginTop: "30px" }} */}
+        <h6 >Upload Employee Data</h6>
+        <p>{`***Fields must follow this pattern [*name,*empId,...]`}</p>
+        <div
+          className="excel-multiple-data"
+          // style={{
+          //   display: "flex",
+          //   justifyContent: "space-between",
+          //   margin: "auto",
+          //   alignItems: "center",
+          // }}
+        >
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            onChange={handleFileChange}
+            className="excel-reader-file-input"
+          />
+          <button className="excel-upload-btn" onClick={handleFileUpload}>
+            {uplaodText}
+          </button>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddMultipleEmployee
+export default AddMultipleEmployee;

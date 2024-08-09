@@ -396,7 +396,7 @@ const ViewEmp = () => {
       >
         <AddMultipleEmployee />
       </Modal>
-      <div style={{width:"75%",textAlign:"left"}} className="action-items">
+      <div style={{width:"90%",textAlign:"left"}} className="action-items">
         <button className="DelBtn"  onClick={showSingleEmpModal}>Add Employee</button>
         <button className="DelBtn" onClick={showMultipleEmpModal}>Add Multiple Employees</button>
       </div>
