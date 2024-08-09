@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -42,20 +42,19 @@ const SignUp = () => {
     if (valid.data) {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/emp/sendotp`,{email:email})
       .then(res=>{
-        alert(res.data.otp)
         setOtpSent(true);
         setReceived(res.data.otp)
       })
       .catch(err=>console.log(err))
     } else {
-      alert('User does not exist..!')
+      toast.error('User does not exist..!')
       setOtpSent(false)
     }
   };
 
   const handleVerifyOtp = () => {
     if (!validateOtp(otp)) {
-      alert("Please enter a valid 6-digit OTP.");
+      toast.error("Please enter a valid 6-digit OTP.",{position:"top-center"});
       return;
     }
     setOtpError("");
@@ -63,7 +62,10 @@ const SignUp = () => {
     if(otp===receivedOtp.toString())
     {
       setOtpVerified(true);
-      alert("OTP verified Successfully")
+      toast.success("OTP verified Successfully",{position:"top-center"})
+    }
+    else{
+      toast.error("Invalid OTP",{position:"top-center"})
     }
   };
 
@@ -86,7 +88,10 @@ const SignUp = () => {
           toast.success("Reset Password Successful", {
             position: "top-center",
           });
-          navigate("/");
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+          
         })
         .catch((err) =>
           toast.error("Failed to reset Password", { position: "top-center" })
@@ -96,6 +101,7 @@ const SignUp = () => {
 
   return (
     <div className="Payslip-SignUp" style={{ margin: "32vh 38vw" }}>
+      <ToastContainer />
       <h2>Reset Password</h2>
       <div className="credentials">
       {!otpSent ?

@@ -9,7 +9,7 @@ import { Spin } from 'antd';
 import axios from "axios";
 import { Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 const Login = () => {
   const [accountId, setAccountId] = useState();
   const [password, setPassword] = useState();
@@ -19,7 +19,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
   const [errormsg, setErrormsg] = useState();
   const navigate = useNavigate();
-
+  const [isInvalid,setIsinvalid] = useState(false)
 
   
   useEffect(() => {
@@ -27,9 +27,7 @@ const Login = () => {
       console.log("Already logged in ", JSON.parse(Cookies.get('employee')));
       navigate("/dashboard", { state: JSON.parse(Cookies.get('employee')) });
     }
-    else{
-      console.log("Bad Luck Next time")
-    }
+    
   });
   
   const handleAccountid = (e) => {
@@ -74,7 +72,6 @@ const validateField = (name, value) => {
     ...prevErrors,
     [name]: error,
   }));
-
   return error === "";
 };
 
@@ -86,7 +83,7 @@ const validateAllFields = () => {
 
 
 
-const handleSubmit = (e) => {
+const handleLogin = (e) => {
   e.preventDefault();
   if (validateAllFields()) {
     setIsLoading(true)
@@ -99,16 +96,19 @@ const handleSubmit = (e) => {
     axios
       .post(url, creds)
       .then((res) => {
-        if (!res.data[0]) {
-          toast.error("Invalid Credentials !", { position: "top-center" });
-          return;
-        }
-        // console.log("the user data ", res.data[0]);
+        console.log(res.data.status)
+        
+          console.log("the user data ", res.data.userdata[0]);
         localStorage.setItem('lastlogin',getCurrentTime())
-        Cookies.set('employee',JSON.stringify(res.data[0]))
-        navigate("/dashboard", { state: res.data[0] });
+        Cookies.set('employee',JSON.stringify(res.data.userdata[0]))
+        navigate("/dashboard", { state: res.data.userdata[0] });
       })
-      .catch((err) => alert("Invalid Credentials"));
+      .catch((err) =>{
+          toast.error("Invalid Credentials !", { position: "top-center" });
+          console.log(err);
+          setIsLoading(false)
+          setIsinvalid(true)
+      });
   }
 };
 
@@ -126,6 +126,7 @@ const getCurrentTime =()=> {
 }
   return (
     <div className="login">
+      <ToastContainer/>
       <div className="login-container">
         <div className="left-section">
           <img
@@ -200,11 +201,11 @@ const getCurrentTime =()=> {
 
               <div className="button-group">
                 <button
-                  onClick={handleSubmit}
+                  onClick={handleLogin}
                   type="submit"
                   className="submit-button"
                 >
-                  {isLoading ? (<><Spin indicator={<LoadingOutlined spin />} size="small" color="white" /> {" "}Logging In..</>):("Login")}
+                  {isLoading ? (<><Spin indicator={<LoadingOutlined spin />} size="small" color="white" /> {" "}Logging In..</>):(<>{isInvalid?"Try Again " : "Login"}</>)}
                 </button>
               </div>
             </form>

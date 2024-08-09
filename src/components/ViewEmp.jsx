@@ -192,7 +192,7 @@ const ViewEmp = () => {
         phone: formData.phoneNumber,
         role: formData.role,
       };
-      const url = `http://localhost:5000/admin/addEmp`;
+      const url = `${process.env.REACT_APP_BACKEND_URL}/admin/addempdata`;
       console.log(url);
       axios.post(url, [data]).then((res) => {
         toast.success("Data Added Successfully");
@@ -216,7 +216,7 @@ const ViewEmp = () => {
   };
 
   const handleEdit = async (Id) => {
-    // const url = `http://localhost:5000/admin/updateEmp/${Id}`
+    // const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`;
     await axios
       .post(url, { editName, editemail, editphone, editrole })
@@ -245,7 +245,7 @@ const ViewEmp = () => {
   };
 
   const handleDelete = (Id) => {
-    // const url = `http://localhost:5000/admin/deleteEmp/${Id}`
+    // const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`;
     axios.post(url).then(() => console.log("deleted successfully"));
   };
@@ -310,14 +310,16 @@ const ViewEmp = () => {
   return (
     <div className="viewCont">
       <ToastContainer />
-      <Modal
+      <Modal 
+      show={singleEmpModel}
+      // style={{}}
         title="Add Employee"
         open={singleEmpModel}
         onOk={handleSingleEmployee}
         onCancel={handleCancelSingleEmpModal}
       >
-        <div>
-          <h4 style={{ marginTop: "30px" }}>Add Single Emp Data</h4>
+        <div style={{padding:"20px"}}>
+          {/* <h5 style={{ marginTop: "30px" }}>Add Single Emp Data</h5> */}
           <form onSubmit={handleSubmit} className="excel-form-container">
             <div className="excel-form-group">
               <label htmlFor="name">Name:</label>
