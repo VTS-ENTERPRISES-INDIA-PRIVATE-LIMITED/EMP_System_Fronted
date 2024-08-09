@@ -37,7 +37,7 @@ const SignUp = () => {
       return;
     }
     setEmailError("");
-    const valid = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${email}`)
+    const valid = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/exist/${email}`)
     
     if (valid.data) {
       await axios.post(`${process.env.REACT_APP_BACKEND_URL}/emp/sendotp`,{email:email})

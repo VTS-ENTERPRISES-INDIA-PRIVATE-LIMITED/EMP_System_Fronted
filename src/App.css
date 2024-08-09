@@ -1081,6 +1081,10 @@ p:hover {
   left: 50%;
   background-color: white;
 }
+
+
+
+
 .viewPop {
   position: absolute;
   background-color: #75757590;
@@ -1164,10 +1168,20 @@ p:hover {
 
 .editEmpSelect {
   padding: 5px 20px;
-  border: 1px solid black;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   outline: none;
   box-shadow: 0 0 5px rgb(124, 123, 123);
+}
+
+.editEmpSelect select{
+  width: 250px;
+  outline: none;
+  border: none;
+  padding: 3px;
 }
 
 .editEmp .subButton {

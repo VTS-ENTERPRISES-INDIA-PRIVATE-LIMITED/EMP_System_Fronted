@@ -52,20 +52,23 @@ const ViewEmp = () => {
   };
 
   const handleViewIndividual = (Id) => {
+    // const url = `http://localhost:5000/admin/viewEmp/${Id}`;
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`;
     axios.post(url).then((res) =>
-      setViewEmpData({
+      {console.log(res.data)
+        setViewEmpData({
         empId: Id,
         Name: res.data[0][0].Name,
         email: res.data[0][0].email,
         phone: res.data[0][0].phone,
         role: res.data[0][0].role,
-      })
+      })}
     );
     setPopUp(true);
   };
 
   const handleEdit = async (Id) => {
+    // const url = `http://localhost:5000/admin/updateEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`;
     await axios
       .post(url, { editName, editemail, editphone, editrole })
@@ -73,6 +76,7 @@ const ViewEmp = () => {
         setMessage(res.data.message);
       });
   };
+  
 
   const handleShowEditForm = (Id) => {
     showModal();
@@ -92,8 +96,8 @@ const ViewEmp = () => {
     });
   };
 
-
   const handleDelete = (Id) => {
+    // const url = `http://localhost:5000/admin/deleteEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`;
 
     axios.post(url).then(() => console.log("deleted successfully"));
@@ -147,7 +151,7 @@ const ViewEmp = () => {
               <th>Employee Name</th>
               <th>Employee Role</th>
               <th>View</th>
-              <th>Edit</th>
+              {/* <th>Edit</th> */}
               <th>Delete</th>
             </tr>
           </thead>
@@ -167,14 +171,14 @@ const ViewEmp = () => {
                       View
                     </button>
                   </td>
-                  <td>
+                  {/* <td>
                     <button
                       onClick={() => handleShowEditForm(empDet.empId)}
                       className="editBtn"
                     >
                       Edit
                     </button>
-                  </td>
+                  </td> */}
                   <td>
                     <button
                       className="DelBtn"
@@ -250,57 +254,59 @@ const ViewEmp = () => {
                 setEditphone(e.target.value);
               }}
             />
+            {validMessage.phone && (
+              <span className="invalidMsg">{validMessage.phone}</span>
+            )}
           </div>
-
-          {validMessage.phone && (
-            <span className="invalidMsg">{validMessage.phone}</span>
-          )}
-          <select
-            style={{ border: "none", marginTop: "3px" }}
-            className="editEmpSelect"
-            value={editrole}
-            onChange={(e) => {
-              setEditrole(e.target.value);
-            }}
-          >
-            <option value="Employee">Employee</option>
-            <option value="admin">admin</option>
-            <option value="hr">hr</option>
-          </select>
+              <p style={{marginRight:"235px"}}>
+                <b>Role:</b>
+              </p>
+            <div className="editEmpSelect">
+              
+             <div> <select
+                value={editrole}
+                onChange={(e) => {
+                  setEditrole(e.target.value);
+                }}
+              >
+                <option value="Employee">Employee</option>
+                <option value="admin">admin</option>
+                <option value="hr">hr</option>
+              </select>
+              </div>
+            </div>
           <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginTop: "10px",
-            marginLeft: "10px",
-          }}
-        >
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleCancel();
-              handleEdit(viewData.id);
-              handleOk();
-              setViewData({ Name: "" });
-            }}
             style={{
-              // display: "flex",
-              border: "none",
-              // alignItems: "center",
-              borderRadius: "7px",
-              backgroundColor: "#07076e",
-              color: "#fff",
-              marginTop: "20px",
-              // justifyContent: "flex-end",
-              padding: "5px 20px",
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "10px",
+              marginLeft: "10px",
             }}
           >
-            Submit
-          </button>
-        </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleCancel();
+                handleEdit(viewData.id);
+                handleOk();
+                setViewData({ Name: "" });
+              }}
+              style={{
+                // display: "flex",
+                border: "none",
+                // alignItems: "center",
+                borderRadius: "7px",
+                backgroundColor: "#07076e",
+                color: "#fff",
+                marginTop: "20px",
+                // justifyContent: "flex-end",
+                padding: "5px 20px",
+              }}
+            >
+              Submit
+            </button>
+          </div>
         </form>
-
-        
       </Modal>
       {popUp && (
         <div className="viewPop">
@@ -333,7 +339,14 @@ const ViewEmp = () => {
               <div className="empDataValue">10</div>
             </div>
             <div className="empData">
-              <button className="editBtn" onClick={()=>{handleShowEditForm(viewEmpData.empId)}}>Edit</button>
+              <button
+                className="editBtn"
+                onClick={() => {
+                  handleShowEditForm(viewEmpData.empId);
+                }}
+              >
+                Edit
+              </button>
             </div>
           </div>
         </div>
