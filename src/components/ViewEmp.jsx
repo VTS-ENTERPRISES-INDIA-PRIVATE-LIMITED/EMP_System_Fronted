@@ -210,6 +210,7 @@ const ViewEmp = () => {
   };
 
   const handleEdit = async (Id) => {
+    // const url = `http://localhost:5000/admin/updateEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/updateEmp/${Id}`;
     await axios
       .post(url, { editName, editemail, editphone, editrole })
@@ -217,6 +218,7 @@ const ViewEmp = () => {
         setMessage(res.data.message);
       });
   };
+  
 
   const handleShowEditForm = (Id) => {
     showModal();
@@ -237,6 +239,7 @@ const ViewEmp = () => {
   };
 
   const handleDelete = (Id) => {
+    // const url = `http://localhost:5000/admin/deleteEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`;
 
     axios.post(url).then(() => console.log("deleted successfully"));

@@ -1,0 +1,229 @@
+
+.upload-container {
+    width: calc(100vw - 300px);
+    height: calc(100vh - 60px);
+    overflow: scroll;
+  }
+  .upload-container::-webkit-scrollbar {
+    display: none;
+  }
+  .uploadHeader {
+    border: solid rgb(213, 203, 203);
+    border-width: 3px 0;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(236, 233, 233);
+  }
+  .upload-button {
+    width: 110px;
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #07076e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .upload-button:hover {
+    background-color: #1f6d85;
+  }
+  .checkbox-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .checkbox-item {
+    width: 25%;
+    cursor: pointer;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+  }
+  .checkbox-item label {
+    margin-left: 5px;
+  }
+  .formInput input[type="file"] {
+    padding: 10px;
+    border: 1px solid #288ca7;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 70%;
+  }
+  .error-message {
+    color: red;
+    margin-bottom: 20px;
+  }
+  .selected-file {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  .main-content {
+    display: flex;
+    justify-content: space-around;
+  }
+  .left-panel {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border: 2px solid rgb(165, 165, 165);
+    border-radius: 10px;
+    margin: 20px 5px 20px 5px;
+  }
+  .right-panel {
+    margin: 20px 30px 20px 5px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(165, 165, 165);
+  }
+  .dropdown-filter {
+    margin-top: 20px;
+    width: 100%;
+  }
+  .dropdown-filter select {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #288ca7;
+    outline: none;
+    border-radius: 4px;
+  }
+  .search-filter {
+    margin-top: 20px;
+  }
+  .search-filter input {
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid #288ca7;
+    border-radius: 4px;
+  }
+  .suggestions-box {
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 100%;
+    max-width: 368px;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .suggestion-item:hover {
+    background-color: #f0f0f0;
+  }
+  .form-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+  }
+  .form-field {
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .form-field label {
+    margin-bottom: 5px;
+  }
+  .form-field input {
+    padding: 8px;
+    border: 1px solid #288ca7;
+    border-radius: 4px;
+    outline: none;
+  }
+  .save-button {
+    background-color: #288ca7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.5s;
+  }
+  .save-button:hover {
+    background-color: #1f6d85;
+  }
+  .selected-data {
+    margin-top: 40px;
+    width: 650px;
+    height: 50vh;
+    overflow-x: scroll;
+  }
+  .selected-data table {
+    width: 100%;
+    border-collapse: collapse;
+    position: relative;
+  }
+  .selected-data th,
+  .selected-data td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .selected-data td {
+    width: fit-content;
+  }
+  .selected-data th {
+    background-color: #f2f2f2;
+  }
+  .selected-data tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .selected-data tr:hover {
+    background-color: #e2e2e2;
+    cursor: pointer;
+  }
+  .download-button {
+    background-color: #288ca7;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.5s;
+  }
+  .download-button:hover:hover {
+    background-color: #1f6d85;
+  }
+  .generate-payroll-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  .generate-payroll-button {
+    background-color: #44c33d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    margin: 40px 0px 10px 0px;
+  }
+  .generate-payroll-button:hover {
+    background-color: #2f772b;
+  }

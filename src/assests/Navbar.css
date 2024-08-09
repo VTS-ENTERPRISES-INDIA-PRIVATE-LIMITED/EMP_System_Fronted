@@ -1,0 +1,12 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px #ddd;
+    height: 60px;
+    padding: 0 40px;
+    font-size: 20px;
+  }
+  .logo {
+    height: 40px;
+    margin-right: 10px;
+  }

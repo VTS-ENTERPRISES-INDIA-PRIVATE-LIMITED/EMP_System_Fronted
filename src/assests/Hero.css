@@ -1,0 +1,75 @@
+.heroSection {
+    display: flex;
+  }
+  .dashboard {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    width: 20vw;
+    /* border: solid #ddd; */
+    border-width: 0 2px 0 0;
+  }
+  .dashLinks {
+    /* margin-top: 30px; */
+    border-top: solid 2px #ddd;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .dashLinks::-webkit-scrollbar {
+    display: none;
+  }
+  .dashLink {
+    border-bottom: solid 2px #ddd;
+  }
+  .dashLink p {
+    padding: 15px 40px;
+    margin: 0;
+  }
+  .dashLink:hover {
+    cursor: pointer;
+    background-color: #bbb;
+    font-weight: 700;
+  }
+  .dashLink:hover .dashDropDownList {
+    display: block;
+    transition: ease-in-out 0.5s;
+  }
+  .dashDropDownList {
+    display: none;
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    transition: ease-in-out 0.5s;
+  }
+  .dashDropDownList li {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 15px 0;
+    background-color: #ddd;
+    border-top: solid 1px #bbb;
+    padding-left: 60px;
+    font-size: 14px;
+    font-weight: 100;
+    width: 100%;
+    transition: ease-in-out 0.5s;
+  }
+  .dashDropDownList li:hover {
+    background-color: #ccc;
+    transition: ease-in-out 0.5s;
+  }
+  .dashDropDownList li::before {
+    content: "➜";
+    position: absolute;
+    opacity: 0;
+    right: 20px;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease-in-out;
+  }
+  .dashDropDownList li:hover::before {
+    opacity: 1;
+    transform: rotate(0deg);
+    cursor: pointer;
+  }

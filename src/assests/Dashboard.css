@@ -1,0 +1,102 @@
+
+.dashBoardPage {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 30px 20px;
+  }
+  .loginCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px #bbb;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin: 10px 0;
+  }
+  .loginCard .wish {
+    font-weight: 900;
+    font-size: 17px;
+    margin-top: 10px;
+  }
+  
+  .loginCard p {
+    margin: 8px 0;
+  }
+  
+  .login-user b {
+    /* padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500; */
+    margin-top: 3px;
+    font-size: 14px;
+  }
+  .login-user p {
+    margin-top: -1px;
+    font-size: 12px;
+  }
+  
+  .loginCont {
+    display: flex;
+    align-items: center;
+  
+    /* gap:2px; */
+  }
+  
+  .loginTime b {
+    margin-top: 3px;
+    font-size: 12px;
+  }
+  .loginTime p {
+    margin-top: -1px;
+    font-size: 12px;
+  }
+  
+  .loginCont img {
+    height: 30px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+  }
+  /* .loginCard .loginCard-leavescard {
+    padding: 5px;
+  } */
+  .leavescard {
+    padding-top: 15px;
+  }
+  .leavescard .leave-card {
+    display: flex;
+    width: 33%;
+    gap: 5px;
+    /* padding-top: 5px; */
+    /* flex-direction: column; */
+    justify-content: space-between;
+    /* align-items: center; */
+  }
+  .logtimescard {
+    display: flex;
+    gap: 50px;
+  }
+  .logtimescard .loginCont {
+    margin: 0px 4px;
+    font-size: 12px;
+  }
+  .anouncements {
+    background-color: #fff;
+    margin: 20px 5px;
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 10px;
+    height: 40vh;
+    padding-right: 20px;
+  }
+  .anouncements th {
+    background-color: #bbb;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .anouncements tr {
+    padding-right: 20px;
+  }
