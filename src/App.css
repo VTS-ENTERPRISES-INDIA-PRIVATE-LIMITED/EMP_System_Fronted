@@ -336,7 +336,7 @@ body {
   width: 110px;
   display: inline-block;
   padding: 10px 10px;
-  background-color: #288ca7;
+  background-color: #07076e;
   color: white;
   border: none;
   border-radius: 5px;
@@ -839,7 +839,7 @@ p:hover {
 }
 .excel-upload-btn {
   border: none;
-  background-color: #44c33d;
+  background-color: #07076e;
   color: #fff;
   border-radius: 7px;
   padding: 5px 20px;
@@ -895,7 +895,7 @@ p:hover {
   border: none;
   border-radius: 7px;
   padding: 5px 20px;
-  background-color: #288ca7;
+  background-color: #07076e;
   transition: background-color 0.3s;
   color: #fff;
   align-self: center;
