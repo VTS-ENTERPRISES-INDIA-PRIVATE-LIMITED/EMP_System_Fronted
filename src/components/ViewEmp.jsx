@@ -52,8 +52,14 @@ const ViewEmp = () => {
     phone: "",
     role: "",
   });
-  const [popUp, setPopUp] = useState(false);
-
+  const [popUp, setPopUp] = useState(false);  
+  const [deletePopUp, setDeletePopUp] = useState(false)
+  const [deleteEmpId, setDeleteEmpId] = useState()
+  const handleViewDeletePopUp = (Id) =>{
+    console.log(Id)
+    setDeletePopUp(true)
+    setDeleteEmpId(Id)
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -220,7 +226,7 @@ const ViewEmp = () => {
   };
   
 
-  const handleShowEditForm = (Id) => {
+  const  handleShowEditForm = (Id) => {
     showModal();
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${Id}`;
     axios.post(url).then((res) => {
@@ -241,7 +247,6 @@ const ViewEmp = () => {
   const handleDelete = (Id) => {
     // const url = `http://localhost:5000/admin/deleteEmp/${Id}`
     const url = `${process.env.REACT_APP_BACKEND_URL}/admin/deleteEmp/${Id}`;
-
     axios.post(url).then(() => console.log("deleted successfully"));
   };
 
@@ -433,9 +438,9 @@ const ViewEmp = () => {
                   <td>
                     <button
                       className="DelBtn"
-                      onClick={() => handleDelete(empDet.empId)}
-                    >
-                      Delete
+                      onClick={() =>{
+                        handleViewDeletePopUp(empDet.empId)}}
+                    >Delete
                     </button>
                   </td>
                 </tr>
@@ -444,6 +449,20 @@ const ViewEmp = () => {
           </tbody>
         </table>
       </div>
+            {/* changes to delete button */}
+            {deletePopUp && 
+              (<div className="cfmDelModal">
+              <div className="cfmDelMsg">
+                <p>Are you sure?</p>
+                <div className="cfmDelBtn">
+                  <button onClick={()=>{
+                    handleDelete(deleteEmpId)
+                    setDeletePopUp(false)}}>Yes</button>
+                  <button>No</button>
+                </div>
+              </div>
+              </div>)
+              }
 
       <Modal
         // title="Basic Modal"
