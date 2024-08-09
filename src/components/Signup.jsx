@@ -20,14 +20,7 @@ const SignUp = () => {
   const validateEmail = async (email) => {
     const emailPattern =
       /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i;
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/emp/sendotp`,{email:email})
-      .then(res=>{
-        alert(res.data.otp)
-        setOtpSent(true);
-        setReceived(res.data.otp)
-      })
-      .catch(err=>console.log(err))
-    return emailPattern.test(email);
+      return emailPattern.test(email);
   };
 
   const validateOtp = (otp) => {
@@ -44,14 +37,20 @@ const SignUp = () => {
       return;
     }
     setEmailError("");
-
-    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/emp/sendotp`,{email:email})
-    .then(res=>{
-      alert(res.data.otp)
-      setOtpSent(true);
-      setReceived(res.data.otp)
-    })
-    .catch(err=>console.log(err))
+    const valid = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/viewEmp/${email}`)
+    
+    if (valid.data) {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/emp/sendotp`,{email:email})
+      .then(res=>{
+        alert(res.data.otp)
+        setOtpSent(true);
+        setReceived(res.data.otp)
+      })
+      .catch(err=>console.log(err))
+    } else {
+      alert('User does not exist..!')
+      setOtpSent(false)
+    }
   };
 
   const handleVerifyOtp = () => {
@@ -65,7 +64,6 @@ const SignUp = () => {
     {
       setOtpVerified(true);
       alert("OTP verified Successfully")
-
     }
   };
 
@@ -113,6 +111,8 @@ const SignUp = () => {
         </>
       :
       <div style={{ display: "flex", flexDirection: "column" }}>
+        
+        {otpSent && !otpVerified && 
           <div className="otpverify">
             <input
               type="text"
@@ -123,8 +123,8 @@ const SignUp = () => {
             {otpError && <p style={{ color: "red" }}>{otpError}</p>}
             <button onClick={handleVerifyOtp}>Verify</button>
           </div>
-            {otpVerified && (
-              <>
+          }
+          { otpVerified && <>
                 <input
                   type="password"
                   placeholder="New Password"
@@ -144,7 +144,7 @@ const SignUp = () => {
                 )}
                 <button onClick={handleResetPassword}>Reset Password</button>
               </>
-            )}
+              }
       </div>
       }
       </div>
